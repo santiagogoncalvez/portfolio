@@ -1,2 +1,9 @@
 @import "tailwindcss";
-@import '@fontsource-variable/onest'
+@import '@fontsource-variable/onest';
+
+@theme  {
+  /* Crea un nuevo color */
+  --color-title: #fafafa;
+  --color-text: #d7d7d7;
+  --color-text-highlighted: #B0B0B0;
+}
