@@ -1,0 +1,41 @@
+---
+import Header from "../components/Header.astro";
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width" />
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      <meta name="generator" content={Astro.generator} />
+      <title>Astro Basics</title>
+   </head>
+   <body>
+      <div class="relative h-full w-full bg-[#2a2a2a]">
+         <div
+            class="absolute bottom-0 left-0 right-0 top-0 bg-radial-[at_50%_10%] from-[rgba(244,244,244,0)] from-10% to-[rgba(18,18,18,1)] to-70%"
+         >
+            <div class="flex flex-col items-center">
+               <Header />
+               <slot />
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
+
+<style>
+   :root {
+      color-scheme: light dark;
+   }
+
+   html {
+      font-family: "Onest variable", system-ui, sans-serif;
+   }
+   body {
+      /* background: #2a2929; */
+      height: 100vh;
+   }
+</style>
