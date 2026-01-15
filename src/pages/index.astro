@@ -3,39 +3,47 @@ import Layout from "../layouts/Layout.astro";
 import Badge from "../components/Badge.astro";
 import SocialPill from "../components/SocialPill.astro";
 import LinkedInIcon from "../icons/LinkedIn.astro";
+import ProfileCheckIcon from "../icons/ProfileCheck.astro";
 import GitHubIcon from "../icons/GitHub.astro";
 import MailIcon from "../icons/Mail.astro";
-import BriefCaseIcon from "../icons/BriefCase.astro";
+// import BriefCaseIcon from "../icons/BriefCase.astro";
 
 import SectionContainer from "../components/SectionContainer.astro";
-import Experience from "../components/Experience.astro";
+// import Experience from "../components/Experience.astro";
 import Subtitle from "../components/Subtitle.astro";
+import Code from "../icons/Code.astro";
+import Projects from "../components/Projects.astro";
+import AboutMe from "../components/AboutMe.astro";
 ---
 
 <Layout
    title="Porfolio de Santiago Goncalvez - Desarrollador y Programador Web"
    description="Contrata a Santiago Goncalvez para crear tu aplicación web o móvil. Desarrollador Web, estudiante de Ingeniería Informática y Programador. Especializado en crear aplicaciones únicas."
 >
-   <main class="py-20 flex flex-col gap-40">
+   <main class="w-full py-10 lg:py-30 px-5 flex flex-col gap-35">
       <SectionContainer>
          <div
-            class="flex flex-col md:flex-row items-center justify-between gap-10"
+            class="w-full flex flex-col md:flex-row lg:items-center justify-between gap-8"
          >
-            <div class="flex flex-col gap-8 order-2 md:order-1">
+            <div class="w-full flex flex-col gap-8 order-2 md:order-1">
                <a
                   class="inline-flex w-fit"
                   href="http://www.linkedin.com/in/santiagogoncalvez"
                   target="_blank"
                   rel="noopener noreferrer"
                >
-                  <Badge>Disponible para trabajar</Badge>
+                  <Badge><strong>Disponible para trabajar</strong> </Badge>
                </a>
 
-               <h1 class="text-5xl font-bold text-[#fafafa] leading-tight">
+               <h1
+                  class="text-3xl md:text-5xl lg:text-5xl font-bold text-[#fafafa] leading-tight"
+               >
                   Hola, soy Santiago Goncalvez
                </h1>
 
-               <h2 class="text-2xl text-[#B0B0B0] max-w-2xl">
+               <h2
+                  class="text-xl lg:text-2xl text-[#B0B0B0] max-w-2xl text-wrap"
+               >
                   <strong class="text-[#d7d7d7]"
                      >Estudiante de Ingeniería y Frontend Developer</strong
                   >. Especializado en el ecosistema de React. Centrado en la
@@ -43,25 +51,32 @@ import Subtitle from "../components/Subtitle.astro";
                   problemas.
                </h2>
 
-               <nav class="flex gap-x-4">
+               <nav class="w-full flex gap-4 flex-wrap">
                   <SocialPill
                      href="http://www.linkedin.com/in/santiagogoncalvez"
+                     class="hover:text-[#0A66C2] transition"
                   >
                      <LinkedInIcon
-                        class="size-6 text-[#B0B0B0] hover:text-[#0A66C2] transition-colors"
+                        class="size-3 md:size-6 hover:text-[#0A66C2] transition"
                      />
                      LinkedIn
                   </SocialPill>
 
-                  <SocialPill href="https://github.com/santiagogoncalvez">
+                  <SocialPill
+                     href="https://github.com/santiagogoncalvez"
+                     class="hover:text-black transition"
+                  >
                      <GitHubIcon
-                        class="size-6 text-[#B0B0B0] hover:text-white transition-colors"
+                        class="size-3 md:size-6 hover:text-black transition"
                      />
                      GitHub
                   </SocialPill>
-                  <SocialPill href="mailto:santiago.goncalvez.l@gmail.com">
+                  <SocialPill
+                     href="mailto:santiago.goncalvez.l@gmail.com"
+                     class="hover:text-[#6B4400] transition"
+                  >
                      <MailIcon
-                        class="size-6 text-[#B0B0B0] hover:text-white transition-colors"
+                        class="size-3 md:size-6 hover:text-[#6B4400] transition"
                      />
                      santiago.goncalvez.l@gmail.com
                   </SocialPill>
@@ -69,28 +84,47 @@ import Subtitle from "../components/Subtitle.astro";
             </div>
 
             <div
-               class="order-1 md:order-2 shrink-0
+               class="w-fit h-fit order-1 md:order-2 shrink-0
               rounded-full
               shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_20px_rgba(255,255,255,0.03)]
               transition-all duration-500 ease-out
-              hover:scale-105 hover:shadow-[0_30px_60px_rgba(0,0,0,0.8),0_0_30px_rgba(255,255,255,0.05)]"
+              hover:scale-105 hover:shadow-[0_30px_60px_rgba(0,0,0,0.2),0_0_30px_rgba(255,255,255,0.05)]"
             >
                <img
-                  src="/santiago-goncalvez-front-face-background-transparent.png"
+                  src="/santiago-goncalvez-front-face-background-transparent.webp"
                   alt="Santiago Goncalvez photo"
-                  class="rounded-full w-[225px] h-[225px] object-cover bg-gradient-to-b from-[#6c6c6c] to-[#141414]"
+                  class="rounded-full size-20 lg:size-70 object-cover bg-gradient-to-b from-[#cfcece] to-[#393939]"
                />
             </div>
          </div>
       </SectionContainer>
 
       <!-- Agregar cuando tenta experiencia -->
-      <SectionContainer id="experiencia">
+      <!-- <SectionContainer id="experiencia">
          <Subtitle class="flex flex-row items-center gap-x-4">
             <BriefCaseIcon class="size-8" />
             <span>Experiencia laboral</span>
          </Subtitle>
+
          <Experience />
+      </SectionContainer> -->
+
+      <SectionContainer id="proyectos">
+         <Subtitle class="flex flex-row items-center gap-x-4">
+            <Code class="size-8" />
+            <span>Proyectos</span>
+         </Subtitle>
+
+         <Projects />
+      </SectionContainer>
+
+      <SectionContainer id="sobre-mi">
+         <Subtitle class="flex flex-row items-center gap-x-4">
+            <ProfileCheckIcon class="size-8" />
+            <span>Sobre mí</span>
+         </Subtitle>
+
+         <AboutMe />
       </SectionContainer>
    </main>
 </Layout>

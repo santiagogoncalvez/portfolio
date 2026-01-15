@@ -1,9 +1,125 @@
-<header class="flex justify-center items-center py-5 w-[1120px]">
-   <nav class="flex flex-row justify-center items-center gap-x-10 opacity-80">
-      <a href="#top">Inicio</a>
-      <a href="#experiencia">Experiencia</a>
-      <a href="#sobre-mi">Sobre mí</a>
-      <a href="#proyectos">Proyectos</a>
-      <a href="#contacto">Contacto</a>
+---
+// import ThemeToggle from "./ThemeToggle.astro"
+
+const navItems = [
+   {
+      title: "Inicio",
+      label: "Inicio",
+      url: "/#top",
+   },
+   // {
+   //    title: "Experiencia",
+   //    label: "experiencia",
+   //    url: "/#experiencia",
+   // },
+   {
+      title: "Proyectos",
+      label: "proyectos",
+      url: "/#proyectos",
+   },
+   {
+      title: "Sobre mí",
+      label: "sobre-mi",
+      url: "/#sobre-mi",
+   },
+   {
+      title: "Contacto",
+      label: "contacto",
+      url: "mailto:miduga@gmail.com",
+   },
+];
+---
+
+<header
+   class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
+>
+   <nav
+      class="flex px-3 p-1 gap-2 text-sm font-medium rounded-lg text-gray-600 dark:text-title justify-center items-center"
+   >
+      {
+         navItems.map((link) => (
+            <a
+               class="relative block px-2 transition rounded-lg p-1 hover:text-bg-elevated dark:hover:bg-title dark:hover:text-bg-elevated"
+               aria-label={link.label}
+               href={link.url}
+            >
+               {link.title}
+            </a>
+         ))
+      }
+      <!-- <ThemeToggle /> -->
    </nav>
 </header>
+
+<script>
+   document.addEventListener("astro:page-load", () => {
+      const sections = document.querySelectorAll("section");
+      const navItems = document.querySelectorAll("header nav a");
+
+      const callback = (entries: any[]) => {
+         entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+               navItems.forEach((item) => {
+                  if (item.getAttribute("aria-label") == entry.target.id) {
+                     item.classList.add("text-blue-500");
+                  } else {
+                     item.classList.remove("text-blue-500");
+                  }
+               });
+            }
+         });
+      };
+
+      const observer = new IntersectionObserver(callback, {
+         root: null,
+         rootMargin: "0px",
+         threshold: 0.3,
+      });
+
+      sections.forEach((section) => {
+         observer.observe(section);
+      });
+
+      // Cleanup function
+      document.onvisibilitychange = () => {
+         if (document.visibilityState === "hidden") {
+            observer.disconnect();
+         } else {
+            sections.forEach((section) => {
+               observer.observe(section);
+            });
+         }
+      };
+   });
+</script>
+
+<style>
+   /* Importante: Importa la referencia para que @apply reconozca las clases */
+   @reference "../styles/global.css";
+
+   nav {
+      @apply bg-white/50 dark:bg-gray-800/90;
+      animation: nav-shadown 1s linear both;
+      animation-timeline: scroll();
+      animation-range: 0 100px;
+   }
+
+   /* Recuerda: NO usar @apply aquí dentro */
+   @keyframes nav-shadown {
+      0% {
+         background-color: transparent;
+         border: 1px solid transparent;
+      }
+      to {
+         background-color: rgba(
+            80,
+            80,
+            80,
+            0.8
+         ); /* Equivalente a bg-white/50 */
+         backdrop-filter: blur(8px);
+         border: 1px solid rgba(255, 255, 255, 0.1);
+         box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+      }
+   }
+</style>

@@ -1,9 +1,20 @@
 @import "tailwindcss";
 @import '@fontsource-variable/onest';
 
-@theme  {
-  /* Crea un nuevo color */
-  --color-title: #fafafa;
-  --color-text: #d7d7d7;
-  --color-text-highlighted: #B0B0B0;
+@theme {
+  /* --- COLORES DE FONDO (Elevación) --- */
+  --color-bg-base: #121212;         /* Gris base por defecto */
+  --color-bg-deep: #080808;         /* Darker: Para fondos muy profundos */
+  --color-bg-surface: #1c1c1e;      /* Dark: Para secciones o cards */
+  --color-bg-elevated: #2c2c2e;     /* Elevated: Para modales o elementos flotantes */
+
+  /* --- COLORES DE TEXTO --- */
+  --color-title: #fafafa;           /* Blanco casi puro */
+  --color-text: #d7d7d7;            /* Gris claro equilibrado */
+  --color-text-highlighted: #b0b0b0; /* El gris suave que ya tenías */
+  --color-text-muted: #636366;      /* Para textos secundarios o desactivados */
+
+  /* --- BORDES Y DETALLES --- */
+  --color-border-subtle: rgba(255, 255, 255, 0.05);
+  --color-border-strong: #3a3a3c;   /* Gris fuerte para destacar bordes */
 }
