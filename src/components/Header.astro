@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from "./ThemeToggle.astro";
+
 // import ThemeToggle from "./ThemeToggle.astro"
 
 const navItems = [
@@ -31,7 +33,7 @@ const navItems = [
    {
       title: "Contacto",
       label: "contacto",
-      url: "mailto:miduga@gmail.com",
+      url: "mailto:santiago.goncalvez.l@gmail.com",
    },
 ];
 ---
@@ -40,12 +42,12 @@ const navItems = [
    class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
 >
    <nav
-      class="flex px-3 p-1 gap-2 text-sm font-medium rounded-lg text-gray-600 dark:text-title justify-center items-center"
+      class="flex px-3 p-1 gap-2 text-sm font-medium rounded-lg text-bg-deep dark:text-title justify-center items-center"
    >
       {
          navItems.map((link) => (
             <a
-               class="relative block px-2 transition rounded-lg p-1 hover:text-bg-elevated dark:hover:bg-title dark:hover:text-bg-elevated"
+               class="relative block px-2 transition rounded-lg p-1 hover:text-title hover:bg-border-strong dark:hover:bg-title dark:hover:text-bg-elevated"
                aria-label={link.label}
                href={link.url}
             >
@@ -54,6 +56,7 @@ const navItems = [
          ))
       }
       <!-- <ThemeToggle /> -->
+      <ThemeToggle />
    </nav>
 </header>
 
@@ -100,32 +103,38 @@ const navItems = [
 </script>
 
 <style>
-   /* Importante: Importa la referencia para que @apply reconozca las clases */
    @reference "../styles/global.css";
 
+   /* 1. Definimos las variables base (Light Mode) */
    nav {
-      @apply bg-white/50 dark:bg-gray-800/90;
+      --nav-bg: rgba(255, 255, 255, 0.8);
+      --nav-border: rgba(0, 0, 0, 0.08);
+      --nav-shadow: rgba(0, 0, 0, 0.05);
+
       animation: nav-shadown 1s linear both;
       animation-timeline: scroll();
       animation-range: 0 100px;
    }
 
-   /* Recuerda: NO usar @apply aquí dentro */
+   /* 2. Sobrescribimos las variables para Dark Mode */
+   /* Usamos :global(.dark) para asegurar que detecte la clase en el HTML */
+   :global(.dark) nav {
+      --nav-bg: rgba(18, 18, 18, 0.8); /* Tu color #121212 más oscuro */
+      --nav-border: rgba(255, 255, 255, 0.1);
+      --nav-shadow: rgba(0, 0, 0, 0.5);
+   }
+
    @keyframes nav-shadown {
       0% {
          background-color: transparent;
          border: 1px solid transparent;
+         box-shadow: 0 0 0 transparent;
       }
       to {
-         background-color: rgba(
-            80,
-            80,
-            80,
-            0.8
-         ); /* Equivalente a bg-white/50 */
-         backdrop-filter: blur(8px);
-         border: 1px solid rgba(255, 255, 255, 0.1);
-         box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+         background-color: var(--nav-bg);
+         backdrop-filter: blur(12px);
+         border: 1px solid var(--nav-border);
+         box-shadow: 0 10px 15px -3px var(--nav-shadow);
       }
    }
 </style>

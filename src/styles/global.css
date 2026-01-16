@@ -10,14 +10,19 @@
   --color-bg-surface: #1c1c1e;      /* Dark: Para secciones o cards */
   --color-bg-elevated: #2c2c2e;     /* Elevated: Para modales o elementos flotantes */
 
+  --color-title-secondary: #e9e9e9;
+
   /* --- COLORES DE TEXTO --- */
   --color-title: #fafafa;           /* Blanco casi puro */
   --color-text: #d7d7d7;            /* Gris claro equilibrado */
   --color-text-highlighted: #b0b0b0; /* El gris suave que ya tenías */
   --color-text-muted: #636366;      /* Para textos secundarios o desactivados */
+  --color-text-dimmed: #636366;
 
   /* --- BORDES Y DETALLES --- */
   --color-border-subtle: rgba(255, 255, 255, 0.05);
   --color-border-strong: #3a3a3c;   /* Gris fuerte para destacar bordes */
   --color-border-light: #2c2c2e;
 }
+
+@custom-variant dark (&:where(.dark, .dark *));

@@ -1,5 +1,4 @@
 ---
-// 1. Importa tus componentes de Astro o Iconos (ej. de astro-icon)
 import UniversityIcon from "../icons/University.astro";
 import ReactIcon from "../icons/React.astro";
 import BookIcon from "../icons/Book.astro";
@@ -9,7 +8,6 @@ interface BentoItem {
    title: string;
    subtitle: string;
    description?: string;
-   // Cambiamos string por 'any' para aceptar componentes de Astro
    icon?: any;
    class?: string;
    tags?: string[];
@@ -21,14 +19,9 @@ const formationItems: BentoItem[] = [
       subtitle: "Universidad (En curso)",
       description:
          "Formación sólida en algoritmos, estructuras de datos y arquitectura de software.",
-      icon: UniversityIcon, // Pasamos la referencia del componente
+      icon: UniversityIcon,
       class: "md:col-span-2 md:row-span-2",
-      tags: [
-         "C",
-         "Programación Estructurada",
-         "Análisis Matemático",
-         "Introducción a Proyectos Informáticos",
-      ],
+      tags: ["C", "Estructuras", "Matemática", "Proyectos"],
    },
    {
       title: "Especialización React",
@@ -36,20 +29,19 @@ const formationItems: BentoItem[] = [
       description:
          "Dominio avanzado de Hooks, Context API, y optimización de rendimiento.",
       icon: ReactIcon,
-      class: "md:col-span-2 border-l-2 border-l-[var(--color-text)]",
+      class: "md:col-span-2 border-l-2 border-l-bg-deep/10 dark:border-l-white/10",
    },
    {
       title: "The Road to React",
       subtitle: "Libro",
-      description: "Patrones de diseño modernos en el ecosistema.",
+      description: "Patrones de diseño modernos.",
       icon: BookIcon,
-      // CAJA PEQUEÑA: Estándar (1x1)
       class: "md:col-span-1",
    },
    {
       title: "Eloquent JavaScript",
       subtitle: "Libro",
-      description: "Profundización en los fundamentos del lenguaje.",
+      description: "Fundamentos del lenguaje.",
       icon: JavaScriptIcon,
       class: "md:col-span-1",
    },
@@ -61,54 +53,63 @@ const formationItems: BentoItem[] = [
 >
    {
       formationItems.map((item) => {
-         // 2. IMPORTANTE: Asignar el componente a una variable en Mayúscula
          const IconComponent = item.icon;
 
          return (
             <article
-               class={`group relative overflow-hidden rounded-3xl p-6 flex flex-col transition-all duration-300 bg-[#171717] border border-[var(--color-border-light)] hover:bg-[var(--color-bg-elevated)] hover:border-[var(--color-border-strong)] hover:shadow-lg ${item.class || ""}`}
+               class={`
+                  group relative overflow-hidden rounded-3xl p-6 flex flex-col transition-all duration-500
+ 
+                  bg-white/40 backdrop-blur-md border border-black/[0.1]
+
+                  dark:bg-[#171717] dark:border-white/5 
+
+                  hover:scale-[1.01] 
+                  dark:hover:bg-bg-elevated dark:hover:border-white/20
+                  ${item.class || ""}
+               `}
             >
-               {/* 1. ICONO DE FONDO GIGANTE: Solo aparece si la card es grande (row-span-2) */}
+               {/* Icono de fondo gigante */}
                {item.class?.includes("row-span-2") && item.icon && (
-                  <div class="absolute -bottom-12 -right-12 size-64 text-[var(--color-text-highlighted)] opacity-[0.04] group-hover:opacity-[0.07] transition-all duration-500 -rotate-12 pointer-events-none">
+                  <div class="absolute -bottom-12 -right-12 size-64 text-bg-deep dark:text-white opacity-[0.03] group-hover:opacity-[0.06] transition-all duration-500 -rotate-12 pointer-events-none">
                      <IconComponent />
                   </div>
                )}
 
-               {/* Glow decorativo superior */}
-               <div class="absolute top-0 right-0 -mr-10 -mt-10 w-32 h-32 rounded-full bg-[var(--color-text-highlighted)] opacity-[0.03] blur-3xl group-hover:opacity-[0.08] transition-opacity duration-500" />
+               {/* Glow decorativo superior (Azulado sutil en light) */}
+               <div class="absolute top-0 right-0 -mr-10 -mt-10 w-32 h-32 rounded-full bg-blue-500/10 dark:bg-white/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
                {/* Header: Subtítulo e Icono */}
-               <div class="relative w-full">
+               <div class="relative w-full z-10">
                   <div class="flex items-center justify-between mb-3">
-                     <span class="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-highlighted)] border border-[var(--color-border-strong)] px-2 py-1 rounded-full bg-[var(--color-bg-base)]">
+                     <span class="text-[10px] font-bold uppercase tracking-widest text-text-muted dark:text-text-highlighted border border-black/[0.05] dark:border-white/10 px-2.5 py-1 rounded-full bg-white/50 dark:bg-bg-base">
                         {item.subtitle}
                      </span>
 
                      {item.icon && (
-                        <div class="size-8 text-[var(--color-text-muted)] group-hover:text-[var(--color-title)] transition-colors">
+                        <div class="size-8 text-bg-deep/40 dark:text-text-muted group-hover:text-bg-deep dark:group-hover:text-title transition-colors">
                            <IconComponent />
                         </div>
                      )}
                   </div>
                </div>
 
-               {/* CUERPO: flex-grow permite que este bloque ocupe el espacio central en cards grandes */}
-               <div class="relative flex-grow flex flex-col justify-center">
-                  <h3 class="text-xl md:text-2xl font-bold text-[var(--color-title)] leading-tight group-hover:translate-x-1 transition-transform duration-300">
+               {/* Cuerpo */}
+               <div class="relative flex-grow flex flex-col justify-center z-10">
+                  <h3 class="text-xl md:text-2xl font-bold text-bg-deep dark:text-title leading-tight transition-transform duration-300">
                      {item.title}
                   </h3>
 
                   {item.description && (
-                     <p class="text-sm text-[var(--color-text)] mt-4 leading-relaxed group-hover:text-[var(--color-text-highlighted)] transition-colors">
+                     <p class="text-sm text-border-strong dark:text-text mt-3 leading-relaxed opacity-80">
                         {item.description}
                      </p>
                   )}
 
                   {item.tags && (
-                     <div class="flex flex-wrap gap-2 mt-6">
+                     <div class="flex flex-wrap gap-2 mt-5">
                         {item.tags.map((tag) => (
-                           <span class="text-[10px] px-2 py-1 rounded-md bg-[var(--color-bg-base)] border border-[var(--color-border-subtle)] text-[var(--color-text)] group-hover:border-[var(--color-text-highlighted)] transition-colors">
+                           <span class="text-[10px] font-medium px-2 py-1 rounded-md bg-black/[0.03] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/10 text-bg-deep dark:text-text">
                               {tag}
                            </span>
                         ))}
@@ -116,10 +117,10 @@ const formationItems: BentoItem[] = [
                   )}
                </div>
 
-               {/* OPCIONAL: Un pie de tarjeta para las grandes que se ve muy bien en Bento */}
+               {/* Pie opcional para grandes */}
                {item.class?.includes("row-span-2") && (
-                  <div class="relative mt-6 pt-4 border-t border-[var(--color-border-subtle)] opacity-60 group-hover:opacity-100 transition-opacity">
-                     <span class="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-muted)]">
+                  <div class="relative mt-6 pt-4 border-t border-black/[0.05] dark:border-white/5 opacity-40 group-hover:opacity-100 transition-opacity z-10">
+                     <span class="text-[9px] font-black uppercase tracking-[0.2em] text-bg-deep dark:text-text-muted">
                         Sistemas · Algoritmos · Arquitectura
                      </span>
                   </div>

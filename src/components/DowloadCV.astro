@@ -1,0 +1,62 @@
+---
+// DownloadCV.astro
+const { class: className, ...props } = Astro.props;
+---
+
+<a
+   href="/Santiago-Goncalvez-Curriculum-Vitae.pdf"
+   download="Santiago-Goncalvez-Curriculum-Vitae.pdf"
+   class:list={[
+      "group relative inline-flex items-center justify-center gap-x-2",
+      "py-2.5 px-6 rounded-full overflow-hidden",
+      "transition-all duration-300",
+
+      // --- LIGHT MODE (Efecto Glass Claro) ---
+      // "bg-white/10 backdrop-blur-md",
+      "border border-border-strong/30",
+      "text-bg-deep", // Texto oscuro para contrastar con tu fondo claro
+
+      // --- DARK MODE (Efecto Glass Oscuro) ---
+      "bg-transparent border-transparent",
+      "dark:text-title", // Texto claro en dark mode
+
+      // "hover:scale-105 active:scale-95",
+      "hover:bg-white/20 hover:border-text-highlighted dark:hover:border-text-muted  dark:hover:bg-bg-base/60",
+      className,
+   ]}
+   {...props}
+>
+   <div
+      class="absolute inset-0 bg-gradient-to-r from-transparent via-black/5 dark:via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
+   >
+   </div>
+
+   <div class="relative flex items-center justify-center">
+      <svg
+         class="size-5 transition-colors duration-300 stroke-current"
+         xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 24 24"
+         fill="none"
+         stroke-width="2"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+      >
+         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2"></path>
+         <polyline
+            points="7 10 12 15 17 10"
+            class="group-hover:translate-y-1 transition-transform duration-300"
+         ></polyline>
+         <line
+            x1="12"
+            y1="15"
+            x2="12"
+            y2="3"
+            class="group-hover:translate-y-0.5 transition-transform duration-300"
+         ></line>
+      </svg>
+   </div>
+
+   <span class="relative text-sm md:text-base font-bold tracking-wide">
+      Download CV
+   </span>
+</a>

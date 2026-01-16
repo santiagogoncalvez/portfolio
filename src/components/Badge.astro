@@ -1,10 +1,18 @@
 <div class="flex items-center">
    <span class="relative inline-flex overflow-hidden rounded-full p-[1px]">
       <span
-         class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#FFFFFF_0%,#666666_50%,#FFFFFF_100%)]"
+         class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite]
+         bg-[conic-gradient(from_90deg_at_50%_50%,#E2E2E2_0%,#333333_50%,#E2E2E2_100%)]
+         dark:bg-[conic-gradient(from_90deg_at_50%_50%,#FFFFFF_0%,#666666_50%,#FFFFFF_100%)]"
       ></span>
+
       <div
-         class="inline-flex items-center justify-center w-full px-3 py-1 text-sm text-green-800 bg-green-100 rounded-full cursor-pointer dark:bg-border-strong dark:text-title backdrop-blur-3xl whitespace-nowrap"
+         class="inline-flex items-center justify-center w-full px-3 py-1 text-sm rounded-full cursor-pointer
+         whitespace-nowrap backdrop-blur-3xl
+         /* Light Mode: Fondo claro, texto oscuro (usando tus variables de texto) */
+         bg-white/90 text-bg-deep
+         /* Dark Mode: Mantenemos tu configuración original */
+         dark:bg-border-strong dark:text-title"
       >
          <slot />
       </div>

@@ -1,0 +1,149 @@
+---
+import SunIcon from "../icons/Sun.astro";
+import SystemIcon from "../icons/System.astro";
+import MoonIcon from "../icons/Moon.astro";
+
+const THEMES = ["Light", "Dark", "System"];
+---
+
+<div class="relative ml-1 mr-1">
+   <button
+      transition:persist
+      id="theme-toggle-btn"
+      class="appearance-none border-none flex hover:scale-125 transition-transform duration-300 relative size-5 items-center justify-center cursor-pointer"
+   >
+      <span class="sr-only">Elige el tema</span>
+
+      <div
+         id="light"
+         class="theme-toggle-icon size-full absolute inset-0 m-auto flex items-center justify-center"
+      >
+         <SunIcon class="size-full" />
+      </div>
+      <div
+         id="dark"
+         class="theme-toggle-icon size-full absolute inset-0 m-auto flex items-center justify-center"
+      >
+         <MoonIcon class="size-full" />
+      </div>
+      <div
+         id="system"
+         class="theme-toggle-icon size-full absolute inset-0 m-auto flex items-center justify-center"
+      >
+         <SystemIcon class="size-full" />
+      </div>
+   </button>
+
+   <div
+      transition:persist
+      id="themes-menu"
+      class="absolute hidden top-8 right-0 text-sm p-1 min-w-[8rem] rounded-md border border-gray-100 bg-white dark:bg-bg-base dark:border-gray-500/20 shadow-lg z-50"
+   >
+      <ul class="flex flex-col">
+         {
+            THEMES.map((theme) => (
+               <li class="themes-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm transition-colors text-black dark:text-white">
+                  {theme}
+               </li>
+            ))
+         }
+      </ul>
+   </div>
+</div>
+
+<style>
+   /* Control suave de los iconos */
+   .theme-toggle-icon {
+      opacity: 0;
+      transform: scale(0.3);
+      transition:
+         opacity 0.3s ease,
+         transform 0.3s ease;
+      pointer-events: none;
+      /* Aseguramos que el contenido interno no se desborde */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   }
+
+   /* El icono activo se muestra centrado y opaco */
+   .theme-toggle-icon.active {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+   }
+
+   /* Animación del menú desplegable */
+   #themes-menu.open {
+      display: block;
+      animation: scale-up-center 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+   }
+
+   @keyframes scale-up-center {
+      from {
+         transform: scale(0.9);
+         opacity: 0;
+      }
+      to {
+         transform: scale(1);
+         opacity: 1;
+      }
+   }
+</style>
+
+<script is:inline>
+   const getThemePreference = () => {
+      if (
+         typeof localStorage !== "undefined" &&
+         localStorage.getItem("theme")
+      ) {
+         return localStorage.getItem("theme");
+      }
+      return "system";
+   };
+
+   const updateIcon = (themePreference) => {
+      document.querySelectorAll(".theme-toggle-icon").forEach((element) => {
+         element.classList.toggle("active", element.id === themePreference);
+      });
+   };
+
+   const updateTheme = () => {
+      const themePreference = getThemePreference();
+      const isDark =
+         themePreference === "dark" ||
+         (themePreference === "system" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+      updateIcon(themePreference);
+      document.documentElement.classList.toggle("dark", isDark);
+   };
+
+   updateTheme();
+
+   window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", updateTheme);
+
+   const themeBtn = document.getElementById("theme-toggle-btn");
+   const themesMenu = document.getElementById("themes-menu");
+
+   themeBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      themesMenu?.classList.toggle("open");
+   });
+
+   document.addEventListener("click", () =>
+      themesMenu?.classList.remove("open")
+   );
+
+   document.querySelectorAll(".themes-menu-option").forEach((element) => {
+      element.addEventListener("click", (e) => {
+         const selectedTheme = e.target.innerText.toLowerCase().trim();
+         localStorage.setItem("theme", selectedTheme);
+         updateTheme();
+      });
+   });
+
+   document.addEventListener("astro:after-swap", updateTheme);
+</script>
