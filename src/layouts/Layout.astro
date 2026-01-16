@@ -60,17 +60,3 @@ dark:bg-[radial-gradient(ellipse_120%_80%_at_50%_-10%,#1c1c1e_10%,rgba(244,244,2
       }
    }
 </style>
-
-<script is:inline>
-   // Forzar el scroll al inicio antes de que el navegador intente restaurar la posición
-   if ("scrollRestoration" in history) {
-      history.scrollRestoration = "manual";
-   }
-
-   window.scrollTo(0, 0);
-
-   // Opcional: Asegurarse de que incluso tras la carga completa esté arriba
-   window.addEventListener("beforeunload", () => {
-      window.scrollTo(0, 0);
-   });
-</script>
