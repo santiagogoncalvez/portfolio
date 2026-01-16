@@ -10,23 +10,24 @@ const { class: className, ...props } = Astro.props;
       "group relative inline-flex items-center justify-center gap-x-2",
       "py-2.5 px-6 rounded-full overflow-hidden",
       "transition-all duration-300",
+      "border backdrop-blur-sm",
 
-      // --- LIGHT MODE (Efecto Glass Claro) ---
-      // "bg-white/10 backdrop-blur-md",
-      // "border border-bg-base",
-      "text-title dark:text-bg-base", // Texto oscuro para contrastar con tu fondo claro
+      // --- TUS COLORES BASE (Respetados) ---
+      "text-title dark:text-bg-base",
+      "bg-bg-base dark:bg-title border-black/5 dark:border-white/10",
 
-      // --- DARK MODE (Efecto Glass Oscuro) ---
-      "bg-bg-base dark:bg-title dark:bg-bg-surface border-text-muted",
+      // --- EFECTO PLATINADO HOVER ---
+      // Light: Un brillo blanco-plata radial
+      "hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-white/60 hover:to-bg-base",
+      // Dark: Un brillo metálico que resalta el fondo oscuro
+      "dark:hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] dark:hover:from-white dark:hover:to-bg-surface",
 
-      // "hover:scale-105 active:scale-95",
-      "hover:bg-white/20 hover:border-text-highlighted dark:hover:border-text-muted  dark:hover:bg-bg-base/60",
       className,
    ]}
    {...props}
 >
    <div
-      class="absolute inset-0 bg-gradient-to-r from-transparent via-black/5 dark:via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
+      class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 dark:via-border-strong/80 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"
    >
    </div>
 

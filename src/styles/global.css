@@ -17,7 +17,7 @@
   --color-text: #d7d7d7;            /* Gris claro equilibrado */
   --color-text-highlighted: #b0b0b0; /* El gris suave que ya tenías */
   --color-text-muted: #636366;      /* Para textos secundarios o desactivados */
-  --color-text-dimmed: #636366;
+  --color-text-dimmed: #8e8e93;
 
   /* --- BORDES Y DETALLES --- */
   --color-border-subtle: rgba(255, 255, 255, 0.05);
