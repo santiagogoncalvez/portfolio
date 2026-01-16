@@ -13,12 +13,11 @@ const { class: className, ...props } = Astro.props;
 
       // --- LIGHT MODE (Efecto Glass Claro) ---
       // "bg-white/10 backdrop-blur-md",
-      "border border-border-strong/30",
-      "text-bg-deep", // Texto oscuro para contrastar con tu fondo claro
+      // "border border-bg-base",
+      "text-title dark:text-bg-base", // Texto oscuro para contrastar con tu fondo claro
 
       // --- DARK MODE (Efecto Glass Oscuro) ---
-      "bg-text dark:bg-bg-surface border-text-muted",
-      "dark:text-title", // Texto claro en dark mode
+      "bg-bg-base dark:bg-title dark:bg-bg-surface border-text-muted",
 
       // "hover:scale-105 active:scale-95",
       "hover:bg-white/20 hover:border-text-highlighted dark:hover:border-text-muted  dark:hover:bg-bg-base/60",

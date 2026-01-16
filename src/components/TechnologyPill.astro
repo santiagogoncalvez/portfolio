@@ -23,7 +23,7 @@ const TECH_MAP = {
    html5: HTML5Logo,
    reactquery: ReactQueryLogo,
    zustand: ZustandLogo,
-   reduxtoolkit: ReduxToolkit
+   reduxtoolkit: ReduxToolkit,
 };
 
 // 2. Definimos la interfaz de las props
@@ -46,7 +46,7 @@ const { techs } = Astro.props;
 
          return (
             <div class="group inline-block transition-all duration-300 hover:-translate-y-1">
-               <TechLogo class="rounded-full select-none" />
+               <TechLogo class="rounded-full select-none font-[Onest_variable]" />
             </div>
          );
       })
