@@ -17,7 +17,7 @@ const { class: className, ...props } = Astro.props;
       "text-bg-deep", // Texto oscuro para contrastar con tu fondo claro
 
       // --- DARK MODE (Efecto Glass Oscuro) ---
-      "bg-transparent border-transparent",
+      "bg-text dark:bg-bg-surface border-text-muted",
       "dark:text-title", // Texto claro en dark mode
 
       // "hover:scale-105 active:scale-95",
@@ -57,6 +57,6 @@ const { class: className, ...props } = Astro.props;
    </div>
 
    <span class="relative text-sm md:text-base font-bold tracking-wide">
-      Download CV
+      Descargar CV
    </span>
 </a>
