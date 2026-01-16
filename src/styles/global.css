@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @import '@fontsource-variable/onest';
+@import '@fontsource-variable/inter';
+
 
 @theme {
   /* --- COLORES DE FONDO (Elevación) --- */
@@ -17,4 +19,5 @@
   /* --- BORDES Y DETALLES --- */
   --color-border-subtle: rgba(255, 255, 255, 0.05);
   --color-border-strong: #3a3a3c;   /* Gris fuerte para destacar bordes */
+  --color-border-light: #2c2c2e;
 }

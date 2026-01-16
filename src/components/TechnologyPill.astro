@@ -1,0 +1,54 @@
+---
+import JavaScriptLogo from "../icons/JavaScriptLogo.astro";
+import TailwindLogo from "../icons/TailwindLogo.astro";
+import ViteLogo from "../icons/ViteLogo.astro";
+import TypeScriptLogo from "../icons/TypeScriptLogo.astro";
+import ReactRouterLogo from "../icons/ReactRouterLogo.astro";
+import ReactLogo from "../icons/ReactLogo.astro";
+import CSSLogo from "../icons/CSSLogo.astro";
+import HTML5Logo from "../icons/HTML5Logo.astro";
+import ReactQueryLogo from "../icons/ReactQueryLogo.astro";
+import ZustandLogo from "../icons/ZustandLogo.astro";
+import ReduxToolkit from "../icons/ReduxToolkit.astro";
+
+// 1. Definimos la constante/diccionario de tecnologías disponibles
+const TECH_MAP = {
+   tailwind: TailwindLogo,
+   javascript: JavaScriptLogo,
+   vite: ViteLogo,
+   typescript: TypeScriptLogo,
+   reactrouter: ReactRouterLogo,
+   react: ReactLogo,
+   css: CSSLogo,
+   html5: HTML5Logo,
+   reactquery: ReactQueryLogo,
+   zustand: ZustandLogo,
+   reduxtoolkit: ReduxToolkit
+};
+
+// 2. Definimos la interfaz de las props
+interface Props {
+   techs: string[]; // Ejemplo: ['react', 'tailwind']
+}
+
+const { techs } = Astro.props;
+---
+
+<div class="flex flex-wrap gap-4">
+   {
+      techs.map((key) => {
+         // Normalizamos la key a minúsculas para evitar errores
+         const techKey = key.toLowerCase();
+         const TechLogo = TECH_MAP[techKey];
+
+         // Si la tecnología no existe en nuestro mapa, no renderizamos nada
+         if (!TechLogo) return null;
+
+         return (
+            <div class="group inline-block transition-all duration-300 hover:-translate-y-1">
+               <TechLogo class="rounded-full select-none" />
+            </div>
+         );
+      })
+   }
+</div>

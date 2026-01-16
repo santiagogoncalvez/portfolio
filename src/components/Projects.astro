@@ -1,39 +1,61 @@
 ---
 import GitHub from "../icons/GitHub.astro";
-import NextJS from "../icons/NextJS.astro";
-import Tailwind from "../icons/Tailwind.astro";
 import Link from "../icons/Link.astro";
 import LinkButton from "./LinkButton.astro";
+import TechnologyPill from "./TechnologyPill.astro";
 
-const TAGS = {
-   NEXT: {
-      name: "Next.js",
-      class: "bg-black text-white",
-      icon: NextJS,
-   },
-   TAILWIND: {
-      name: "Tailwind CSS",
-      class: "bg-[#003159] text-white",
-      icon: Tailwind,
-   },
-};
 const PROJECTS = [
    {
-      title: "SVGL - A beautiful library with SVG logos",
+      title: "Hacker Stories",
       description:
-         "Biblioteca de logos SVG de las marcas más populares. +10k visitas al mes. +2K svgs descargados. Creado desde cero con Next.js, React y Tailwind CSS.",
-      link: "https://svgl.vercel.app/",
-      github: "https://github.com/pheralb/svgl",
-      image: "/project-tu-pais-dark.png",
-      tags: [TAGS.NEXT, TAGS.TAILWIND],
+         "Hacker News Client Cliente avanzado de noticias desarrollado con React y TanStack Query. Implementé una arquitectura escalable con scroll infinito, persistencia de favoritos, gestión de historial de búsqueda y navegación optimizada con React Router. Foco total en la experiencia de usuario mediante fallbacks y estados de carga.",
+      link: "https://hacker-news-36e33-62875.web.app",
+
+      github: "https://github.com/santiagogoncalvez/hacker-stories",
+
+      image: "/project-hacker-stories-dark.png",
+      tags: ["typescript", "React", "ReactQuery", "ReactRouter", "vite"],
    },
    {
-      title: "AdventJS - Retos de programación con JavaScript y TypeScript",
+      title: "Tech Test: Data Management Dashboard",
       description:
-         "Plataforma gratuita con retos de programación. Más de 1 millón de visitas en un mes. +50K retos completados. Creada desde cero con Next.js, React y Tailwind CSS.",
-      link: "https://adventjs.dev",
+         "Dashboard de usuarios con filtrado avanzado, ordenación multicapa y recuperación de datos. Enfocado en optimización de rendimiento y manejo de estado asíncrono.",
+      link: "https://userops-dashboard.web.app",
+      github:
+         "https://github.com/santiagogoncalvez/midudevs-react-course/tree/main/projects/11b-typescript-prueba-tecnica-with-reacty-query",
+      image: "/project-typescript-test-with-react-query-dark.png",
+      tags: ["typescript", "React", "ReactQuery", "vite"],
+   },
+   {
+      title: "Admin User Management System",
+      description:
+         "CRUD profesional desarrollado con Redux Toolkit para un estado global robusto. Incluye diseño de interfaz con Tremor, tipado estricto y un sistema de Rollback optimista para garantizar la integridad de los datos.",
+      link: "https://core-crud-interface.web.app",
+
+      github:
+         "https://github.com/santiagogoncalvez/midudevs-react-course/tree/main/projects/10-crud-redux",
+
+      image: "/projec-core-crud-interface-dark.png",
+      tags: ["typescript", "React", "ReduxToolkit", "vite"],
+   },
+   {
+      title: "JavaScript Quiz Master",
+      description:
+         "Aplicación de trivias técnica desarrollada para demostrar la gestión de estado ligero con Zustand y el manejo de tipos con TypeScript.",
+      link: "https://javascript-quiz-santiago.web.app",
+      github:
+         "https://github.com/santiagogoncalvez/midudevs-react-course/tree/main/projects/13-typescript-quizz",
+      image: "/project-javascript-quiz-dark.png",
+      tags: ["typescript", "zustand", "react", "vite"],
+   },
+   {
+      title: "Tú País - Página de adivinanzas de banderas",
+      description:
+         "Juego interactivo de banderas desarrollado en Vanilla JavaScript, con arquitectura inspirada en Flux. Implementa estado global, routing por hash y un sistema de gamificación basado en reconocimiento visual, priorizando una experiencia de usuario ágil y fluida.",
+      link: "https://santiagogoncalvez.github.io/tupais/",
+      github: "https://github.com/santiagogoncalvez/tupais",
       image: "/project-tu-pais-dark.png",
-      tags: [TAGS.NEXT, TAGS.TAILWIND],
+      tags: ["javascript", "html5", "css", "vite"],
    },
 ];
 ---
@@ -45,8 +67,10 @@ const PROJECTS = [
             <article
                class={`flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0 ${index % 2 === 0 ? "" : "md:flex-row-reverse"}`}
             >
-               <div class="w-full md:w-1/2">
-                  <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-400 lg:hover:border-gray-700 lg:hover:bg-gray-50/50">
+               <div
+                  class={`w-full md:w-1/2 ${index % 2 === 0 ? "mr-10" : "ml-10"} `}
+               >
+                  <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-3xl sm:rounded-3xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-border-light lg:hover:border-border-strong lg:hover:bg-gray-50/50">
                      <img
                         alt="Recién llegado vs 5 años en Nueva Zelanda"
                         class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
@@ -61,18 +85,7 @@ const PROJECTS = [
                      {title}
                   </h3>
                   <div class="flex flex-wrap mt-2">
-                     <ul class="flex flex-row mb-2 gap-x-2">
-                        {tags.map((tag) => (
-                           <li>
-                              <span
-                                 class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
-                              >
-                                 <tag.icon class="size-4" />
-                                 {tag.name}
-                              </span>
-                           </li>
-                        ))}
-                     </ul>
+                     <TechnologyPill techs={tags} />
 
                      <div class="mt-2 text-text dark:text-text">
                         {description}

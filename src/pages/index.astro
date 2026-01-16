@@ -8,14 +8,15 @@ import GitHubIcon from "../icons/GitHub.astro";
 import MailIcon from "../icons/Mail.astro";
 // import BriefCaseIcon from "../icons/BriefCase.astro";
 
-import { SectionContainerMotion } from "../components/SectionContainerMotion.jsx";
+import SectionContainer from "../components/SectionContainer.astro";
 // import Experience from "../components/Experience.astro";
 import Subtitle from "../components/Subtitle.astro";
 import Code from "../icons/Code.astro";
 import Projects from "../components/Projects.astro";
 import AboutMe from "../components/AboutMe.astro";
 
-import { ExampleMotion } from "../components/ExampleMotion";
+import Formation from "../components/Formation.astro";
+import BookIcon from "../icons/Book.astro";
 ---
 
 <Layout
@@ -23,7 +24,7 @@ import { ExampleMotion } from "../components/ExampleMotion";
    description="Contrata a Santiago Goncalvez para crear tu aplicación web o móvil. Desarrollador Web, estudiante de Ingeniería Informática y Programador. Especializado en crear aplicaciones únicas."
 >
    <main class="w-full py-10 lg:py-30 px-5 flex flex-col gap-35">
-      <SectionContainerMotion client:visible>
+      <SectionContainer>
          <div
             class="w-full flex flex-col md:flex-row lg:items-center justify-between gap-8"
          >
@@ -38,7 +39,7 @@ import { ExampleMotion } from "../components/ExampleMotion";
                </a>
 
                <h1
-                  class="text-3xl md:text-5xl lg:text-5xl font-bold text-[#fafafa] leading-tight"
+                  class="font-[Inter_Variable] text-3xl md:text-5xl lg:text-5xl font-bold text-[#fafafa] leading-tight"
                >
                   Hola, soy Santiago Goncalvez
                </h1>
@@ -95,39 +96,47 @@ import { ExampleMotion } from "../components/ExampleMotion";
                <img
                   src="/santiago-goncalvez-front-face-background-transparent.webp"
                   alt="Santiago Goncalvez photo"
-                  class="rounded-full size-20 lg:size-70 object-cover bg-gradient-to-b from-[#dcdbdb] to-[#474747]"
+                  class="rounded-full size-20 lg:size-70 object-cover bg-gradient-to-b from-[#d6d6d6] to-[#8b8b8b]"
                />
             </div>
          </div>
-      </SectionContainerMotion>
+      </SectionContainer>
 
       <!-- Agregar cuando tenta experiencia -->
-      <!-- <SectionContainerMotion client:visible id="experiencia">
+      <!-- <SectionContainer  id="experiencia">
          <Subtitle class="flex flex-row items-center gap-x-4">
             <BriefCaseIcon class="size-8" />
             <span>Experiencia laboral</span>
          </Subtitle>
 
          <Experience />
-      </SectionContainerMotion> -->
+      </SectionContainer> -->
 
-      <SectionContainerMotion client:visible id="proyectos">
+      <SectionContainer id="proyectos">
          <Subtitle class="flex flex-row items-center gap-x-4">
             <Code class="size-8" />
             <span>Proyectos</span>
          </Subtitle>
 
          <Projects />
-      </SectionContainerMotion>
+      </SectionContainer>
 
-      <SectionContainerMotion client:visible id="sobre-mi">
+      <SectionContainer id="sobre-mi">
          <Subtitle class="flex flex-row items-center gap-x-4">
             <ProfileCheckIcon class="size-8" />
             <span>Sobre mí</span>
          </Subtitle>
 
          <AboutMe />
-      </SectionContainerMotion>
+      </SectionContainer>
 
+      <SectionContainer id="formacion">
+         <Subtitle class="flex flex-row items-center gap-x-4">
+            <BookIcon class="size-8" />
+            <span>Formación</span>
+         </Subtitle>
+
+         <Formation />
+      </SectionContainer>
    </main>
 </Layout>

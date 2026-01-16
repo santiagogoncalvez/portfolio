@@ -1,0 +1,131 @@
+---
+// 1. Importa tus componentes de Astro o Iconos (ej. de astro-icon)
+import UniversityIcon from "../icons/University.astro";
+import ReactIcon from "../icons/React.astro";
+import BookIcon from "../icons/Book.astro";
+import JavaScriptIcon from "../icons/JavaScript.astro";
+
+interface BentoItem {
+   title: string;
+   subtitle: string;
+   description?: string;
+   // Cambiamos string por 'any' para aceptar componentes de Astro
+   icon?: any;
+   class?: string;
+   tags?: string[];
+}
+
+const formationItems: BentoItem[] = [
+   {
+      title: "Ingeniería Informática",
+      subtitle: "Universidad (En curso)",
+      description:
+         "Formación sólida en algoritmos, estructuras de datos y arquitectura de software.",
+      icon: UniversityIcon, // Pasamos la referencia del componente
+      class: "md:col-span-2 md:row-span-2",
+      tags: [
+         "C",
+         "Programación Estructurada",
+         "Análisis Matemático",
+         "Introducción a Proyectos Informáticos",
+      ],
+   },
+   {
+      title: "Especialización React",
+      subtitle: "Midudev / Curso",
+      description:
+         "Dominio avanzado de Hooks, Context API, y optimización de rendimiento.",
+      icon: ReactIcon,
+      class: "md:col-span-2 border-l-2 border-l-[var(--color-text)]",
+   },
+   {
+      title: "The Road to React",
+      subtitle: "Libro",
+      description: "Patrones de diseño modernos en el ecosistema.",
+      icon: BookIcon,
+      // CAJA PEQUEÑA: Estándar (1x1)
+      class: "md:col-span-1",
+   },
+   {
+      title: "Eloquent JavaScript",
+      subtitle: "Libro",
+      description: "Profundización en los fundamentos del lenguaje.",
+      icon: JavaScriptIcon,
+      class: "md:col-span-1",
+   },
+];
+---
+
+<div
+   class="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[minmax(180px,auto)]"
+>
+   {
+      formationItems.map((item) => {
+         // 2. IMPORTANTE: Asignar el componente a una variable en Mayúscula
+         const IconComponent = item.icon;
+
+         return (
+            <article
+               class={`group relative overflow-hidden rounded-3xl p-6 flex flex-col transition-all duration-300 bg-[#171717] border border-[var(--color-border-light)] hover:bg-[var(--color-bg-elevated)] hover:border-[var(--color-border-strong)] hover:shadow-lg ${item.class || ""}`}
+            >
+               {/* 1. ICONO DE FONDO GIGANTE: Solo aparece si la card es grande (row-span-2) */}
+               {item.class?.includes("row-span-2") && item.icon && (
+                  <div class="absolute -bottom-12 -right-12 size-64 text-[var(--color-text-highlighted)] opacity-[0.04] group-hover:opacity-[0.07] transition-all duration-500 -rotate-12 pointer-events-none">
+                     <IconComponent />
+                  </div>
+               )}
+
+               {/* Glow decorativo superior */}
+               <div class="absolute top-0 right-0 -mr-10 -mt-10 w-32 h-32 rounded-full bg-[var(--color-text-highlighted)] opacity-[0.03] blur-3xl group-hover:opacity-[0.08] transition-opacity duration-500" />
+
+               {/* Header: Subtítulo e Icono */}
+               <div class="relative w-full">
+                  <div class="flex items-center justify-between mb-3">
+                     <span class="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-highlighted)] border border-[var(--color-border-strong)] px-2 py-1 rounded-full bg-[var(--color-bg-base)]">
+                        {item.subtitle}
+                     </span>
+
+                     {item.icon && (
+                        <div class="size-8 text-[var(--color-text-muted)] group-hover:text-[var(--color-title)] transition-colors">
+                           <IconComponent />
+                        </div>
+                     )}
+                  </div>
+               </div>
+
+               {/* CUERPO: flex-grow permite que este bloque ocupe el espacio central en cards grandes */}
+               <div class="relative flex-grow flex flex-col justify-center">
+                  <h3 class="text-xl md:text-2xl font-bold text-[var(--color-title)] leading-tight group-hover:translate-x-1 transition-transform duration-300">
+                     {item.title}
+                  </h3>
+
+                  {item.description && (
+                     <p class="text-sm text-[var(--color-text)] mt-4 leading-relaxed group-hover:text-[var(--color-text-highlighted)] transition-colors">
+                        {item.description}
+                     </p>
+                  )}
+
+                  {item.tags && (
+                     <div class="flex flex-wrap gap-2 mt-6">
+                        {item.tags.map((tag) => (
+                           <span class="text-[10px] px-2 py-1 rounded-md bg-[var(--color-bg-base)] border border-[var(--color-border-subtle)] text-[var(--color-text)] group-hover:border-[var(--color-text-highlighted)] transition-colors">
+                              {tag}
+                           </span>
+                        ))}
+                     </div>
+                  )}
+               </div>
+
+               {/* OPCIONAL: Un pie de tarjeta para las grandes que se ve muy bien en Bento */}
+               {item.class?.includes("row-span-2") && (
+                  <div class="relative mt-6 pt-4 border-t border-[var(--color-border-subtle)] opacity-60 group-hover:opacity-100 transition-opacity">
+                     <span class="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-muted)]">
+                        Sistemas · Algoritmos · Arquitectura
+                     </span>
+                  </div>
+               )}
+            </article>
+         );
+      })
+   }
+</div>
