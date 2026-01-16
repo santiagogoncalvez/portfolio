@@ -18,7 +18,7 @@ const PROJECTS = [
    {
       title: "Hacker Stories",
       description:
-         "Hacker News Client Cliente avanzado de noticias desarrollado con React y TanStack Query. Implementé una arquitectura escalable con scroll infinito, persistencia de favoritos, gestión de historial de búsqueda y navegación optimizada con React Router. Foco total en la experiencia de usuario mediante fallbacks y estados de carga.",
+         "Hacker News Client avanzado de noticias desarrollado con React y TanStack Query. Implementé una arquitectura escalable con scroll infinito, persistencia de favoritos, gestión de historial de búsqueda y navegación optimizada con React Router. Foco total en la experiencia de usuario mediante fallbacks y estados de carga.",
       link: "https://hacker-news-36e33-62875.web.app",
 
       github: "https://github.com/santiagogoncalvez/hacker-stories",
@@ -30,7 +30,7 @@ const PROJECTS = [
    {
       title: "Admin User Management System",
       description:
-         "CRUD profesional desarrollado con Redux Toolkit para un estado global robusto. Incluye diseño de interfaz con Tremor, tipado estricto y un sistema de Rollback optimista para garantizar la integridad de los datos.",
+         "CRUD profesional desarrollado con Redux Toolkit para un estado global robusto. Incluye diseño de interfaz con Tremor, tipado estricto y un sistema de actualización optimista con rollback para garantizar la integridad de los datos.",
       link: "https://core-crud-interface.web.app",
 
       github:
@@ -63,7 +63,7 @@ const PROJECTS = [
                >
                   <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-3xl sm:rounded-3xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:dark:border-bg-surface lg:hover:border-border-strong lg:hover:bg-gray-50/50">
                      <img
-                        alt="Recién llegado vs 5 años en Nueva Zelanda"
+                        alt={`Vista previa del proyecto ${title}`}
                         class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
                         loading="lazy"
                         src={image}
@@ -72,7 +72,7 @@ const PROJECTS = [
                </div>
 
                <div class="w-full md:w-1/2 md:max-w-lg">
-                  <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+                  <h3 class="text-2xl font-bold text-bg-deep dark:text-gray-100">
                      {title}
                   </h3>
                   <div class="flex flex-wrap mt-2">
