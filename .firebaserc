@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "santiago-goncalvez"
-  }
+    "default": "santiago-goncalvez",
+    "production": "santiagogoncalvez"
+  },
+  "targets": {},
+  "etags": {}
 }
