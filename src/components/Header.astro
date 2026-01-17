@@ -4,11 +4,11 @@ import ThemeToggle from "./ThemeToggle.astro";
 // import ThemeToggle from "./ThemeToggle.astro"
 
 const navItems = [
-   {
-      title: "Inicio",
-      label: "Inicio",
-      url: "/#top",
-   },
+   // {
+   //    title: "Inicio",
+   //    label: "Inicio",
+   //    url: "/#top",
+   // },
    // {
    //    title: "Experiencia",
    //    label: "experiencia",
@@ -41,13 +41,15 @@ const navItems = [
 <header
    class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
 >
+   <!-- <a href="#top"><img class="size-10 absolute left-2 top-0" src="/favicon.svg" alt="Logo de Santaigo Goncalvez"></a> -->
+
    <nav
-      class="flex px-3 p-1 gap-2 text-sm font-medium rounded-lg text-bg-deep dark:text-title justify-center items-center"
+      class="flex px-2 p-1 md:gap-2 gap-1 font-medium rounded-lg text-bg-deep dark:text-title justify-center items-center"
    >
       {
          navItems.map((link) => (
             <a
-               class="relative block px-2 transition rounded-lg p-1 hover:text-title hover:bg-border-strong dark:hover:bg-title dark:hover:text-bg-elevated"
+               class="relative block px-2 transition rounded-lg p-1 hover:text-title hover:bg-border-strong dark:hover:bg-title dark:hover:text-bg-elevated text-xs md:text-sm "
                aria-label={link.label}
                href={link.url}
             >

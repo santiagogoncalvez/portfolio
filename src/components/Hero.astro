@@ -8,7 +8,7 @@ import DowloadCV from "./DowloadCV.astro";
 ---
 
 <div
-   class="w-full flex flex-col md:flex-row lg:items-center justify-between gap-8"
+   class="w-full flex flex-col md:flex-row justify-center  md:items-center items-start gap-8"
 >
    <div class="w-full flex flex-col gap-8 order-2 md:order-1">
       <div class="flex items-center flex-row gap-5">
@@ -39,30 +39,32 @@ import DowloadCV from "./DowloadCV.astro";
          de aplicaciones web y la resolución creativa de problemas.
       </h2>
 
-      <nav class="w-full flex gap-x-4 gap-y-6 flex-wrap">
-         <SocialPill
-            href="http://www.linkedin.com/in/santiagogoncalvez"
-            class="transition-colors transition-transform duration-200 ease-out hover:scale-105"
-         >
-            <LinkedInIcon class="size-3 md:size-6" />
-            LinkedIn
-         </SocialPill>
+      <nav class="w-full flex gap-x-4 gap-y-6 flex-col">
+         <div class="w-full flex gap-x-4 gap-y-6 flex-wrap">
+            <SocialPill
+               href="http://www.linkedin.com/in/santiagogoncalvez"
+               class="transition-colors transition-transform duration-200 ease-out hover:scale-105"
+            >
+               <LinkedInIcon class="size-4 md:size-6" />
+               LinkedIn
+            </SocialPill>
 
-         <SocialPill
-            href="https://github.com/santiagogoncalvez"
-            class="transition-colors transition-transform duration-200 ease-out hover:scale-105"
-         >
-            <GitHubIcon class="size-3 md:size-6" />
-            GitHub
-         </SocialPill>
+            <SocialPill
+               href="https://github.com/santiagogoncalvez"
+               class="transition-colors transition-transform duration-200 ease-out hover:scale-105"
+            >
+               <GitHubIcon class="size-4 md:size-6" />
+               GitHub
+            </SocialPill>
 
-         <SocialPill
-            href="mailto:santiago.goncalvez.l@gmail.com"
-            class="transition-colors transition-transform duration-200 ease-out hover:scale-105"
-         >
-            <MailIcon class="size-3 md:size-6" />
-            santiago.goncalvez.l@gmail.com
-         </SocialPill>
+            <SocialPill
+               href="mailto:santiago.goncalvez.l@gmail.com"
+               class="transition-colors transition-transform duration-200 ease-out hover:scale-105"
+            >
+               <MailIcon class="size-4 md:size-6" />
+               santiago.goncalvez.l@gmail.com
+            </SocialPill>
+         </div>
 
          <DowloadCV />
       </nav>
@@ -76,7 +78,7 @@ import DowloadCV from "./DowloadCV.astro";
       <img
          src="/santiago-goncalvez-front-face-background-transparent.webp"
          alt="Retrato de Santiago Goncalvez - Desarrollador Web"
-         class="rounded-full size-20 lg:size-70 object-cover bg-gradient-to-b from-[#faf9f9] to-[#e2e2e2]"
+         class="rounded-full size-15 md:size-50 lg:size-70 object-cover bg-gradient-to-b from-[#faf9f9] to-[#e2e2e2]"
       />
    </div>
 </div>

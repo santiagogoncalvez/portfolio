@@ -1,15 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
-  <!-- Fondo -->
   <rect
     x="0"
     y="0"
     width="120"
     height="120"
     rx="24"
-    fill="#FFFFFF"
+    fill="#2E2E2E"
   />
 
-  <!-- Texto -->
   <text
     x="50%"
     y="50%"
@@ -18,7 +16,7 @@
     font-family="Onest, system-ui, -apple-system, BlinkMacSystemFont, sans-serif"
     font-size="56"
     font-weight="800"
-    fill="#2E2E2E"
+    fill="#FFFFFF"
     letter-spacing="2"
   >
     SG
