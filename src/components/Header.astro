@@ -41,7 +41,6 @@ const navItems = [
 <header
    class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
 >
-
    <nav
       class="flex px-2 p-1 md:gap-2 gap-1 font-medium rounded-lg text-bg-deep dark:text-title justify-center items-center"
    >
@@ -69,21 +68,60 @@ const navItems = [
    document.addEventListener("astro:page-load", () => {
       const sections = document.querySelectorAll("section");
       const navItems = document.querySelectorAll("header nav a");
+      const root = document.documentElement;
 
-      const callback = (entries: any[]) => {
+      const isDark = () => root.classList.contains("dark");
+
+      let activeItem = null;
+
+      const applyStyles = (item) => {
+         if (!item) return;
+
+         // Limpieza total
+         item.classList.remove(
+            "bg-title",
+            "text-bg-elevated",
+            "bg-bg-surface",
+            "text-title"
+         );
+
+         if (isDark()) {
+            // 🌙 DARK
+            item.classList.add("bg-title", "text-bg-elevated");
+         } else {
+            // ☀️ LIGHT
+            item.classList.add("bg-bg-surface", "text-title");
+         }
+      };
+
+      const clearStyles = (item) => {
+         item.classList.remove(
+            "bg-title",
+            "text-bg-elevated",
+            "bg-bg-surface",
+            "text-title"
+         );
+      };
+
+      // 🧭 Intersection Observer
+      const callback = (entries) => {
          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-               navItems.forEach((item) => {
-                  if (
-                     removeAccents(item.getAttribute("aria-label") || "") ===
-                     entry.target.id
-                  ) {
-                     item.classList.add("bg-border-strong", "text-title");
-                  } else {
-                     item.classList.remove("bg-border-strong", "text-title");
+            if (!entry.isIntersecting) return;
+
+            navItems.forEach((item) => {
+               const isActive =
+                  removeAccents(item.getAttribute("aria-label") || "") ===
+                  entry.target.id;
+
+               if (isActive) {
+                  if (activeItem && activeItem !== item) {
+                     clearStyles(activeItem);
                   }
-               });
-            }
+
+                  activeItem = item;
+                  applyStyles(activeItem);
+               }
+            });
          });
       };
 
@@ -93,18 +131,31 @@ const navItems = [
          threshold: 0.3,
       });
 
-      sections.forEach((section) => {
-         observer.observe(section);
+      sections.forEach((section) => observer.observe(section));
+
+      // 🌗 Mutation Observer → detectar cambio dark/light
+      const themeObserver = new MutationObserver((mutations) => {
+         mutations.forEach((mutation) => {
+            if (
+               mutation.type === "attributes" &&
+               mutation.attributeName === "class"
+            ) {
+               applyStyles(activeItem);
+            }
+         });
       });
 
-      // Cleanup function
+      themeObserver.observe(root, {
+         attributes: true,
+         attributeFilter: ["class"],
+      });
+
+      // 🧹 Cleanup visibilidad
       document.onvisibilitychange = () => {
          if (document.visibilityState === "hidden") {
             observer.disconnect();
          } else {
-            sections.forEach((section) => {
-               observer.observe(section);
-            });
+            sections.forEach((section) => observer.observe(section));
          }
       };
    });
