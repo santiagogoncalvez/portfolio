@@ -5,13 +5,14 @@ import LinkedInIcon from "../icons/LinkedIn.astro";
 import GitHubIcon from "../icons/GitHub.astro";
 import MailIcon from "../icons/Mail.astro";
 import DowloadCV from "./DowloadCV.astro";
+import ProfilePhoto from "../components/ProfilePhoto.astro";
 ---
 
-<div
-   class="w-full flex flex-col md:flex-row justify-center  md:items-center items-start gap-8"
->
+<div class="w-full flex flex-row items-center justify-content gap-8">
    <div class="w-full flex flex-col gap-8 order-2 md:order-1">
-      <div class="flex items-center flex-row gap-5">
+      <div class="flex items-center flex-row flex-wrap gap-5">
+         <ProfilePhoto class="size-14 flex md:hidden order-first" />
+
          <a
             class="inline-flex w-fit"
             href="http://www.linkedin.com/in/santiagogoncalvez"
@@ -21,7 +22,9 @@ import DowloadCV from "./DowloadCV.astro";
             <Badge><strong>Disponible para trabajar</strong> </Badge>
          </a>
 
-         <span class="text-bg-surface dark:text-text">Frontend Junior</span>
+         <span class="text-bg-surface dark:text-text md:text-sm text-xs"
+            >Frontend Junior</span
+         >
       </div>
 
       <h1
@@ -70,15 +73,5 @@ import DowloadCV from "./DowloadCV.astro";
       </nav>
    </div>
 
-   <div
-      class="w-fit h-fit order-1 md:order-2 shrink-0
-         rounded-full
-         shadow-[0_10px_30px_rgba(0,0,0,0.08),0_0_10px_rgba(0,0,0,0.02)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_20px_rgba(255,255,255,0.03)] transition-all duration-500 ease-out hover:scale-103 hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_30px_60px_rgba(0,0,0,0.2),0_0_30px_rgba(255,255,255,0.05)]"
-   >
-      <img
-         src="/santiago-goncalvez-front-face-background-transparent.webp"
-         alt="Retrato de Santiago Goncalvez - Desarrollador Web"
-         class="rounded-full size-15 md:size-50 lg:size-70 object-cover bg-gradient-to-b from-[#faf9f9] to-[#e2e2e2]"
-      />
-   </div>
+   <ProfilePhoto class="size-15 md:size-50 lg:size-70 md:flex hidden" />
 </div>
