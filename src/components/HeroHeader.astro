@@ -1,0 +1,21 @@
+---
+import ProfilePhoto from "../components/ProfilePhoto.astro";
+import Badge from "../components/Badge.astro";
+---
+
+<header class="flex items-center flex-row flex-wrap gap-4">
+   <ProfilePhoto class="size-10 flex md:hidden order-first" />
+
+   <a
+      class="inline-flex w-fit"
+      href="http://www.linkedin.com/in/santiagogoncalvez"
+      target="_blank"
+      rel="noopener noreferrer"
+   >
+      <Badge><strong>Disponible para trabajar</strong> </Badge>
+   </a>
+
+   <span class="text-bg-surface dark:text-text md:text-sm text-xs"
+      >React <span class="text-text-muted">·</span> Typescript</span
+   >
+</header>

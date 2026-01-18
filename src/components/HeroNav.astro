@@ -1,0 +1,37 @@
+---
+import SocialPill from "../components/SocialPill.astro";
+import LinkedInIcon from "../icons/LinkedIn.astro";
+import GitHubIcon from "../icons/GitHub.astro";
+import MailIcon from "../icons/Mail.astro";
+import DowloadCV from "./DowloadCV.astro";
+---
+
+<nav class="w-full flex gap-x-4 gap-y-6 flex-col">
+   <div class="w-full flex gap-x-4 gap-y-6 flex-wrap">
+      <SocialPill
+         href="http://www.linkedin.com/in/santiagogoncalvez"
+         class="transition-colors transition-transform duration-200 ease-out hover:scale-105"
+      >
+         <LinkedInIcon class="size-4 md:size-6" />
+         LinkedIn
+      </SocialPill>
+
+      <SocialPill
+         href="https://github.com/santiagogoncalvez"
+         class="transition-colors transition-transform duration-200 ease-out hover:scale-105"
+      >
+         <GitHubIcon class="size-4 md:size-6" />
+         GitHub
+      </SocialPill>
+
+      <SocialPill
+         href="mailto:santiago.goncalvez.l@gmail.com"
+         class="transition-colors transition-transform duration-200 ease-out hover:scale-105"
+      >
+         <MailIcon class="size-4 md:size-6" />
+         santiago.goncalvez.l@gmail.com
+      </SocialPill>
+   </div>
+
+   <DowloadCV />
+</nav>

@@ -12,7 +12,7 @@ const PROJECTS = [
       link: "https://userops-dashboard.web.app",
       github:
          "https://github.com/santiagogoncalvez/midudevs-react-course/tree/main/projects/11b-typescript-prueba-tecnica-with-reacty-query",
-      image: "/project-typescript-test-with-react-query-dark.png",
+      image: "/project-typescript-test-with-react-query.JPG",
       tags: ["typescript", "React", "ReactQuery", "vite"],
    },
    {
@@ -23,7 +23,7 @@ const PROJECTS = [
 
       github: "https://github.com/santiagogoncalvez/hacker-stories",
 
-      image: "/project-hacker-stories-dark.png",
+      image: "/project-hacker-stories.JPG",
       tags: ["typescript", "React", "ReactQuery", "ReactRouter", "vite"],
    },
 
@@ -36,7 +36,7 @@ const PROJECTS = [
       github:
          "https://github.com/santiagogoncalvez/midudevs-react-course/tree/main/projects/10-crud-redux",
 
-      image: "/projec-core-crud-interface-dark.png",
+      image: "/projec-core-crud-interface.JPG",
       tags: ["typescript", "React", "ReduxToolkit", "vite"],
    },
    {
@@ -45,7 +45,7 @@ const PROJECTS = [
          "Juego interactivo de banderas desarrollado en Vanilla JavaScript, con arquitectura inspirada en Flux. Implementa estado global, routing por hash y un sistema de gamificación basado en reconocimiento visual, priorizando una experiencia de usuario ágil y fluida.",
       link: "https://santiagogoncalvez.github.io/tupais/",
       github: "https://github.com/santiagogoncalvez/tupais",
-      image: "/project-tu-pais-dark.png",
+      image: "/project-tu-pais.JPG",
       tags: ["javascript", "html5", "css", "vite"],
    },
 ];
@@ -61,10 +61,15 @@ const PROJECTS = [
                <div
                   class={`w-full md:w-1/2 ${index % 2 === 0 ? "md:mr-10" : "md:ml-10"} m-0 mb-10`}
                >
-                  <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-3xl sm:rounded-3xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:dark:border-bg-surface lg:hover:border-border-strong lg:hover:bg-gray-50/50">
+                  <div
+                     class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-lg
+                     // dark:shadow-bg-surface overflow-clip rounded-3xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl border border-transparent
+                     bg-title/80 dark:bg-[#171717]
+                     p-8 sm:p-10"
+                  >
                      <img
                         alt={`Vista previa del proyecto ${title}`}
-                        class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
+                        class="object-cover object-top w-full h-56 transition duration-500 sm:h-full rounded-3xl shadow-xl dark:shadow-bg-surface md:scale-105 md:group-hover:scale-110"
                         loading="lazy"
                         src={image}
                      />

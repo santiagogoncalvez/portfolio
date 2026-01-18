@@ -1,77 +1,22 @@
 ---
-import Badge from "../components/Badge.astro";
-import SocialPill from "../components/SocialPill.astro";
-import LinkedInIcon from "../icons/LinkedIn.astro";
-import GitHubIcon from "../icons/GitHub.astro";
-import MailIcon from "../icons/Mail.astro";
-import DowloadCV from "./DowloadCV.astro";
 import ProfilePhoto from "../components/ProfilePhoto.astro";
+import PrincipalTitle from "../components/PrincipalTitle.astro";
+import HeroHeader from "../components/HeroHeader.astro";
+import HeroDescription from "../components/HeroDescription.astro";
+import HeroNav from "../components/HeroNav.astro";
 ---
 
 <div class="w-full flex flex-row items-center justify-content gap-8">
    <div class="w-full flex flex-col gap-8 order-2 md:order-1">
-      <div class="flex items-center flex-row flex-wrap gap-5">
-         <ProfilePhoto class="size-14 flex md:hidden order-first" />
+      <HeroHeader />
 
-         <a
-            class="inline-flex w-fit"
-            href="http://www.linkedin.com/in/santiagogoncalvez"
-            target="_blank"
-            rel="noopener noreferrer"
-         >
-            <Badge><strong>Disponible para trabajar</strong> </Badge>
-         </a>
+      <PrincipalTitle />
 
-         <span class="text-bg-surface dark:text-text md:text-sm text-xs"
-            >Frontend Junior</span
-         >
-      </div>
+      <HeroDescription />
 
-      <h1
-         class="font-[Inter_Variable] text-3xl md:text-5xl lg:text-5xl font-bold text-bg-deep dark:text-[#fafafa] leading-tight"
-      >
-         Hola, soy Santiago Goncalvez
-      </h1>
-
-      <h2
-         class="text-xl lg:text-2xl text-border-strong dark:text-[#B0B0B0] max-w-2xl text-wrap"
-      >
-         <strong class="text-bg-base dark:text-[#d7d7d7]"
-            >Estudiante de Ingeniería Informática y Frontend Developer</strong
-         >, especializado en el ecosistema de React. Centrado en la optimización
-         de aplicaciones web y la resolución creativa de problemas.
-      </h2>
-
-      <nav class="w-full flex gap-x-4 gap-y-6 flex-col">
-         <div class="w-full flex gap-x-4 gap-y-6 flex-wrap">
-            <SocialPill
-               href="http://www.linkedin.com/in/santiagogoncalvez"
-               class="transition-colors transition-transform duration-200 ease-out hover:scale-105"
-            >
-               <LinkedInIcon class="size-4 md:size-6" />
-               LinkedIn
-            </SocialPill>
-
-            <SocialPill
-               href="https://github.com/santiagogoncalvez"
-               class="transition-colors transition-transform duration-200 ease-out hover:scale-105"
-            >
-               <GitHubIcon class="size-4 md:size-6" />
-               GitHub
-            </SocialPill>
-
-            <SocialPill
-               href="mailto:santiago.goncalvez.l@gmail.com"
-               class="transition-colors transition-transform duration-200 ease-out hover:scale-105"
-            >
-               <MailIcon class="size-4 md:size-6" />
-               santiago.goncalvez.l@gmail.com
-            </SocialPill>
-         </div>
-
-         <DowloadCV />
-      </nav>
+      <HeroNav />
    </div>
 
    <ProfilePhoto class="size-15 md:size-50 lg:size-70 md:flex hidden" />
 </div>
+
