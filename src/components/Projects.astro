@@ -62,14 +62,17 @@ const PROJECTS = [
                   class={`w-full md:w-1/2 ${index % 2 === 0 ? "md:mr-10" : "md:ml-10"} m-0 mb-10`}
                >
                   <div
-                     class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-lg
-                     // dark:shadow-bg-surface overflow-clip rounded-3xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl border border-transparent
-                     bg-title/80 dark:bg-[#171717]
-                     p-8 sm:p-10"
+                     class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform overflow-clip rounded-3xl p-8 sm:p-10
+  bg-white/80 shadow-lg border border-black/5
+  dark:bg-[--color-bg-surface] dark:border-[--color-border-subtle] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)]
+  md:group-hover:-translate-y-1 md:group-hover:shadow-2xl md:group-hover:dark:shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
                   >
                      <img
                         alt={`Vista previa del proyecto ${title}`}
-                        class="object-cover object-top w-full h-56 transition duration-500 sm:h-full rounded-3xl shadow-xl dark:shadow-bg-surface md:scale-105 md:group-hover:scale-110"
+                        class="object-cover object-top w-full h-56 transition duration-500 sm:h-full rounded-3xl 
+    shadow-xl border border-transparent
+    dark:border-[--color-border-strong]/30 dark:shadow-[0_10px_30px_rgba(0,0,0,0.6)]
+    md:scale-105 md:group-hover:scale-110"
                         loading="lazy"
                         src={image}
                      />
