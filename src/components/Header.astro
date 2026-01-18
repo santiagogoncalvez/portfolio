@@ -1,35 +1,10 @@
 ---
 import ThemeToggle from "./ThemeToggle.astro";
 
-// import ThemeToggle from "./ThemeToggle.astro"
-
 const navItems = [
-   // {
-   //    title: "Inicio",
-   //    label: "Inicio",
-   //    url: "/#top",
-   // },
-   // {
-   //    title: "Experiencia",
-   //    label: "experiencia",
-   //    url: "/#experiencia",
-   // },
-
-   {
-      title: "Proyectos",
-      label: "proyectos",
-      url: "/#proyectos",
-   },
-   {
-      title: "Sobre mí",
-      label: "sobre-mi",
-      url: "/#sobre-mi",
-   },
-   {
-      title: "Formación",
-      label: "formación",
-      url: "/#formacion",
-   },
+   { title: "Proyectos", label: "proyectos", url: "/#proyectos" },
+   { title: "Sobre mí", label: "sobre-mi", url: "/#sobre-mi" },
+   { title: "Formación", label: "formación", url: "/#formacion" },
    {
       title: "Contacto",
       label: "contacto",
@@ -47,7 +22,7 @@ const navItems = [
       {
          navItems.map((link) => (
             <a
-               class="relative block px-2 transition rounded-lg p-1 hover:text-title hover:bg-border-strong dark:hover:bg-title dark:hover:text-bg-elevated text-xs md:text-sm "
+               class="relative block px-2 transition rounded-lg p-1 hover:text-title hover:bg-border-strong dark:hover:bg-title dark:hover:text-bg-elevated text-xs md:text-sm"
                aria-label={link.label}
                href={link.url}
             >
@@ -55,29 +30,31 @@ const navItems = [
             </a>
          ))
       }
-      <!-- <ThemeToggle /> -->
       <ThemeToggle />
    </nav>
 </header>
 
 <script>
-   const removeAccents = (str = "") => {
-      return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-   };
+   const removeAccents = (str = "") =>
+      str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
    document.addEventListener("astro:page-load", () => {
-      const sections = document.querySelectorAll("section");
-      const navItems = document.querySelectorAll("header nav a");
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll("header nav a");
       const root = document.documentElement;
 
-      const isDark = () => root.classList.contains("dark");
-
       let activeItem = null;
+      let pendingItem = null;
+      let debounceTimer = null;
+
+      const TOP_OFFSET = 80;
+      const DEBOUNCE_DELAY = 120; // ms → suave pero responsivo
+
+      const isDark = () => root.classList.contains("dark");
 
       const applyStyles = (item) => {
          if (!item) return;
 
-         // Limpieza total
          item.classList.remove(
             "bg-title",
             "text-bg-elevated",
@@ -86,16 +63,14 @@ const navItems = [
          );
 
          if (isDark()) {
-            // 🌙 DARK
             item.classList.add("bg-title", "text-bg-elevated");
          } else {
-            // ☀️ LIGHT
             item.classList.add("bg-bg-surface", "text-title");
          }
       };
 
       const clearStyles = (item) => {
-         item.classList.remove(
+         item?.classList.remove(
             "bg-title",
             "text-bg-elevated",
             "bg-bg-surface",
@@ -103,68 +78,93 @@ const navItems = [
          );
       };
 
-      // 🧭 Intersection Observer
-      const callback = (entries) => {
-         entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-
-            navItems.forEach((item) => {
-               const isActive =
-                  removeAccents(item.getAttribute("aria-label") || "") ===
-                  entry.target.id;
-
-               if (isActive) {
-                  if (activeItem && activeItem !== item) {
-                     clearStyles(activeItem);
-                  }
-
-                  activeItem = item;
-                  applyStyles(activeItem);
-               }
-            });
-         });
+      const clearActiveItem = () => {
+         if (activeItem) {
+            clearStyles(activeItem);
+            activeItem = null;
+         }
       };
 
-      const observer = new IntersectionObserver(callback, {
-         root: null,
-         rootMargin: "0px",
-         threshold: 0.3,
+      // 🧠 Activación con debounce visual
+      const setActiveDebounced = (item) => {
+         if (pendingItem === item) return;
+
+         pendingItem = item;
+         clearTimeout(debounceTimer);
+
+         debounceTimer = setTimeout(() => {
+            if (pendingItem !== activeItem) {
+               clearActiveItem();
+               activeItem = pendingItem;
+               applyStyles(activeItem);
+            }
+         }, DEBOUNCE_DELAY);
+      };
+
+      // 🔹 Click → inmediato (sin debounce)
+      navLinks.forEach((item) => {
+         item.addEventListener("click", () => {
+            clearTimeout(debounceTimer);
+            pendingItem = null;
+            clearActiveItem();
+            activeItem = item;
+            applyStyles(activeItem);
+         });
       });
+
+      // 🧭 Intersection Observer
+      const observer = new IntersectionObserver(
+         (entries) => {
+            entries.forEach((entry) => {
+               if (!entry.isIntersecting) return;
+
+               navLinks.forEach((item) => {
+                  const label = removeAccents(
+                     item.getAttribute("aria-label") || ""
+                  );
+                  if (label === entry.target.id) {
+                     setActiveDebounced(item);
+                  }
+               });
+            });
+         },
+         {
+            root: null,
+            rootMargin: "-64px 0px -40% 0px",
+            threshold: 0,
+         }
+      );
 
       sections.forEach((section) => observer.observe(section));
 
-      // 🌗 Mutation Observer → detectar cambio dark/light
-      const themeObserver = new MutationObserver((mutations) => {
-         mutations.forEach((mutation) => {
-            if (
-               mutation.type === "attributes" &&
-               mutation.attributeName === "class"
-            ) {
-               applyStyles(activeItem);
+      // 🔝 Top → nada activo (sin debounce)
+      window.addEventListener(
+         "scroll",
+         () => {
+            if (window.scrollY < TOP_OFFSET) {
+               clearTimeout(debounceTimer);
+               pendingItem = null;
+               clearActiveItem();
             }
-         });
+         },
+         { passive: true }
+      );
+
+      // 🌗 Cambio de theme
+      const themeObserver = new MutationObserver(() => {
+         applyStyles(activeItem);
       });
 
       themeObserver.observe(root, {
          attributes: true,
          attributeFilter: ["class"],
       });
-
-      // 🧹 Cleanup visibilidad
-      document.onvisibilitychange = () => {
-         if (document.visibilityState === "hidden") {
-            observer.disconnect();
-         } else {
-            sections.forEach((section) => observer.observe(section));
-         }
-      };
    });
 </script>
 
 <style>
    @reference "../styles/global.css";
 
-   /* 1. Definimos las variables base (Light Mode) */
    nav {
       --nav-bg: rgba(255, 255, 255, 0.8);
       --nav-border: rgba(0, 0, 0, 0.08);
@@ -175,16 +175,14 @@ const navItems = [
       animation-range: 0 100px;
    }
 
-   /* 2. Sobrescribimos las variables para Dark Mode */
-   /* Usamos :global(.dark) para asegurar que detecte la clase en el HTML */
    :global(.dark) nav {
-      --nav-bg: rgba(18, 18, 18, 0.8); /* Tu color #121212 más oscuro */
+      --nav-bg: rgba(18, 18, 18, 0.8);
       --nav-border: rgba(255, 255, 255, 0.1);
       --nav-shadow: rgba(0, 0, 0, 0.5);
    }
 
    @keyframes nav-shadown {
-      0% {
+      from {
          background-color: transparent;
          border: 1px solid transparent;
          box-shadow: 0 0 0 transparent;
