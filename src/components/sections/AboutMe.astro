@@ -3,6 +3,8 @@ import ProfileCheckIcon from "../../icons/ProfileCheck.astro";
 import Subtitle from "../shared/Subtitle.astro";
 
 const personalImageAlt = "Retrato de Santiago Goncalvez - Desarrollador Web";
+
+import { Image } from "astro:assets";
 ---
 
 <Subtitle class="flex flex-row items-center gap-x-4">
@@ -79,12 +81,14 @@ const personalImageAlt = "Retrato de Santiago Goncalvez - Desarrollador Web";
       </p>
    </div>
 
-   <img
-      width="200"
-      height="200"
+   <Image
       src="/santiago-goncalvez-front-face.webp"
       alt={personalImageAlt}
+      width={200}
+      height={200}
       class="order-1 object-cover w-64 h-full p-1 md:order-2 lg:p-2 lg:w-64 aspect-square rounded-3xl"
       style="object-position: 50% 50%"
+      quality={80}
+      loading="lazy"
    />
 </article>
