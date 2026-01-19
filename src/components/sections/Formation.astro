@@ -1,8 +1,9 @@
 ---
-import UniversityIcon from "../icons/University.astro";
-import ReactIcon from "../icons/React.astro";
-import BookIcon from "../icons/Book.astro";
-import JavaScriptIcon from "../icons/JavaScript.astro";
+import UniversityIcon from "../../icons/University.astro";
+import ReactIcon from "../../icons/React.astro";
+import BookIcon from "../../icons/Book.astro";
+import JavaScriptIcon from "../../icons/JavaScript.astro";
+import Subtitle from "../shared/Subtitle.astro";
 
 interface BentoItem {
    title: string;
@@ -47,6 +48,11 @@ const formationItems: BentoItem[] = [
    },
 ];
 ---
+
+<Subtitle class="flex flex-row items-center gap-x-4">
+   <BookIcon class="size-8" />
+   <span>Formación</span>
+</Subtitle>
 
 <div
    class="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[minmax(180px,auto)]"

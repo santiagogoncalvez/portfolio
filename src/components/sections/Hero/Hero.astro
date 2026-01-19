@@ -1,0 +1,21 @@
+---
+import ProfilePhoto from "./ProfilePhoto.astro";
+import PrincipalTitle from "../../shared/PrincipalTitle.astro";
+import HeroHeader from "./HeroHeader.astro";
+import HeroDescription from "./HeroDescription.astro";
+import HeroNav from "./HeroNav.astro";
+---
+
+<div class="w-full flex flex-row items-center justify-content gap-8">
+   <div class="w-full flex flex-col gap-8 order-2 md:order-1">
+      <HeroHeader />
+
+      <PrincipalTitle />
+
+      <HeroDescription />
+
+      <HeroNav />
+   </div>
+
+   <ProfilePhoto class="size-15 md:size-50 lg:size-60 md:flex hidden" />
+</div>

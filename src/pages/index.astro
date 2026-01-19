@@ -1,17 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ProfileCheckIcon from "../icons/ProfileCheck.astro";
-import KeyboardManager from "../components/KeyboardManager.astro";
+import KeyboardManager from "../components/shared//KeyboardManager.astro";
 
-import SectionContainer from "../components/SectionContainer.astro";
-import Subtitle from "../components/Subtitle.astro";
-import Code from "../icons/Code.astro";
-import Projects from "../components/Projects.astro";
-import AboutMe from "../components/AboutMe.astro";
+import SectionContainer from "../components/shared/SectionContainer.astro";
+import Projects from "../components/sections/Projects/Projects.astro";
+import AboutMe from "../components/sections/AboutMe.astro";
 
-import Formation from "../components/Formation.astro";
-import BookIcon from "../icons/Book.astro";
-import Hero from "../components/Hero.astro";
+import Formation from "../components/sections/Formation.astro";
+import Hero from "../components/sections/Hero/Hero.astro";
 ---
 
 <Layout
@@ -24,7 +20,7 @@ import Hero from "../components/Hero.astro";
       </SectionContainer>
 
       {
-
+         
             // Agregar cuando tenga experiencia
             /* 
          <SectionContainer  id="experiencia">
@@ -38,29 +34,14 @@ import Hero from "../components/Hero.astro";
       }
 
       <SectionContainer id="proyectos">
-         <Subtitle class="flex flex-row items-center gap-x-4">
-            <Code class="size-8" />
-            <span>Proyectos</span>
-         </Subtitle>
-
          <Projects />
       </SectionContainer>
 
       <SectionContainer id="sobre-mi">
-         <Subtitle class="flex flex-row items-center gap-x-4">
-            <ProfileCheckIcon class="size-8" />
-            <span>Sobre mí</span>
-         </Subtitle>
-
          <AboutMe />
       </SectionContainer>
 
       <SectionContainer id="formacion">
-         <Subtitle class="flex flex-row items-center gap-x-4">
-            <BookIcon class="size-8" />
-            <span>Formación</span>
-         </Subtitle>
-
          <Formation />
       </SectionContainer>
    </main>

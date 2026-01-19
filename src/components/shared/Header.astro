@@ -8,7 +8,7 @@ const navItems = [
    {
       title: "Contacto",
       label: "contacto",
-      url: "mailto:santiago.goncalvez.l@gmail.com",
+      url: "mailto:santiago.goncalvez.dev@gmail.com",
    },
 ];
 ---
@@ -59,7 +59,7 @@ const navItems = [
             "bg-title",
             "text-bg-elevated",
             "bg-bg-surface",
-            "text-title"
+            "text-title",
          );
 
          if (isDark()) {
@@ -74,7 +74,7 @@ const navItems = [
             "bg-title",
             "text-bg-elevated",
             "bg-bg-surface",
-            "text-title"
+            "text-title",
          );
       };
 
@@ -120,7 +120,7 @@ const navItems = [
 
                navLinks.forEach((item) => {
                   const label = removeAccents(
-                     item.getAttribute("aria-label") || ""
+                     item.getAttribute("aria-label") || "",
                   );
                   if (label === entry.target.id) {
                      setActiveDebounced(item);
@@ -132,7 +132,7 @@ const navItems = [
             root: null,
             rootMargin: "-64px 0px -40% 0px",
             threshold: 0,
-         }
+         },
       );
 
       sections.forEach((section) => observer.observe(section));
@@ -147,7 +147,7 @@ const navItems = [
                clearActiveItem();
             }
          },
-         { passive: true }
+         { passive: true },
       );
 
       // 🌗 Cambio de theme
@@ -163,7 +163,7 @@ const navItems = [
 </script>
 
 <style>
-   @reference "../styles/global.css";
+   @reference "../../styles/global.css";
 
    nav {
       --nav-bg: rgba(255, 255, 255, 0.8);

@@ -1,6 +1,14 @@
 ---
+import ProfileCheckIcon from "../../icons/ProfileCheck.astro";
+import Subtitle from "../shared/Subtitle.astro";
+
 const personalImageAlt = "Retrato de Santiago Goncalvez - Desarrollador Web";
 ---
+
+<Subtitle class="flex flex-row items-center gap-x-4">
+   <ProfileCheckIcon class="size-8" />
+   <span>Sobre mí</span>
+</Subtitle>
 
 <article
    class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row"

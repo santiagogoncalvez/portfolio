@@ -1,8 +1,10 @@
 ---
-import GitHub from "../icons/GitHub.astro";
-import Link from "../icons/Link.astro";
+import GitHub from "../../../icons/GitHub.astro";
+import Link from "../../../icons/Link.astro";
 import LinkButton from "./LinkButton.astro";
 import TechnologyPill from "./TechnologyPill.astro";
+import Code from "../../../icons/Code.astro";
+import Subtitle from "../../shared/Subtitle.astro";
 
 const PROJECTS = [
    {
@@ -24,7 +26,14 @@ const PROJECTS = [
       github: "https://github.com/santiagogoncalvez/hacker-stories",
 
       image: "/project-hacker-stories.webp",
-      tags: ["typescript", "React", "Vitest", "ReactQuery", "ReactRouter", "vite"],
+      tags: [
+         "typescript",
+         "React",
+         "Vitest",
+         "ReactQuery",
+         "ReactRouter",
+         "vite",
+      ],
    },
 
    {
@@ -50,6 +59,11 @@ const PROJECTS = [
    },
 ];
 ---
+
+<Subtitle class="flex flex-row items-center gap-x-4">
+   <Code class="size-8" />
+   <span>Proyectos</span>
+</Subtitle>
 
 <div class="flex flex-col gap-y-18">
    {
