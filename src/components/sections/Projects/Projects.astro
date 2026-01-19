@@ -107,13 +107,19 @@ const PROJECTS = [
                      </div>
                      <footer class="flex items-end justify-start mt-4 gap-x-4">
                         {github && (
-                           <LinkButton href={github}>
+                           <LinkButton
+                              href={github}
+                              ariaLabel={`Ver código fuente de ${title} en GitHub`}
+                           >
                               <GitHub class="size-6" />
                               Code
                            </LinkButton>
                         )}
                         {link && (
-                           <LinkButton href={link}>
+                           <LinkButton
+                              href={link}
+                              ariaLabel={`Ir al sitio web de ${title}`}
+                           >
                               <Link class="size-4" />
                               Preview
                            </LinkButton>

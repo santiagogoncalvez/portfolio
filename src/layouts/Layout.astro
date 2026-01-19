@@ -4,7 +4,9 @@ import Footer from "../components/shared/Footer.astro";
 import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
 import GradientBackground from "../components/shared/GradientBackground.astro";
-import "@fontsource-variable/inter";
+
+// IMPORTANTE: Decide cuál es tu fuente principal.
+// Si es Onest para todo el sitio, usa solo Onest.
 import "@fontsource-variable/onest";
 
 const { title, description } = Astro.props;
@@ -54,27 +56,45 @@ const { title, description } = Astro.props;
          name="twitter:image"
          content="https://santiagogoncalvez.web.app/og-image.png"
       />
-      <style is:global>
-         /* Asegúrate de aplicar la familia de fuente */
-         body {
-            font-family: "Inter Variable", sans-serif;
-         }
-      </style>
-      <!-- Router -->
+
       <ClientRouter />
+
       <script>
-         // Esto sí funcionará porque Astro resolverá la ruta del archivo
          const initMotion = async () => {
             await import("../scripts/section-motion.mjs");
          };
 
-         // Puedes dispararlo cuando el navegador esté ocioso
-         if ("requestIdleCallback" in window) {
-            requestIdleCallback(initMotion);
+         if (document.readyState === "complete") {
+            initMotion();
          } else {
-            setTimeout(initMotion, 200);
+            window.addEventListener("load", initMotion);
          }
       </script>
+
+      <style is:global>
+         /* Definimos la fuente una sola vez en el lugar de mayor jerarquía */
+         :root {
+            color-scheme: light dark;
+         }
+
+         html {
+            /* Usamos Onest como principal. Si prefieres Inter, cámbiala aquí */
+            font-family: "Onest Variable", system-ui, sans-serif;
+            scroll-behavior: smooth;
+         }
+
+         body {
+            margin: 0;
+            min-height: 100vh;
+            /* Evita redundancia de fuentes aquí */
+         }
+
+         @media (prefers-reduced-motion: reduce) {
+            html {
+               scroll-behavior: auto;
+            }
+         }
+      </style>
    </head>
 
    <body class="relative min-h-screen">
@@ -87,26 +107,3 @@ const { title, description } = Astro.props;
       </div>
    </body>
 </html>
-
-<style>
-   :root {
-      color-scheme: light dark;
-   }
-
-   html {
-      font-family: "Onest variable", system-ui, sans-serif;
-      font-display: swap;
-      scroll-behavior: smooth;
-   }
-   body {
-      /* background: #2a2929; */
-      /* height: 100vh; */
-      height: 100%;
-   }
-
-   @media (prefers-reduced-motion: reduce) {
-      html {
-         scroll-behavior: auto;
-      }
-   }
-</style>

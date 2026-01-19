@@ -7,7 +7,7 @@ import HeroNav from "./HeroNav.astro";
 ---
 
 <div class="w-full flex flex-row items-center justify-content gap-8">
-   <div class="w-full flex flex-col gap-8 order-2 md:order-1">
+   <div class="w-full flex flex-col gap-8 order-2 order-first">
       <HeroHeader />
 
       <PrincipalTitle />
@@ -17,5 +17,10 @@ import HeroNav from "./HeroNav.astro";
       <HeroNav />
    </div>
 
-   <ProfilePhoto class="size-15 md:size-50 lg:size-60 md:flex hidden" />
+   <ProfilePhoto
+      class="w-64 h-64 hidden md:block"
+      width={256}
+      height={256}
+      sizes="256px"
+   />
 </div>
