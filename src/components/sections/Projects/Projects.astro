@@ -5,6 +5,7 @@ import LinkButton from "./LinkButton.astro";
 import TechnologyPill from "./TechnologyPill.astro";
 import Code from "../../../icons/Code.astro";
 import Subtitle from "../../shared/Subtitle.astro";
+import { Image } from "astro:assets";
 
 const PROJECTS = [
    {
@@ -81,14 +82,15 @@ const PROJECTS = [
   dark:bg-[--color-bg-surface] dark:border-[--color-border-subtle] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)]
   md:group-hover:-translate-y-1 md:group-hover:shadow-2xl md:group-hover:dark:shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
                   >
-                     <img
-                        alt={`Vista previa del proyecto ${title}`}
-                        class="object-cover object-top w-full h-56 transition duration-500 sm:h-full rounded-3xl 
-    shadow-xl border border-transparent
-    dark:border-[--color-border-strong]/30 dark:shadow-[0_10px_30px_rgba(0,0,0,0.6)]
-    md:scale-105 md:group-hover:scale-110"
-                        loading="lazy"
+                     <Image
                         src={image}
+                        alt={`Vista previa del proyecto ${title}`}
+                        width={640}
+                        height={360}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        format="webp"
+                        loading="lazy"
+                        class="object-cover object-top w-full h-56 rounded-3xl shadow-xl border border-transparent dark:border-[--color-border-strong]/30 md:scale-105 md:group-hover:scale-110 transition duration-500"
                      />
                   </div>
                </div>

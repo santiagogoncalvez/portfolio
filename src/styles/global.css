@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import '@fontsource-variable/onest';
-@import '@fontsource-variable/inter';
-
+/* @import '@fontsource-variable/inter'; */
 
 @theme {
   /* --- COLORES DE FONDO (Elevación) --- */
@@ -28,3 +27,12 @@
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@media (max-width: 768px) {
+  .no-mobile-motion,
+  .no-mobile-motion * {
+    animation: none !important;
+    transition: none !important;
+    /* transform: none !important; */
+  }
+}
