@@ -9,14 +9,43 @@ const { title, description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
    <head>
+      <!-- Basic -->
       <meta charset="UTF-8" />
-      <meta name="description" content={description} />
       <meta name="viewport" content="width=device-width" />
-      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-      <meta name="generator" content={Astro.generator} />
       <title>{title}</title>
+      <meta name="description" content={description} />
+      <meta name="generator" content={Astro.generator} />
+
+      <!-- Canonical -->
+      <link rel="canonical" href="https://santiagogoncalvez.web.app" />
+
+      <!-- Favicons -->
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+
+      <!-- Open Graph (WhatsApp / LinkedIn / Facebook) -->
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:url" content="https://santiagogoncalvez.web.app" />
+      <meta
+         property="og:image"
+         content="https://santiagogoncalvez.web.app/og-image.png"
+      />
+      <meta property="og:site_name" content="Santiago Goncalvez" />
+
+      <!-- Twitter Card -->
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta
+         name="twitter:image"
+         content="https://santiagogoncalvez.web.app/og-image.png"
+      />
+
+      <!-- Router -->
       <ClientRouter />
    </head>
 
