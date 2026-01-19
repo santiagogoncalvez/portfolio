@@ -158,7 +158,7 @@ const profilesInfo = profiles.map(({ network, url }) => ({
             icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>`,
             handler: () => {
                const a = document.createElement("a");
-               a.href = "/Santiago-Goncalvez-Curriculum-Vitae.pdf";
+               a.href = "/Santiago-Goncalvez-CV.pdf";
                a.download = "Santiago-Goncalvez-CV.pdf";
                a.click();
             },
@@ -223,6 +223,7 @@ const profilesInfo = profiles.map(({ network, url }) => ({
       right: 1rem;
       bottom: 1rem;
       pointer-events: none;
+      z-index: 1;
    }
 
    .command {
@@ -252,7 +253,6 @@ const profilesInfo = profiles.map(({ network, url }) => ({
       height: 56px;
       border-radius: 14px;
       cursor: pointer;
-      z-index: 0;
    }
 
    .command-button.hidden {
