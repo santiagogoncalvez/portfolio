@@ -10,6 +10,7 @@ const { animateOnScroll = true, disableOnMobile = false } = Astro.props;
    ]}
    data-animate={animateOnScroll}
    data-disable-mobile={disableOnMobile}
+   id={Astro.props.id}
 >
    <slot />
 </section>
