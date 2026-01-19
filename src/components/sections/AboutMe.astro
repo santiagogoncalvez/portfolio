@@ -84,11 +84,13 @@ import { Image } from "astro:assets";
    <Image
       src="/santiago-goncalvez-front-face.webp"
       alt={personalImageAlt}
-      width={200}
-      height={200}
-      class="order-1 object-cover w-64 h-full p-1 md:order-2 lg:p-2 lg:w-64 aspect-square rounded-3xl"
-      style="object-position: 50% 50%"
+      width={256}
+      height={256}
+      sizes="(max-width: 768px) 50vw, 256px"
       quality={80}
+      format="webp"
       loading="lazy"
+      class="order-1 object-cover w-full h-auto p-1 md:order-2 lg:p-2 rounded-3xl"
+      style="object-position: 50% 50%"
    />
 </article>
