@@ -29,8 +29,8 @@
 @media (max-width: 768px) {
   .no-mobile-motion,
   .no-mobile-motion * {
-    animation: none !important;
-    transition: none !important;
+    /* animation: none !important; */
+    /* transition: none !important; */
     /* transform: none !important; */
   }
 }

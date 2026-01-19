@@ -15,7 +15,7 @@ import Hero from "../components/sections/Hero/Hero.astro";
    description="Frontend Developer enfocado en React y TypeScript. Construyo interfaces rápidas, escalables y con foco en rendimiento y experiencia de usuario."
 >
    <main class="w-full py-13 md:py-14 px-5 flex flex-col sm:gap-35 gap-25">
-      <SectionContainer disableOnMobile fetchpriority="high">
+      <SectionContainer>
          <Hero />
       </SectionContainer>
 
@@ -33,15 +33,15 @@ import Hero from "../components/sections/Hero/Hero.astro";
          */
       }
 
-      <SectionContainer id="proyectos" disableOnMobile>
+      <SectionContainer id="proyectos">
          <Projects />
       </SectionContainer>
 
-      <SectionContainer id="sobre-mi" disableOnMobile>
+      <SectionContainer id="sobre-mi">
          <AboutMe />
       </SectionContainer>
 
-      <SectionContainer id="formacion" disableOnMobile>
+      <SectionContainer id="formacion">
          <Formation />
       </SectionContainer>
    </main>
