@@ -30,8 +30,8 @@ async function initAnimations() {
          () => {
             animate(
                section,
-               { opacity: [0, 1], y: [25, 0] },
-               { duration: 0.3, easing: "ease-out" },
+               { opacity: [0, 1], y: [20, 0] },
+               { duration: 0.2, easing: "ease-out" },
             );
          },
          { margin: "-80px" },
