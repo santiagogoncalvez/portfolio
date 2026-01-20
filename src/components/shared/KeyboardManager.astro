@@ -116,33 +116,35 @@ const profilesInfo = profiles.map(({ network, url }) => ({
    import HotKeyPad from "hotkeypad";
    import "hotkeypad/index.css";
 
-   document.addEventListener("astro:page-load", () => {
-      /* ============================= */
-      /* HOTKEYPAD INIT                */
-      /* ============================= */
-
+   // Función principal de inicialización
+   const initKeyboardManager = () => {
+      /* --- HOTKEYPAD INIT --- */
       const hotkeypad = new HotKeyPad();
 
+      // Sincronización de tema optimizada
       const updateTheme = () => {
          const isDark = document.documentElement.classList.contains("dark");
-         hotkeypad.instance.classList.toggle("dark", isDark);
-         hotkeypad.instance.classList.toggle("light", !isDark);
-         hotkeypad.instance.setAttribute(
-            "data-theme",
-            isDark ? "dark" : "light"
-         );
+         const container = hotkeypad.instance;
+
+         // Usamos requestAnimationFrame para que los cambios de clase no bloqueen el hilo principal
+         requestAnimationFrame(() => {
+            container.classList.toggle("dark", isDark);
+            container.classList.toggle("light", !isDark);
+            container.setAttribute("data-theme", isDark ? "dark" : "light");
+         });
       };
 
-      new MutationObserver(updateTheme).observe(document.documentElement, {
+      const observer = new MutationObserver(updateTheme);
+      observer.observe(document.documentElement, {
          attributes: true,
          attributeFilter: ["class"],
       });
 
       updateTheme();
 
-      const info = JSON.parse(
-         hotkeypad.instance.getAttribute("data-info") ?? "[]"
-      );
+      // Configuración de Comandos
+      const infoData = hotkeypad.instance.getAttribute("data-info");
+      const info = JSON.parse(infoData ?? "[]");
 
       const socialCommands = info.map((item) => ({
          ...item,
@@ -155,7 +157,7 @@ const profilesInfo = profiles.map(({ network, url }) => ({
             title: "Descargar CV",
             section: "Acciones",
             hotkey: "ctrl+D",
-            icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>`,
+            icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>`,
             handler: () => {
                const a = document.createElement("a");
                a.href = "/Santiago-Goncalvez-CV.pdf";
@@ -168,7 +170,7 @@ const profilesInfo = profiles.map(({ network, url }) => ({
             title: "Enviar correo",
             section: "Acciones",
             hotkey: "ctrl+E",
-            icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16v16H4z"/><polyline points="22,6 12,13 2,6"/></svg>`,
+            icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><polyline points="22,6 12,13 2,6"/></svg>`,
             handler: () => {
                window.location.href = "mailto:santiago.goncalvez.dev@gmail.com";
             },
@@ -177,40 +179,49 @@ const profilesInfo = profiles.map(({ network, url }) => ({
       ]);
 
       const commandButton = document.getElementById("command-button");
+      commandButton?.addEventListener("click", () => hotkeypad.open());
 
-      commandButton?.addEventListener("click", () => {
-         hotkeypad.open();
-         // commandButton.classList.add("hidden");
-      });
-
-      /* ============================= */
-      /* SCROLL VISIBILITY LOGIC       */
-      /* ============================= */
-
+      /* --- SCROLL VISIBILITY (Optimizado para evitar Reflow) --- */
       const label = document.getElementById("command-label");
-      const button = document.getElementById("command-button");
-
       let lastScroll = window.scrollY;
+      let ticking = false; // Flag para throttling
 
       const updateVisibility = () => {
          const y = window.scrollY;
 
          if (y < 24) {
             label?.classList.remove("is-visible");
-            button?.classList.remove("is-visible");
+            commandButton?.classList.remove("is-visible");
          } else if (y > lastScroll) {
             label?.classList.add("is-visible");
-            button?.classList.add("is-visible");
+            commandButton?.classList.add("is-visible");
          }
 
          lastScroll = y;
+         ticking = false;
       };
 
-      window.addEventListener("scroll", updateVisibility, { passive: true });
-      updateVisibility();
+      // Usamos requestAnimationFrame para el scroll (Throttling nativo)
+      window.addEventListener(
+         "scroll",
+         () => {
+            if (!ticking) {
+               window.requestAnimationFrame(updateVisibility);
+               ticking = true;
+            }
+         },
+         { passive: true },
+      );
 
-      
-   });
+      updateVisibility();
+   };
+
+   // Inicialización segura sin ClientRouter
+   if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initKeyboardManager);
+   } else {
+      initKeyboardManager();
+   }
 </script>
 
 <style>

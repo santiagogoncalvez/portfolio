@@ -1,10 +1,8 @@
 ---
-import "@fontsource-variable/onest";
 import "../styles/global.css";
 
 import Header from "../components/shared/Header.astro";
 import Footer from "../components/shared/Footer.astro";
-import { ClientRouter } from "astro:transitions";
 import GradientBackground from "../components/shared/GradientBackground.astro";
 
 const { title, description } = Astro.props;
@@ -13,21 +11,56 @@ const { title, description } = Astro.props;
 <!doctype html>
 <html lang="es">
    <head>
-      <!-- Basic -->
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width" />
       <title>{title}</title>
       <meta name="description" content={description} />
+
+      <link
+         rel="preload"
+         href="/fonts/onest-latin-wght-normal.woff2"
+         as="font"
+         type="font/woff2"
+         crossorigin="anonymous"
+      />
+
+      <style is:global>
+         @font-face {
+            font-family: "Onest Variable";
+            src: url("/fonts/onest-latin-wght-normal.woff2") format("woff2");
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+         }
+
+         :root {
+            color-scheme: light dark;
+         }
+
+         html {
+            font-family: "Onest Variable", system-ui, sans-serif;
+            scroll-behavior: smooth;
+         }
+
+         body {
+            margin: 0;
+            min-height: 100vh;
+         }
+
+         @media (prefers-reduced-motion: reduce) {
+            html {
+               scroll-behavior: auto;
+            }
+         }
+      </style>
+
       <meta name="generator" content={Astro.generator} />
 
-      <!-- Canonical -->
       <link rel="canonical" href="https://santiagogoncalvez.web.app" />
 
-      <!-- Favicons -->
       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
 
-      <!-- Open Graph (WhatsApp / LinkedIn / Facebook) -->
       <meta property="og:type" content="website" />
       <meta property="og:locale" content="es_AR" />
       <meta property="og:title" content={title} />
@@ -55,19 +88,6 @@ const { title, description } = Astro.props;
          content="https://santiagogoncalvez.web.app/og-image.png"
       />
 
-      <ClientRouter client:load />
-
-      <!-- <script>
-         const initMotion = async () => {
-            await import("../scripts/section-motion.mjs");
-         };
-
-         if (document.readyState === "complete") {
-            initMotion();
-         } else {
-            window.addEventListener("load", initMotion);
-         }
-      </script> -->
    </head>
 
    <body class="relative min-h-screen">
@@ -80,28 +100,3 @@ const { title, description } = Astro.props;
       </div>
    </body>
 </html>
-
-<style>
-   /* Definimos la fuente una sola vez en el lugar de mayor jerarquía */
-   :root {
-      color-scheme: light dark;
-   }
-
-   html {
-      /* Usamos Onest como principal. Si prefieres Inter, cámbiala aquí */
-      font-family: "Onest Variable", system-ui, sans-serif;
-      scroll-behavior: smooth;
-   }
-
-   body {
-      margin: 0;
-      min-height: 100vh;
-      /* Evita redundancia de fuentes aquí */
-   }
-
-   @media (prefers-reduced-motion: reduce) {
-      html {
-         scroll-behavior: auto;
-      }
-   }
-</style>
