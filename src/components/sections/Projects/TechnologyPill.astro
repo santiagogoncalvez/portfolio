@@ -1,56 +1,53 @@
 ---
-import JavaScriptLogo from "../../../icons/JavaScriptLogo.astro";
-import TailwindLogo from "../../../icons/TailwindLogo.astro";
-import ViteLogo from "../../../icons/ViteLogo.astro";
-import TypeScriptLogo from "../../../icons/TypeScriptLogo.astro";
-import ReactRouterLogo from "../../../icons/ReactRouterLogo.astro";
-import ReactLogo from "../../../icons/ReactLogo.astro";
-import CSSLogo from "../../../icons/CSSLogo.astro";
-import HTML5Logo from "../../../icons/HTML5Logo.astro";
-import ReactQueryLogo from "../../../icons/ReactQueryLogo.astro";
-import ZustandLogo from "../../../icons/ZustandLogo.astro";
-import ReduxToolkit from "../../../icons/ReduxToolkit.astro";
-import VitestLogo from "../../../icons/VitestLogo.astro";
-
-// 1. Definimos la constante/diccionario de tecnologías disponibles
-const TECH_MAP = {
-   tailwind: TailwindLogo,
-   javascript: JavaScriptLogo,
-   vite: ViteLogo,
-   typescript: TypeScriptLogo,
-   reactrouter: ReactRouterLogo,
-   react: ReactLogo,
-   css: CSSLogo,
-   html5: HTML5Logo,
-   reactquery: ReactQueryLogo,
-   zustand: ZustandLogo,
-   reduxtoolkit: ReduxToolkit,
-   vitest: VitestLogo,
-};
-
-// 2. Definimos la interfaz de las props
+// TechnologyPill.astro
 interface Props {
-   techs: string[]; // Ejemplo: ['react', 'tailwind']
+   name: string;
+   color: string;
+   Icon: any;
+   class?: string;
 }
 
-const { techs } = Astro.props;
+const { name, color, Icon, class: className, ...props } = Astro.props;
 ---
 
-<div class="flex flex-wrap gap-4">
-   {
-      techs.map((key) => {
-         // Normalizamos la key a minúsculas para evitar errores
-         const techKey = key.toLowerCase();
-         const TechLogo = TECH_MAP[techKey];
+<div
+   {...props}
+   class:list={[
+      "technology-pill group",
+      "inline-flex items-center gap-x-2 px-2 py-2",
+      "rounded-full",
+      "transition-all duration-200 ease-out",
+      "text-border-strong group-hover:text-bg-base dark:text-text-highlighted group-hover:dark:text-text",
+      "bg-transparent",
+      className,
+   ]}
+>
+   <Icon class="size-4" />
 
-         // Si la tecnología no existe en nuestro mapa, no renderizamos nada
-         if (!TechLogo) return null;
-
-         return (
-            <div class="group inline-block transition-all duration-300 hover:-translate-y-1">
-               <TechLogo class="rounded-full select-none font-[Onest_variable]" />
-            </div>
-         );
-      })
-   }
+   <span class="text-xs font-bold">
+      {name.toUpperCase()}
+   </span>
 </div>
+
+<style>
+   .technology-pill {
+      /* Optimización de renderizado crítico */
+      contain: content;
+      cursor: default;
+   }
+
+   .technology-pill:hover {
+      /* Usamos color-mix para generar un fondo suave basado en el color de la marca */
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px -4px
+         color-mix(in srgb, var(--brand-color) 25%, transparent);
+   }
+
+   /* Reducimos el movimiento del layout para mejorar CLS */
+   @media (prefers-reduced-motion: reduce) {
+      .technology-pill {
+         transition: none;
+         transform: none;
+      }
+   }
+</style>

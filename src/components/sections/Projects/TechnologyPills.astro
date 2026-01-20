@@ -1,0 +1,60 @@
+---
+import JavaScriptLogo from "../../../icons/JavaScriptLogo.astro";
+import TailwindLogo from "../../../icons/TailwindLogo.astro";
+import ViteLogo from "../../../icons/ViteLogo.astro";
+import TypeScriptLogo from "../../../icons/TypeScriptLogo.astro";
+import ReactRouterLogo from "../../../icons/ReactRouterLogo.astro";
+import ReactLogo from "../../../icons/ReactLogo.astro";
+import CSSLogo from "../../../icons/CSSLogo.astro";
+import HTML5Logo from "../../../icons/HTML5Logo.astro";
+import ReactQueryLogo from "../../../icons/ReactQueryLogo.astro";
+import ReduxToolkit from "../../../icons/ReduxToolkit.astro";
+import VitestLogo from "../../../icons/VitestLogo.astro";
+import TechnologyPill from "./TechnologyPill.astro";
+
+// 1. Definimos la constante/diccionario de tecnologías disponibles
+const TECH_MAP = {
+   tailwind: { name: "Tailwind", color: "", icon: TailwindLogo },
+   javascript: { name: "JavaScript", color: "", icon: JavaScriptLogo },
+   vite: { name: "Vite", color: "", icon: ViteLogo },
+   typescript: { name: "TypeScript", color: "", icon: TypeScriptLogo },
+   reactrouter: { name: "React Router", color: "", icon: ReactRouterLogo },
+   react: { name: "React", color: "", icon: ReactLogo },
+   css: { name: "CSS", color: "", icon: CSSLogo },
+   html5: { name: "HTML5", color: "", icon: HTML5Logo },
+   reactquery: { name: "React Query", color: "", icon: ReactQueryLogo },
+   reduxtoolkit: { name: "Redux Toolkit", color: "", icon: ReduxToolkit },
+   vitest: { name: "Vitest", color: "#00FF74", icon: VitestLogo },
+} as const;
+
+type TechKey = keyof typeof TECH_MAP;
+
+interface Props {
+   // Ahora 'techs' es un array de nombres válidos, no de objetos
+   techs: TechKey[];
+}
+
+const { techs } = Astro.props;
+---
+
+<div class="flex flex-wrap gap-2">
+   {
+      techs.map((key) => {
+         // Normalizamos la key a minúsculas para evitar errores
+         const techData = TECH_MAP[key.toLocaleLowerCase()];
+
+         if (!techData) return null;
+
+         const { name, icon: TechLogo, color } = techData;
+
+         return (
+            <TechnologyPill
+               Icon={TechLogo}
+               color={color}
+               name={name}
+               class="group transition hover:-translate-y-1"
+            />
+         );
+      })
+   }
+</div>
