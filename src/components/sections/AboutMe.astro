@@ -1,6 +1,7 @@
 ---
 import ProfileCheckIcon from "../../icons/ProfileCheck.astro";
 import Subtitle from "../shared/Subtitle.astro";
+import profilePic from "../../assets/santiago-goncalvez-front-face-casual.webp";
 
 const personalImageAlt = "Retrato de Santiago Goncalvez - Desarrollador Web";
 
@@ -82,7 +83,7 @@ import { Image } from "astro:assets";
    </div>
 
    <Image
-      src="/santiago-goncalvez-front-face.webp"
+      src={profilePic}
       alt={personalImageAlt}
       width={256}
       height={256}
