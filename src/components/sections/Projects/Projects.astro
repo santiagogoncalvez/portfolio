@@ -7,6 +7,20 @@ import Code from "../../../icons/Code.astro";
 import Subtitle from "../../shared/Subtitle.astro";
 import { Image } from "astro:assets";
 
+import imageCrud from "../../../assets/project-core-crud-interface.webp";
+import imageHakcerStories from "../../../assets/project-hacker-stories.webp";
+
+import imageTestTypeScript from "../../../assets/project-typescript-test-with-react-query.webp";
+
+import imageTuPais from "../../../assets/project-tu-pais.webp";
+
+const IMAGES = {
+   "/project-typescript-test-with-react-query.webp": imageTestTypeScript,
+   "/project-hacker-stories.webp": imageHakcerStories,
+   "/project-core-crud-interface.webp": imageCrud,
+   "/project-tu-pais.webp": imageTuPais,
+};
+
 const PROJECTS = [
    {
       title: "Tech Test: Data Management Dashboard",
@@ -31,7 +45,7 @@ const PROJECTS = [
          "typescript",
          "React",
          "Vitest",
-         "ReactQuery",
+         //"ReactQuery",
          "ReactRouter",
          "vite",
       ],
@@ -46,7 +60,7 @@ const PROJECTS = [
       github:
          "https://github.com/santiagogoncalvez/midudevs-react-course/tree/main/projects/10-crud-redux",
 
-      image: "/projec-core-crud-interface.webp",
+      image: "/project-core-crud-interface.webp",
       tags: ["typescript", "React", "ReduxToolkit", "tailwind", "vite"],
    },
    {
@@ -83,13 +97,14 @@ const PROJECTS = [
   md:group-hover:-translate-y-1 md:group-hover:shadow-2xl md:group-hover:dark:shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
                   >
                      <Image
-                        src={image}
+                        src={IMAGES[image]}
                         alt={`Vista previa del proyecto ${title}`}
                         width={400}
                         height={225}
                         sizes="(max-width: 768px) 100vw, 50vw"
                         format="webp"
                         loading="lazy"
+                        quality={80}
                         class="object-cover object-top w-full h-auto rounded-3xl shadow-xl border border-transparent dark:border-[--color-border-strong]/30 md:scale-95 md:group-hover:scale-100 transition duration-500"
                      />
                   </div>

@@ -14,14 +14,14 @@ const navItems = [
 ];
 ---
 
-<header class="fixed top-0 z-10 w-full mt-2 flex justify-center">
+<header class="fixed top-0 z-20 w-full mt-2 flex justify-center">
    <nav
       class="flex px-2 p-1 md:gap-2 gap-1 font-medium rounded-lg text-bg-deep dark:text-title justify-center items-center"
    >
       {
          navItems.map((link) => (
             <a
-               class="relative block px-2 transition rounded-lg p-1 hover:text-title hover:bg-border-strong dark:hover:bg-title dark:hover:text-bg-elevated text-xs md:text-sm"
+               class="relative block px-2 transition rounded-lg p-1 hover:text-title hover:bg-border-strong dark:hover:bg-title dark:hover:text-bg-elevated text-xs md:text-base"
                aria-label={link.label}
                href={link.url}
             >
@@ -33,6 +33,7 @@ const navItems = [
    </nav>
 </header>
 
+<!-- TODO: revisar que sucede que no se activa la detección de seccion ni la detección y seteo en el header de la sección actual -->
 <script type="module">
    document.addEventListener("astro:page-load", () => {
       const removeAccents = (str) =>
@@ -116,19 +117,19 @@ const navItems = [
 
 <style>
    nav {
-      --nav-bg: rgba(255, 255, 255, 0.8);
-      --nav-border: rgba(0, 0, 0, 0.08);
-      --nav-shadow: rgba(0, 0, 0, 0.05);
+      --nav-bg: var(--color-bg-white);
+      --nav-border: var(--color-text);
+      --nav-shadow: var();
 
       animation: nav-shadow 1s linear both;
       animation-timeline: scroll();
       animation-range: 0 100px;
    }
 
-   :global(.dark) nav {
-      --nav-bg: rgba(18, 18, 18, 0.8);
-      --nav-border: rgba(255, 255, 255, 0.1);
-      --nav-shadow: rgba(0, 0, 0, 0.5);
+   html.dark nav {
+      --nav-bg: var(--color-border-strong);
+      --nav-border: var(--color-text-muted);
+      --nav-shadow: var(--nav-shadow);
    }
 
    @keyframes nav-shadow {
@@ -139,7 +140,7 @@ const navItems = [
       }
       to {
          background-color: var(--nav-bg);
-         backdrop-filter: blur(12px);
+         /* backdrop-filter: blur(12px); */
          border: 1px solid var(--nav-border);
          box-shadow: 0 10px 15px -3px var(--nav-shadow);
       }

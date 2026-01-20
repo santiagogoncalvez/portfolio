@@ -1,15 +1,14 @@
 ---
-const { animateOnScroll = true, disableOnMobile = false } = Astro.props;
+// const { animateOnScroll = true, disableOnMobile = false } = Astro.props;
 ---
 
 <section
    class:list={[
-      "section-motion w-full mx-auto lg:w-[900px] flex flex-col gap-8",
-      animateOnScroll && "opacity-0 translate-y-6",
+      "w-full mx-auto lg:w-[900px] flex flex-col gap-8",
+      // animateOnScroll && "opacity-0 translate-y-6",
       // "no-mobile-motion",
+      Astro.props.class
    ]}
-   data-animate={animateOnScroll}
-   data-disable-mobile={disableOnMobile}
    id={Astro.props.id}
    {...Astro.props}
 >

@@ -14,37 +14,23 @@ import Hero from "../components/sections/Hero/Hero.astro";
    title="Santiago Goncalvez | Frontend Developer React & TypeScript"
    description="Frontend Developer enfocado en React y TypeScript. Construyo interfaces rápidas, escalables y con foco en rendimiento y experiencia de usuario."
 >
-   <main class="w-full py-13 md:py-14 px-5 flex flex-col sm:gap-35 gap-25">
+   <main class="w-full py-16 md:py-18 px-5 flex flex-col sm:gap-35 gap-25">
       <SectionContainer>
          <Hero />
       </SectionContainer>
 
-      {
-
-            // Agregar cuando tenga experiencia
-            /* 
-         <SectionContainer  id="experiencia">
-            <Subtitle class="flex flex-row items-center gap-x-4">
-               <BriefCaseIcon class="size-8" />
-               <span>Experiencia laboral</span>
-            </Subtitle>
-            <Experience />
-         </SectionContainer>
-         */
-      }
-
-      <SectionContainer id="proyectos">
+      <SectionContainer id="proyectos" class="no-mobile-motion">
          <Projects />
       </SectionContainer>
 
-      <SectionContainer id="sobre-mi">
+      <SectionContainer id="sobre-mi" class="no-mobile-motion">
          <AboutMe />
       </SectionContainer>
 
-      <SectionContainer id="formacion">
+      <SectionContainer id="formacion" class="no-mobile-motion">
          <Formation />
       </SectionContainer>
    </main>
 
-   <KeyboardManager />
+   <KeyboardManager/>
 </Layout>

@@ -5,7 +5,7 @@ const prefersReducedMotion = window.matchMedia(
 
 async function initAnimations() {
    //Si no se quiere animación en mobile: if (isMobile || prefersReducedMotion) {
-   if (prefersReducedMotion) {
+   if (isMobile || prefersReducedMotion) {
       document.querySelectorAll(".section-motion").forEach((section) => {
          section.style.opacity = "1";
          section.style.transform = "none";
