@@ -5,7 +5,9 @@ import Badge from "../components/sections/Hero/Badge.astro";
 import SectionContainer from "../components/shared/SectionContainer.astro";
 ---
 
-<Layout title="404 — Página no encontrada" >
+<Layout title="404 — Página no encontrada">
+   <meta slot="head" name="robots" content="noindex" />
+
    <div class="w-full py-16 md:py-18 px-5 flex-1">
       <SectionContainer>
          <div class="flex flex-row items-center gap-8">

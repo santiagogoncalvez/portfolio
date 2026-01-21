@@ -1,0 +1,31 @@
+<svg
+  width="200"
+  height="200"
+  viewBox="0 0 200 200"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Fondo -->
+  <rect
+    x="10"
+    y="10"
+    width="180"
+    height="180"
+    rx="24"
+    fill="#080808"
+  />
+
+  <!-- Texto -->
+  <text
+    x="100"
+    y="100"
+    text-anchor="middle"
+    dominant-baseline="central"
+    dy="-3"
+    font-family="Onest, system-ui, -apple-system, BlinkMacSystemFont, sans-serif"
+    font-size="88"
+    font-weight="800"
+    fill="#fafafa"
+  >
+    SG
+  </text>
+</svg>
