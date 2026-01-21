@@ -1,0 +1,69 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProfilePhoto from "../components/sections/Hero/ProfilePhoto.astro";
+import Badge from "../components/sections/Hero/Badge.astro";
+---
+
+<Layout title="404 — Página no encontrada">
+   <section class="w-full min-h-[70vh] flex flex-row items-center gap-8">
+      <!-- Imagen (desktop) -->
+      <ProfilePhoto
+         class="w-64 h-64 hidden md:block opacity-80"
+         width={256}
+         height={256}
+         sizes="256px"
+      />
+
+      <div class="w-full flex flex-col gap-6">
+         <!-- Header -->
+         <header class="flex items-center flex-row flex-wrap md:gap-4 gap-2">
+            <ProfilePhoto
+               class="w-8 h-8 md:hidden"
+               width={32}
+               height={32}
+               sizes="32px"
+            />
+
+            <Badge>
+               <strong>Error 404</strong>
+            </Badge>
+
+            <span class="text-bg-surface dark:text-text md:text-sm text-xs">
+               Página no encontrada
+            </span>
+         </header>
+
+         <!-- Título -->
+         <h1
+            class="text-3xl md:text-5xl font-bold text-bg-deep dark:text-[#fafafa] leading-tight"
+         >
+            Esta página no existe
+         </h1>
+
+         <!-- Descripción -->
+         <h2
+            class="text-xl lg:text-2xl
+        text-border-strong dark:text-[#B0B0B0]
+        max-w-2xl"
+         >
+            <strong class="text-bg-base dark:text-[#d7d7d7] font-medium">
+               El enlace puede estar mal escrito
+            </strong>
+            o la página fue movida.
+         </h2>
+
+         <!-- Acción -->
+         <nav class="mt-4">
+            <a
+               href="/"
+               class="inline-flex items-center text-sm font-medium
+                 text-bg-base dark:text-[#d7d7d7]
+                 underline underline-offset-4
+                 hover:opacity-80 transition"
+            >
+               Volver al inicio
+            </a>
+         </nav>
+      </div>
+   </section>
+</Layout>
