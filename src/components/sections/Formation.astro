@@ -18,31 +18,36 @@ const formationItems: BentoItem[] = [
    {
       title: "Ingeniería Informática",
       subtitle: "Universidad (En curso)",
+      // Cambiamos arquitectura por "Resolución de problemas" y "Lógica"
       description:
-         "Formación sólida en algoritmos, estructuras de datos y arquitectura de software.",
+         "Enfoque en resolución de problemas complejos, lógica algorítmica y sistemas de bajo nivel.",
       icon: UniversityIcon,
       class: "md:col-span-2 md:row-span-2",
-      tags: ["C", "Estructuras", "Matemática", "Proyectos"],
+      tags: ["C", "Estructuras", "Sistemas Embebidos", "Matemática"],
    },
    {
       title: "Especialización React",
-      subtitle: "Midudev / Curso",
+      subtitle: "Midudev",
+      // "Dominio" es una palabra fuerte; "Desarrollo moderno" suena más realista y profesional
       description:
-         "Dominio avanzado de Hooks, Context API, y optimización de rendimiento.",
+         "Desarrollo de aplicaciones modernas con Hooks, patrones de estado y optimización.",
       icon: ReactIcon,
       class: "md:col-span-2 border-l-2 border-l-bg-deep/10 dark:border-l-white/10",
    },
    {
       title: "The Road to React",
-      subtitle: "Libro",
-      description: "Patrones de diseño modernos.",
+      subtitle: "Robin Wieruch",
+      description:
+         "Arquitectura de componentes y gestión de datos en el ecosistema React.",
       icon: BookIcon,
       class: "md:col-span-1",
    },
    {
       title: "Eloquent JavaScript",
-      subtitle: "Libro",
-      description: "Fundamentos del lenguaje.",
+      subtitle: "M. Haverbeke",
+      // "Fundamentos" suena a principiante, "Deep Dive" o "Dominio del lenguaje" suena mejor
+      description:
+         "Inmersión profunda en la naturaleza funcional y asíncrona de JavaScript.",
       icon: JavaScriptIcon,
       class: "md:col-span-1",
    },
@@ -74,12 +79,6 @@ const formationItems: BentoItem[] = [
                   ${item.class || ""}
                `}
             >
-               {/* Icono de fondo gigante */}
-               {item.class?.includes("row-span-2") && item.icon && (
-                  <div class="absolute -bottom-12 -right-12 size-64 text-bg-deep dark:text-white opacity-[0.03] group-hover:opacity-[0.06] transition-all duration-500 -rotate-12 pointer-events-none">
-                     <IconComponent />
-                  </div>
-               )}
 
                {/* Glow decorativo superior (Azulado sutil en light) */}
                <div class="absolute top-0 right-0 -mr-10 -mt-10 w-32 h-32 rounded-full bg-blue-500/10 dark:bg-white/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -87,13 +86,13 @@ const formationItems: BentoItem[] = [
                {/* Header: Subtítulo e Icono */}
                <div class="relative w-full z-10">
                   <div class="flex items-center justify-between mb-3">
-                     <span class="text-[10px] font-bold uppercase tracking-widest text-text-muted dark:text-text-highlighted border border-black/[0.05] dark:border-white/10 px-2.5 py-1 rounded-full bg-white/50 dark:bg-bg-base">
+                     <span class="text-[10px] font-bold uppercase tracking-widest text-text-muted dark:text-text-highlighted border border-black/[0.05] dark:border-white/10 px-4 py-1.5 rounded-full bg-white/50 dark:bg-bg-base">
                         {item.subtitle}
                      </span>
 
                      {item.icon && (
-                        <div class="size-8 text-bg-deep/40 dark:text-text-muted group-hover:text-bg-deep dark:group-hover:text-title transition-colors">
-                           <IconComponent />
+                        <div class="flex justify-center items-center size-8 text-bg-deep/40 dark:text-text-muted group-hover:text-bg-deep dark:group-hover:text-title transition-colors">
+                           <IconComponent class="stroke-1" />
                         </div>
                      )}
                   </div>
@@ -126,7 +125,7 @@ const formationItems: BentoItem[] = [
                {item.class?.includes("row-span-2") && (
                   <div class="relative mt-6 pt-4 border-t border-black/[0.05] dark:border-white/5 sm:opacity-80 opacity-100 group-hover:opacity-100 transition-opacity z-10">
                      <span class="text-[9px] font-black uppercase tracking-[0.2em] text-bg-deep dark:text-text">
-                        Sistemas · Algoritmos · Arquitectura
+                        Sistemas · Algoritmos · Lógica
                      </span>
                   </div>
                )}
