@@ -85,8 +85,9 @@ import { Image } from "astro:assets";
    <Image
       src={profilePic}
       alt={personalImageAlt}
-      width={256}
-      height={256}
+      width={512}
+      height={512}
+      widths={[256, 384, 512]}
       sizes="(max-width: 768px) 50vw, 256px"
       quality={80}
       format="webp"

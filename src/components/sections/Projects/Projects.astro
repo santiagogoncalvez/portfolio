@@ -99,9 +99,10 @@ const PROJECTS = [
                      <Image
                         src={IMAGES[image]}
                         alt={`Vista previa del proyecto ${title}`}
-                        width={400}
-                        height={225}
-                        sizes="(max-width: 768px) 100vw, 50vw"
+                        width={800}
+                        height={450}
+                        widths={[400, 800, 1200]}
+                        sizes="(max-width: 768px) 100vw, 400px"
                         format="webp"
                         loading="lazy"
                         quality={80}

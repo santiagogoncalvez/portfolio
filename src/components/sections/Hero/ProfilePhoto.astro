@@ -4,9 +4,9 @@ import profilePic from "../../../assets/santiago-goncalvez-front-face-background
 
 // Props opcionales
 const {
-   width = 200,
-   height = 200,
-   sizes = "(max-width: 768px) 100vw, 200px", // responsive por defecto
+   width = 500,
+   height = 500,
+   sizes = "(max-width: 768px) 150px, 500px", // responsive por defecto
    class: extraClass = "",
 } = Astro.props;
 ---
@@ -25,9 +25,10 @@ const {
       alt="Retrato de Santiago Goncalvez - Desarrollador Web"
       width={width}
       height={height}
+      widths={[150, 300, 500, 800]}
       sizes={sizes}
       format="webp"
-      quality={80}
+      quality={100}
       loading="lazy"
       class="rounded-full object-cover w-full h-auto bg-[#faf9f9] dark:bg-text-muted"
    />
