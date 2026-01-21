@@ -3,6 +3,13 @@
       "public": "dist",
       "cleanUrls": true,
       "trailingSlash": false,
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "redirects": [
+         {
+            "source": "/sitemap-index.xml",
+            "destination": "/sitemap.xml",
+            "type": 301
+         }
+      ]
    }
 }
