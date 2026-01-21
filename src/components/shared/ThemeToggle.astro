@@ -3,7 +3,7 @@ import SunIcon from "../../icons/Sun.astro";
 import SystemIcon from "../../icons/System.astro";
 import MoonIcon from "../../icons/Moon.astro";
 
-const THEMES = ["Light", "Dark", "System"];
+const THEMES = ["Claro", "Oscuro", "Sistema"];
 ---
 
 <div class="relative ml-1 mr-1">
@@ -15,19 +15,19 @@ const THEMES = ["Light", "Dark", "System"];
       <span class="sr-only">Elige el tema</span>
 
       <div
-         id="light"
+         id="claro"
          class="theme-toggle-icon size-full absolute inset-0 m-auto flex items-center justify-center"
       >
          <SunIcon class="size-full" />
       </div>
       <div
-         id="dark"
+         id="oscuro"
          class="theme-toggle-icon size-full absolute inset-0 m-auto flex items-center justify-center"
       >
          <MoonIcon class="size-full" />
       </div>
       <div
-         id="system"
+         id="sistema"
          class="theme-toggle-icon size-full absolute inset-0 m-auto flex items-center justify-center"
       >
          <SystemIcon class="size-full" />
@@ -111,8 +111,8 @@ const THEMES = ["Light", "Dark", "System"];
    const updateTheme = () => {
       const themePreference = getThemePreference();
       const isDark =
-         themePreference === "dark" ||
-         (themePreference === "system" &&
+         themePreference === "oscuro" ||
+         (themePreference === "sistema" &&
             window.matchMedia("(prefers-color-scheme: dark)").matches);
 
       updateIcon(themePreference);
