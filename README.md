@@ -7,12 +7,9 @@ El objetivo de este sitio es mostrar mi trabajo de forma clara, rápida y profes
 ## 🚀 Tecnologías utilizadas
 
 - Astro
-- React
 - TypeScript
 - Vite
 - Tailwind CSS
-- TanStack Query
-- React Router
 - Vitest (tests unitarios e integrales)
 
 ## ✨ Características principales
@@ -44,7 +41,7 @@ El objetivo de este sitio es mostrar mi trabajo de forma clara, rápida y profes
 
 ## 📬 Contacto
 
-- Email: santiagogoncalvez.l@gmail.com  
+- Email: santiago.goncalvez.dev@gmail.com  
 - LinkedIn: https://linkedin.com/in/santiagogoncalvez  
 - GitHub: https://github.com/santiagogoncalvez  
 
