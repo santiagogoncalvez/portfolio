@@ -13,14 +13,10 @@ const { class: className, ...props } = Astro.props;
       "transition-all duration-300",
       "border backdrop-blur-sm",
 
-      // --- TUS COLORES BASE (Respetados) ---
       "text-title dark:text-bg-base",
       "bg-bg-base dark:bg-title border-black/5 dark:border-white/10",
 
-      // --- EFECTO PLATINADO HOVER ---
-      // Light: Un brillo blanco-plata radial
       "hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-white/60 hover:to-bg-base",
-      // Dark: Un brillo metálico que resalta el fondo oscuro
       "dark:hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] dark:hover:from-white dark:hover:to-bg-surface",
 
       "no-mobile-motion",

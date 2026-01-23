@@ -2,7 +2,7 @@
 
 
 @theme {
-  /* --- COLORES DE FONDO (Elevación) --- */
+  /* --- COLORES DE FONDO--- */
   --color-bg-deep: #080808;         /* Darker: Para fondos muy profundos */
   --color-bg-base: #121212;         /* Gris base por defecto */
   --color-bg-surface: #1c1c1e;      /* Dark: Para secciones o cards */

@@ -1,5 +1,4 @@
 ---
-// Header.astro
 import ThemeToggle from "./ThemeToggle.astro";
 
 const navItems = [
@@ -14,7 +13,7 @@ const navItems = [
 ];
 ---
 
-<header class="fixed top-0 z-20 w-full mt-2 flex justify-center">
+<header class="fixed top-0 z-9 w-full mt-2 flex justify-center">
    <nav
       class="flex px-2 p-1 md:gap-2 gap-1 font-medium rounded-lg text-bg-deep dark:text-title justify-center items-center"
    >
@@ -33,20 +32,18 @@ const navItems = [
    </nav>
 </header>
 
-<!-- TODO: revisar que sucede que no se activa la detección de seccion ni la detección y seteo en el header de la sección actual -->
-<script type="module">
+<script>
    const initNavScroll = () => {
       const sections = document.querySelectorAll("section[id]");
       const navLinks = document.querySelectorAll("header nav a");
       const root = document.documentElement;
       const TOP_OFFSET = 80;
 
-      const removeAccents = (str) =>
+      const removeAccents = (str: string | null) =>
          str ? str.normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
 
       const isDark = () => root.classList.contains("dark");
 
-      // Función pura para limpiar estilos
       const clearStyles = () => {
          navLinks.forEach((a) =>
             a.classList.remove(
@@ -58,8 +55,7 @@ const navItems = [
          );
       };
 
-      // Aplicar estilos según el tema
-      const applyStyles = (link) => {
+      const applyStyles = (link: Element | null) => {
          if (!link) return;
          clearStyles();
          if (isDark()) {
@@ -69,12 +65,37 @@ const navItems = [
          }
       };
 
-      let activeLink = null;
+      let activeLink: Element | null = null;
 
-      // INTERSECTION OBSERVER: La forma más eficiente de detectar la sección activa
+      // --- LÓGICA DE DETECCIÓN INICIAL ---
+      const checkCurrentSection = () => {
+         const scrollPos = window.scrollY + TOP_OFFSET + 10;
+         let currentId = "";
+
+         sections.forEach((section) => {
+            const htmlSection = section as HTMLElement;
+            if (scrollPos >= htmlSection.offsetTop) {
+               currentId = section.id;
+            }
+         });
+
+         if (currentId) {
+            const idNormalized = removeAccents(currentId);
+            const link = Array.from(navLinks).find(
+               (a) =>
+                  removeAccents(a.getAttribute("aria-label")) === idNormalized,
+            );
+            if (link) {
+               activeLink = link;
+               applyStyles(link);
+            }
+         }
+      };
+      // ------------------------------------
+
       const observerOptions = {
          root: null,
-         rootMargin: `-${TOP_OFFSET}px 0px -70% 0px`, // Detecta cuando entra en la parte superior
+         rootMargin: `-${TOP_OFFSET}px 0px -70% 0px`,
          threshold: 0,
       };
 
@@ -96,7 +117,6 @@ const navItems = [
 
       sections.forEach((section) => observer.observe(section));
 
-      // Si el usuario vuelve arriba de todo, limpiamos la selección
       window.addEventListener(
          "scroll",
          () => {
@@ -108,7 +128,6 @@ const navItems = [
          { passive: true },
       );
 
-      // Observar cambios de tema para actualizar el color del link activo
       const themeObserver = new MutationObserver(() => {
          if (activeLink) applyStyles(activeLink);
       });
@@ -117,9 +136,11 @@ const navItems = [
          attributes: true,
          attributeFilter: ["class"],
       });
+
+      // Ejecutar el chequeo manual inmediatamente al iniciar
+      checkCurrentSection();
    };
 
-   // Inicialización segura
    if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", initNavScroll);
    } else {
@@ -152,7 +173,6 @@ const navItems = [
       }
       to {
          background-color: var(--nav-bg);
-         /* backdrop-filter: blur(12px); */
          border: 1px solid var(--nav-border);
          box-shadow: 0 10px 15px -3px var(--nav-shadow);
       }

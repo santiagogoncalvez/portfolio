@@ -16,5 +16,12 @@
       "hotkeypad": "^1.0.2",
       "motion": "^12.26.2",
       "tailwindcss": "^4.1.18"
+   },
+   "devDependencies": {
+      "@astrojs/check": "^0.9.6",
+      "typescript": "^5.9.3"
+   },
+   "overrides": {
+      "vite": "^6.0.0"
    }
 }

@@ -2,11 +2,10 @@
 import { Image } from "astro:assets";
 import profilePic from "../../../assets/santiago-goncalvez-front-face-background-transparent.webp";
 
-// Props opcionales
 const {
    width = 500,
    height = 500,
-   sizes = "(max-width: 768px) 150px, 500px", // responsive por defecto
+   sizes = "(max-width: 768px) 150px, 500px",
    class: extraClass = "",
 } = Astro.props;
 ---

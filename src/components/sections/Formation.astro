@@ -18,7 +18,6 @@ const formationItems: BentoItem[] = [
    {
       title: "Ingeniería Informática",
       subtitle: "Universidad (En curso)",
-      // Cambiamos arquitectura por "Resolución de problemas" y "Lógica"
       description:
          "Enfoque en resolución de problemas complejos, lógica algorítmica y sistemas de bajo nivel.",
       icon: UniversityIcon,
@@ -28,7 +27,6 @@ const formationItems: BentoItem[] = [
    {
       title: "Especialización React",
       subtitle: "Midudev",
-      // "Dominio" es una palabra fuerte; "Desarrollo moderno" suena más realista y profesional
       description:
          "Desarrollo de aplicaciones modernas con Hooks, patrones de estado y optimización.",
       icon: ReactIcon,
@@ -45,7 +43,6 @@ const formationItems: BentoItem[] = [
    {
       title: "Eloquent JavaScript",
       subtitle: "M. Haverbeke",
-      // "Fundamentos" suena a principiante, "Deep Dive" o "Dominio del lenguaje" suena mejor
       description:
          "Inmersión profunda en la naturaleza funcional y asíncrona de JavaScript.",
       icon: JavaScriptIcon,
@@ -80,11 +77,9 @@ const formationItems: BentoItem[] = [
                `}
             >
 
-               {/* Glow decorativo superior (Azulado sutil en light) */}
                <div class="absolute top-0 right-0 -mr-10 -mt-10 w-32 h-32 rounded-full bg-blue-500/10 dark:bg-white/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-               {/* Header: Subtítulo e Icono */}
-               <div class="relative w-full z-10">
+               <div class="relative w-full">
                   <div class="flex items-center justify-between mb-3">
                      <span class="text-[10px] font-bold uppercase tracking-widest text-text-muted dark:text-text-highlighted border border-black/[0.05] dark:border-white/10 px-4 py-1.5 rounded-full bg-white/50 dark:bg-bg-base">
                         {item.subtitle}
@@ -98,8 +93,7 @@ const formationItems: BentoItem[] = [
                   </div>
                </div>
 
-               {/* Cuerpo */}
-               <div class="relative flex-grow flex flex-col justify-center z-10">
+               <div class="relative flex-grow flex flex-col justify-center">
                   <h3 class="text-xl md:text-2xl font-bold text-bg-deep dark:text-title leading-tight transition-transform duration-300">
                      {item.title}
                   </h3>
@@ -121,9 +115,8 @@ const formationItems: BentoItem[] = [
                   )}
                </div>
 
-               {/* Pie opcional para grandes */}
                {item.class?.includes("row-span-2") && (
-                  <div class="relative mt-6 pt-4 border-t border-black/[0.05] dark:border-white/5 sm:opacity-80 opacity-100 group-hover:opacity-100 transition-opacity z-10">
+                  <div class="relative mt-6 pt-4 border-t border-black/[0.05] dark:border-white/5 sm:opacity-80 opacity-100 group-hover:opacity-100 transition-opacity">
                      <span class="text-[9px] font-black uppercase tracking-[0.2em] text-bg-deep dark:text-text">
                         Sistemas · Algoritmos · Lógica
                      </span>

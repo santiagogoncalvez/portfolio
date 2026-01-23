@@ -52,7 +52,6 @@ const THEMES = ["Claro", "Oscuro", "Sistema"];
 </div>
 
 <style>
-   /* Control suave de los iconos */
    .theme-toggle-icon {
       opacity: 0;
       transform: scale(0.3);
@@ -60,20 +59,17 @@ const THEMES = ["Claro", "Oscuro", "Sistema"];
          opacity 0.3s ease,
          transform 0.3s ease;
       pointer-events: none;
-      /* Aseguramos que el contenido interno no se desborde */
       display: flex;
       align-items: center;
       justify-content: center;
    }
 
-   /* El icono activo se muestra centrado y opaco */
    .theme-toggle-icon.active {
       opacity: 1;
       transform: scale(1);
       pointer-events: auto;
    }
 
-   /* Animación del menú desplegable */
    #themes-menu.open {
       display: block;
       animation: scale-up-center 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;

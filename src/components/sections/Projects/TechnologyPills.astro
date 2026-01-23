@@ -12,7 +12,6 @@ import ReduxToolkit from "../../../icons/ReduxToolkit.astro";
 import VitestLogo from "../../../icons/VitestLogo.astro";
 import TechnologyPill from "./TechnologyPill.astro";
 
-// 1. Definimos la constante/diccionario de tecnologías disponibles
 const TECH_MAP = {
    tailwind: { name: "Tailwind", color: "", icon: TailwindLogo },
    javascript: { name: "JavaScript", color: "", icon: JavaScriptLogo },
@@ -30,22 +29,24 @@ const TECH_MAP = {
 type TechKey = keyof typeof TECH_MAP;
 
 interface Props {
-   // Ahora 'techs' es un array de nombres válidos, no de objetos
-   techs: TechKey[];
+   techs: string[];
 }
 
 const { techs } = Astro.props;
+
+const isTechKey = (key: string): key is TechKey => {
+   return key.toLowerCase() in TECH_MAP;
+};
 ---
 
 <div class="flex flex-wrap gap-4">
    {
       techs.map((key) => {
-         // Normalizamos la key a minúsculas para evitar errores
-         const techData = TECH_MAP[key.toLocaleLowerCase()];
+         const lowerKey = key.toLowerCase();
 
-         if (!techData) return null;
+         if (!isTechKey(lowerKey)) return null;
 
-         const { name, icon: TechLogo, color } = techData;
+         const { name, icon: TechLogo, color } = TECH_MAP[lowerKey];
 
          return (
             <TechnologyPill
