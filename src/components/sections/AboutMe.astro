@@ -17,58 +17,70 @@ import { Image } from "astro:assets";
    class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row"
 >
    <div
-      class="[&>p]:mb-4 [&>p>strong]:text-text-muted text-border-strong dark:text-text dark:[&>p>strong]:text-text-highlighted [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
+      class="flex items-st [&>p]:mb-4 [&>p>strong]:text-text-muted text-border-strong dark:text-text dark:[&>p>strong]:text-text-highlighted [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
    >
-      <p>
-         Soy <strong>Santiago Goncalvez</strong>, estudiante de <strong
-            >Ingeniería Informática (1.º año)</strong
-         > y
-         <strong>desarrollador frontend</strong> con énfasis en el ecosistema <strong
-            >React</strong
-         > y el <strong>desarrollo de interfaces modernas</strong>. Me interesa
-         construir interfaces rápidas, mantenibles y bien pensadas, con especial
-         atención al
-         <strong>rendimiento</strong>, la <strong
-            >arquitectura del código</strong
-         > y la
-         <strong>experiencia de usuario</strong>.
-      </p>
+      <div
+         class="[&>p]:mb-4 [&>p>strong]:text-text-muted text-border-strong dark:text-text dark:[&>p>strong]:text-text-highlighted [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
+      >
+         <p>
+            Soy <strong>Santiago Goncalvez</strong>, estudiante de <strong
+               >Ingeniería Informática (1.º año)</strong
+            > y
+            <strong>desarrollador frontend</strong> con énfasis en el ecosistema <strong
+               >React</strong
+            > y el <strong>desarrollo de interfaces modernas</strong>. Me
+            interesa construir interfaces rápidas, mantenibles y bien pensadas,
+            con especial atención al
+            <strong>rendimiento</strong>, la <strong
+               >arquitectura del código</strong
+            > y la
+            <strong>experiencia de usuario</strong>.
+         </p>
 
-      <p>
-         Disfruto resolver problemas desde lo técnico y lo creativo. Desarrollé
-         proyectos como <strong>Tu País</strong>, donde transformé el concepto
-         de enciclopedia de banderas (Flagpedia.net) en una aplicación de
-         gamificación interactiva usando <strong>Vanilla JavaScript</strong>, y
-         construí un <strong>cliente avanzado de Hacker News</strong> con routing,
-         filtros, favoritos, historial y scroll infinito, priorizando una <strong
-            >experiencia de usuario fluida y escalable</strong
-         >.
-      </p>
+         <p>
+            Disfruto resolver problemas desde lo técnico y lo creativo.
+            Desarrollé proyectos como <strong>Tu País</strong>, donde transformé
+            el concepto de enciclopedia de banderas (Flagpedia.net) en una
+            aplicación de gamificación interactiva usando <strong
+               >Vanilla JavaScript</strong
+            >, y construí un <strong>cliente avanzado de Hacker News</strong> con
+            routing, filtros, favoritos, historial y scroll infinito, priorizando
+            una <strong>experiencia de usuario fluida y escalable</strong>.
+         </p>
 
-      <p>
-         Estoy buscando mi <strong
-            >primera oportunidad profesional como desarrollador frontend</strong
-         >, en
-         <strong>startups</strong>, <strong>agencias creativas</strong> o
-         <strong>equipos de producto</strong> que valoren buenas decisiones técnicas,
-         autonomía y
-         <strong>código mantenible</strong>. Mi objetivo es aportar soluciones
-         claras, eficientes y con
-         <strong>impacto real en el producto</strong>.
-      </p>
+         <p>
+            Estoy buscando mi <strong
+               >primera oportunidad profesional como desarrollador frontend</strong
+            >, en
+            <strong>startups</strong>, <strong>agencias creativas</strong> o
+            <strong>equipos de producto</strong> que valoren buenas decisiones técnicas,
+            autonomía y
+            <strong>código mantenible</strong>. Mi objetivo es aportar
+            soluciones claras, eficientes y con
+            <strong>impacto real en el producto</strong>.
+         </p>
+      </div>
+
+      <div
+         class="order-1 md:order-2 w-full max-w-[256px] p-1 lg:p-2 rounded-3xl"
+      >
+         <div class="relative w-full aspect-square overflow-hidden rounded-2xl">
+            <Image
+               src={profilePic}
+               alt={personalImageAlt}
+               width={512}
+               height={512}
+               widths={[256, 384, 512]}
+               sizes="(max-width: 768px) 50vw, 256px"
+               quality={80}
+               format="webp"
+               loading="lazy"
+               fetchpriority="low"
+               decoding="async"
+               class="w-full h-full object-cover"
+               style="object-position: 50% 50%"
+            />
+         </div>
+      </div>
    </div>
-
-   <Image
-      src={profilePic}
-      alt={personalImageAlt}
-      width={512}
-      height={512}
-      widths={[256, 384, 512]}
-      sizes="(max-width: 768px) 50vw, 256px"
-      quality={80}
-      format="webp"
-      loading="lazy"
-      class="order-1 object-cover w-full h-auto p-1 md:order-2 lg:p-2 rounded-3xl"
-      style="object-position: 50% 50%"
-   />
 </article>
