@@ -37,99 +37,87 @@ const navItems = [
       const sections = document.querySelectorAll("section[id]");
       const navLinks = document.querySelectorAll("header nav a");
       const root = document.documentElement;
-      const TOP_OFFSET = 80;
+
+      const HEADER_OFFSET = 100;
 
       const removeAccents = (str: string | null) =>
          str ? str.normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
 
       const isDark = () => root.classList.contains("dark");
 
-      const clearStyles = () => {
-         navLinks.forEach((a) =>
-            a.classList.remove(
+      const renderActiveState = (activeId: string) => {
+         const idNormalized = removeAccents(activeId);
+
+         navLinks.forEach((link) => {
+            const linkLabel = removeAccents(link.getAttribute("aria-label"));
+
+            // Limpiamos siempre primero
+            link.classList.remove(
                "bg-title",
                "text-bg-elevated",
                "bg-bg-surface",
                "text-title",
-            ),
-         );
+            );
+
+            // Si coincide, pintamos
+            if (linkLabel === idNormalized) {
+               if (isDark()) {
+                  link.classList.add("bg-title", "text-bg-elevated");
+               } else {
+                  link.classList.add("bg-bg-surface", "text-title");
+               }
+            }
+         });
       };
 
-      const applyStyles = (link: Element | null) => {
-         if (!link) return;
-         clearStyles();
-         if (isDark()) {
-            link.classList.add("bg-title", "text-bg-elevated");
-         } else {
-            link.classList.add("bg-bg-surface", "text-title");
-         }
-      };
+      const onScroll = () => {
+         const scrollPosition = window.scrollY + HEADER_OFFSET;
 
-      let activeLink: Element | null = null;
-
-      // --- LÓGICA DE DETECCIÓN INICIAL ---
-      const checkCurrentSection = () => {
-         const scrollPos = window.scrollY + TOP_OFFSET + 10;
          let currentId = "";
 
+         if (window.scrollY < 20) {
+            renderActiveState("");
+            return;
+         }
+
          sections.forEach((section) => {
-            const htmlSection = section as HTMLElement;
-            if (scrollPos >= htmlSection.offsetTop) {
+            const sectionTop = (section as HTMLElement).offsetTop;
+            const sectionHeight = (section as HTMLElement).offsetHeight;
+
+            if (scrollPosition >= sectionTop) {
                currentId = section.id;
             }
          });
 
-         if (currentId) {
-            const idNormalized = removeAccents(currentId);
-            const link = Array.from(navLinks).find(
-               (a) =>
-                  removeAccents(a.getAttribute("aria-label")) === idNormalized,
-            );
-            if (link) {
-               activeLink = link;
-               applyStyles(link);
+         if (
+            window.innerHeight + window.scrollY >=
+            document.body.offsetHeight - 10
+         ) {
+            if (sections.length > 0) {
+               currentId = sections[sections.length - 1].id;
             }
          }
-      };
-      // ------------------------------------
 
-      const observerOptions = {
-         root: null,
-         rootMargin: `-${TOP_OFFSET}px 0px -70% 0px`,
-         threshold: 0,
+         renderActiveState(currentId);
       };
 
-      const observer = new IntersectionObserver((entries) => {
-         entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-               const id = removeAccents(entry.target.id);
-               const link = Array.from(navLinks).find(
-                  (a) => removeAccents(a.getAttribute("aria-label")) === id,
-               );
-
-               if (link) {
-                  activeLink = link;
-                  applyStyles(link);
-               }
-            }
-         });
-      }, observerOptions);
-
-      sections.forEach((section) => observer.observe(section));
-
+      let ticking = false;
       window.addEventListener(
          "scroll",
          () => {
-            if (window.scrollY < TOP_OFFSET) {
-               activeLink = null;
-               clearStyles();
+            if (!ticking) {
+               window.requestAnimationFrame(() => {
+                  onScroll();
+                  ticking = false;
+               });
+               ticking = true;
             }
          },
          { passive: true },
       );
 
       const themeObserver = new MutationObserver(() => {
-         if (activeLink) applyStyles(activeLink);
+         onScroll();
       });
 
       themeObserver.observe(root, {
@@ -137,15 +125,11 @@ const navItems = [
          attributeFilter: ["class"],
       });
 
-      // Ejecutar el chequeo manual inmediatamente al iniciar
-      checkCurrentSection();
+      onScroll();
    };
 
-   if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", initNavScroll);
-   } else {
-      initNavScroll();
-   }
+   document.addEventListener("DOMContentLoaded", initNavScroll);
+   document.addEventListener("astro:after-swap", initNavScroll);
 </script>
 
 <style>
