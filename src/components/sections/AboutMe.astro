@@ -16,10 +16,10 @@ import { Image } from "astro:assets";
 <article
    class="flex flex-col items-center justify-center gap-8
          text-gray-700 dark:text-gray-300
-         md:flex-row"
+         sm:flex-row"
 >
    <div
-      class="order-2 md:order-1
+      class="order-2 sm:order-1
            [&>p]:mb-4
            [&>p>strong]:text-text-muted
            dark:[&>p>strong]:text-text-highlighted
@@ -53,11 +53,10 @@ import { Image } from "astro:assets";
    </div>
 
    <div
-      class="order-1 md:order-2
-           w-full sm:w-auto
-           md:max-w-[256px]
-           p-1 lg:p-2
-           rounded-3xl"
+      class="order-1 sm:order-2
+         w-full sm:w-[45%]
+         p-1 lg:p-2
+         rounded-3xl"
    >
       <div class="relative w-full aspect-square overflow-hidden rounded-2xl">
          <Image
@@ -66,7 +65,7 @@ import { Image } from "astro:assets";
             width={512}
             height={512}
             widths={[256, 384, 512]}
-            sizes="(max-width: 768px) 100vw, 256px"
+            sizes="(max-width: 768px) 100vw, 45vw"
             quality={80}
             format="webp"
             loading="lazy"
