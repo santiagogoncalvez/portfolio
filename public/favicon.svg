@@ -3,7 +3,7 @@
   <rect x="10" y="10" width="180" height="180" rx="24" fill="#080808"></rect>
 
   <!-- Texto -->
-  <text x="100" y="100" text-anchor="middle" dominant-baseline="central" dy="-3" font-family="Onest, system-ui, -apple-system, BlinkMacSystemFont, sans-serif" font-size="88" font-weight="800" fill="#fafafa">
+  <text x="100" y="100" text-anchor="middle" dominant-baseline="central" dy="-3" font-family="Satoshi, system-ui, -apple-system, BlinkMacSystemFont, sans-serif" font-size="88" font-weight="800" fill="#fafafa">
     SG
   </text>
 </svg></svg></g></g><defs><clipPath id="SvgjsClipPath1249"><rect width="1000" height="1000" x="0" y="0" rx="200" ry="200"></rect></clipPath></defs></svg>
