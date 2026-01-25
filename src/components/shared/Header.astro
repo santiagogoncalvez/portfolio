@@ -13,14 +13,19 @@ const navItems = [
 ];
 ---
 
-<header class="fixed top-0 z-9 w-full mt-2 flex justify-center">
+<header
+   class="fixed top-0 z-50 w-full flex justify-center pt-3 transition-all duration-300"
+>
    <nav
-      class="flex px-2 p-1 md:gap-2 gap-1 font-medium rounded-lg text-bg-deep dark:text-title justify-center items-center"
+      id="main-nav"
+      class="flex items-center gap-1 p-1.5 rounded-full transition-all duration-500 ease-in-out border border-transparent bg-transparent"
    >
       {
          navItems.map((link) => (
             <a
-               class="relative block px-2 transition rounded-lg p-1 hover:text-title hover:bg-border-strong dark:hover:bg-title dark:hover:text-bg-elevated text-xs sm:text-base"
+               class="nav-link relative block sm:px-4 py-1.5 px-2 transition-all duration-300 rounded-full 
+            text-bg-deep dark:text-title
+            text-xs sm:text-sm font-bold tracking-tight bg-transparent"
                aria-label={link.label}
                href={link.url}
             >
@@ -28,137 +33,132 @@ const navItems = [
             </a>
          ))
       }
-      <ThemeToggle />
+
+      <div
+         id="nav-divider"
+         class="flex items-center pl-2 pr-1 border-l border-transparent transition-colors duration-500 ml-1"
+      >
+         <ThemeToggle />
+      </div>
    </nav>
 </header>
 
 <script>
    const initNavScroll = () => {
+      const nav = document.getElementById("main-nav");
+      const divider = document.getElementById("nav-divider");
       const sections = document.querySelectorAll("section[id]");
-      const navLinks = document.querySelectorAll("header nav a");
+      const navLinks = document.querySelectorAll(".nav-link");
       const root = document.documentElement;
-
-      const HEADER_OFFSET = 100;
-
-      const removeAccents = (str: string | null) =>
-         str ? str.normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
-
-      const isDark = () => root.classList.contains("dark");
+      const HEADER_OFFSET = 120;
 
       const renderActiveState = (activeId: string) => {
-         const idNormalized = removeAccents(activeId);
+         const isDark = root.classList.contains("dark");
+         const idNormalized = activeId
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
 
          navLinks.forEach((link) => {
-            const linkLabel = removeAccents(link.getAttribute("aria-label"));
+            const linkLabel = link
+               .getAttribute("aria-label")
+               ?.normalize("NFD")
+               .replace(/[\u0300-\u036f]/g, "");
 
-            // Limpiamos siempre primero
+            // Reset de todas las combinaciones posibles
             link.classList.remove(
-               "bg-title",
-               "text-bg-elevated",
-               "bg-bg-surface",
+               "bg-bg-base",
                "text-title",
+               "bg-title",
+               "text-bg-base",
+               "shadow-sm",
+            );
+            link.classList.add(
+               "bg-transparent",
+               "text-bg-deep",
+               "dark:text-title",
             );
 
-            // Si coincide, pintamos
-            if (linkLabel === idNormalized) {
-               if (isDark()) {
-                  link.classList.add("bg-title", "text-bg-elevated");
+            if (linkLabel === idNormalized && activeId !== "") {
+               link.classList.remove(
+                  "bg-transparent",
+                  "text-bg-deep",
+                  "dark:text-title",
+               );
+
+               if (isDark) {
+                  // DARK MODE: Fondo Title (claro) y Texto Base (oscuro)
+                  link.classList.add("bg-title", "text-bg-base");
                } else {
-                  link.classList.add("bg-bg-surface", "text-title");
+                  // LIGHT MODE: Fondo Base (claro) y Texto Title (oscuro)
+                  link.classList.add("bg-bg-base", "text-title", "shadow-sm");
                }
             }
          });
       };
 
       const onScroll = () => {
-         const scrollPosition = window.scrollY + HEADER_OFFSET;
-
+         const scrollY = window.scrollY;
+         const isDark = root.classList.contains("dark");
          let currentId = "";
 
-         if (window.scrollY < 20) {
-            renderActiveState("");
-            return;
+         const lightBorder = "border-black/10";
+         const darkBorder = "border-white/20";
+
+         if (scrollY > 20) {
+            nav?.classList.add("backdrop-blur-md", "shadow-xl");
+            nav?.classList.remove("border-transparent");
+            divider?.classList.remove("border-transparent");
+
+            if (isDark) {
+               nav?.classList.remove(
+                  "bg-white/95",
+                  "bg-transparent",
+                  lightBorder,
+               );
+               divider?.classList.remove(lightBorder);
+               nav?.classList.add("bg-[#121212]/95", darkBorder);
+               divider?.classList.add(darkBorder);
+            } else {
+               nav?.classList.remove(
+                  "bg-bg-base/90",
+                  "bg-transparent",
+                  darkBorder,
+               );
+               divider?.classList.remove(darkBorder);
+               nav?.classList.add("bg-white/95", lightBorder);
+               divider?.classList.add(lightBorder);
+            }
+         } else {
+            nav?.classList.remove(
+               "backdrop-blur-md",
+               "shadow-xl",
+               "bg-white/95",
+               "bg-[#121212]/95",
+               lightBorder,
+               darkBorder,
+            );
+            divider?.classList.remove(lightBorder, darkBorder);
+            nav?.classList.add("bg-transparent", "border-transparent");
+            divider?.classList.add("border-transparent");
          }
+
+         if (scrollY < 100) return renderActiveState("");
 
          sections.forEach((section) => {
             const sectionTop = (section as HTMLElement).offsetTop;
-            const sectionHeight = (section as HTMLElement).offsetHeight;
-
-            if (scrollPosition >= sectionTop) {
+            if (scrollY + HEADER_OFFSET >= sectionTop) {
                currentId = section.id;
             }
          });
-
-         if (
-            window.innerHeight + window.scrollY >=
-            document.body.offsetHeight - 10
-         ) {
-            if (sections.length > 0) {
-               currentId = sections[sections.length - 1].id;
-            }
-         }
-
          renderActiveState(currentId);
       };
 
-      let ticking = false;
-      window.addEventListener(
-         "scroll",
-         () => {
-            if (!ticking) {
-               window.requestAnimationFrame(() => {
-                  onScroll();
-                  ticking = false;
-               });
-               ticking = true;
-            }
-         },
-         { passive: true },
-      );
-
-      const themeObserver = new MutationObserver(() => {
-         onScroll();
-      });
-
-      themeObserver.observe(root, {
-         attributes: true,
-         attributeFilter: ["class"],
-      });
-
+      window.addEventListener("scroll", onScroll, { passive: true });
+      const observer = new MutationObserver(() => onScroll());
+      observer.observe(root, { attributes: true, attributeFilter: ["class"] });
       onScroll();
    };
 
    document.addEventListener("DOMContentLoaded", initNavScroll);
    document.addEventListener("astro:after-swap", initNavScroll);
 </script>
-
-<style>
-   nav {
-      --nav-bg: var(--color-bg-white);
-      --nav-border: var(--color-text);
-      --nav-shadow: var();
-
-      animation: nav-shadow 1s linear both;
-      animation-timeline: scroll();
-      animation-range: 0 100px;
-   }
-
-   html.dark nav {
-      --nav-bg: var(--color-border-strong);
-      --nav-border: var(--color-text-muted);
-      --nav-shadow: var(--nav-shadow);
-   }
-
-   @keyframes nav-shadow {
-      from {
-         background-color: transparent;
-         border: 1px solid transparent;
-         box-shadow: 0 0 0 transparent;
-      }
-      to {
-         background-color: var(--nav-bg);
-         border: 1px solid var(--nav-border);
-         box-shadow: 0 10px 15px -3px var(--nav-shadow);
-      }
-   }
-</style>
