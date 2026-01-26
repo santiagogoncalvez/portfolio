@@ -1,18 +1,18 @@
 ---
-import GitHub from "../../../icons/GitHub.astro";
-import Link from "../../../icons/Link.astro";
+import GitHub from "@icons/GitHub.astro";
+import Link from "@icons/Link.astro";
 import LinkButton from "./LinkButton.astro";
 import TechnologyPills from "./TechnologyPills.astro";
-import Code from "../../../icons/Code.astro";
-import Subtitle from "../../shared/Subtitle.astro";
+import Code from "@icons/Code.astro";
+import Subtitle from "@shared/Subtitle.astro";
 import { Image } from "astro:assets";
 
-import imageCrud from "../../../assets/project-core-crud-interface.webp";
-import imageHakcerStories from "../../../assets/project-hacker-stories.webp";
+import imageCrud from "@assets/project-core-crud-interface.webp";
+import imageHakcerStories from "@assets/project-hacker-stories.webp";
 
-import imageTestTypeScript from "../../../assets/project-typescript-test-with-react-query.webp";
+import imageTestTypeScript from "@assets/project-typescript-test-with-react-query.webp";
 
-import imageTuPais from "../../../assets/project-tu-pais.webp";
+import imageTuPais from "@assets/project-tu-pais.webp";
 
 const IMAGES: Record<string, ImageMetadata> = {
    "/project-typescript-test-with-react-query.webp": imageTestTypeScript,
@@ -35,7 +35,7 @@ const PROJECTS = [
    {
       title: "Hacker Stories",
       description:
-         "Cliente avanzado de Hacker News desarrollado con React y React Query (TanStack). Implementé una arquitectura escalable con scroll infinito, persistencia de favoritos, gestión de historial de búsqueda y navegación optimizada con React Router. Prioricé la experiencia de usuario mediante fallbacks y estados de carga. Incluye tests unitarios y de integración con Vitest para garantizar la robustez del código.",
+         "Cliente avanzado de Hacker News enfocado en explorar arquitecturas escalables y patrones reales de aplicaciones de producto. Implementé scroll infinito, persistencia de favoritos, gestión de historial de búsqueda y navegación optimizada con React Router. Prioricé la experiencia de usuario mediante fallbacks y estados de carga. Incluye tests unitarios y de integración con Vitest para garantizar la robustez del código.",
       link: "https://hackerstories-dev.web.app",
 
       github: "https://github.com/santiagogoncalvez/hacker-stories",

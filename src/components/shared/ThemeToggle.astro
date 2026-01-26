@@ -1,7 +1,7 @@
 ---
-import SunIcon from "../../icons/Sun.astro";
-import SystemIcon from "../../icons/System.astro";
-import MoonIcon from "../../icons/Moon.astro";
+import SunIcon from "@icons/Sun.astro";
+import SystemIcon from "@icons/System.astro";
+import MoonIcon from "@icons/Moon.astro";
 
 const THEMES = ["Claro", "Oscuro", "Sistema"];
 ---
@@ -130,7 +130,7 @@ const THEMES = ["Claro", "Oscuro", "Sistema"];
    });
 
    document.addEventListener("click", () =>
-      themesMenu?.classList.remove("open")
+      themesMenu?.classList.remove("open"),
    );
 
    document.querySelectorAll(".themes-menu-option").forEach((element) => {

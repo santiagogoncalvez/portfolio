@@ -1,8 +1,8 @@
 ---
-import UniversityIcon from "../../icons/University.astro";
-import ReactIcon from "../../icons/React.astro";
-import BookIcon from "../../icons/Book.astro";
-import JavaScriptIcon from "../../icons/JavaScript.astro";
+import UniversityIcon from "@icons/University.astro";
+import ReactIcon from "@icons/React.astro";
+import BookIcon from "@icons/Book.astro";
+import JavaScriptIcon from "@icons/JavaScript.astro";
 import Subtitle from "../shared/Subtitle.astro";
 
 interface BentoItem {
@@ -76,7 +76,6 @@ const formationItems: BentoItem[] = [
                   ${item.class || ""}
                `}
             >
-
                <div class="absolute top-0 right-0 -mr-10 -mt-10 w-32 h-32 rounded-full bg-blue-500/10 dark:bg-white/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
                <div class="relative w-full">

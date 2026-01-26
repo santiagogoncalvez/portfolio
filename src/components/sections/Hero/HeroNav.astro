@@ -1,13 +1,15 @@
 ---
 import SocialPill from "./SocialPill.astro";
-import LinkedInIcon from "../../../icons/LinkedIn.astro";
-import GitHubIcon from "../../../icons/GitHub.astro";
-import MailIcon from "../../../icons/Mail.astro";
+import LinkedInIcon from "@icons/LinkedIn.astro";
+import GitHubIcon from "@icons/GitHub.astro";
+import MailIcon from "@icons/Mail.astro";
 import DowloadCV from "./DowloadCV.astro";
 ---
 
 <nav class="w-full flex items-center gap-x-4 gap-y-6 flex-col no-mobile-motion">
-   <div class="w-full flex items-center justify-center gap-x-4 gap-y-6 flex-wrap">
+   <div
+      class="w-full flex items-center justify-center gap-x-4 gap-y-6 flex-wrap"
+   >
       <SocialPill
          href="https://www.linkedin.com/in/santiagogoncalvez"
          class="transition-colors transition-transform duration-200 ease-out hover:scale-105"
