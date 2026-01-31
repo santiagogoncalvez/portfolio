@@ -1,14 +1,94 @@
-<a
-   class={`rounded-full border border-transparent flex items-center gap-x-2
-    md:py-1 md:px-2 p-2 md:py-2 md:px-4 text-sm md:text-base
-    dark:bg-transparent
-    transition-colors duration-200 
-    hover:border-border-strong/50 text-border-strong
-     dark:text-text dark:hover:border-text-highlighted/50
-    ${Astro.props.class}`}
-   target="_blank"
-   rel="noopener noreferrer"
-   {...Astro.props}
+---
+import Copy from "@/icons/Copy.astro";
+import CopyCheck from "@/icons/CopyCheck.astro";
+
+const {
+  copyText,
+  class: className = "",
+  ...rest
+} = Astro.props;
+---
+
+<div class="flex items-center text-border-strong dark:text-text">
+   <a
+  class={`rounded-full border border-transparent flex items-center gap-x-2
+    p-2 md:px-4 md:py-2 text-sm md:text-base
+    transition
+    
+    hover:border-border-strong/50 
+     dark:hover:border-text-highlighted/50
+    ${className}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  {...rest}
 >
-   <slot />
+  <slot />
+
+  
 </a>
+
+{copyText && (
+    <button
+      type="button"
+      data-copy-button
+      data-copy="santiago.goncalvez.dev@gmail.com"
+      aria-label="Copiar correo"
+      title="Copiar correo"
+      class="relative size-7 sm:size-8 opacity-80 hover:opacity-100 transition hover:cursor-pointer"
+    >
+      <!-- Copy -->
+      <span class="size-5 sm:size-6 copy-icon absolute inset-0 m-auto transition">
+        <Copy class="size-5 sm:size-6" />
+      </span>
+
+      <!-- Copy check -->
+      <span class="size-5 sm:size-6 check-icon absolute inset-0 m-auto opacity-0 transition">
+        <CopyCheck class="size-5 sm:size-6" />
+      </span>
+    </button>
+  )}
+</div>
+
+{copyText && (
+  <script>
+    const copyBtn = document.querySelector<HTMLButtonElement>('[data-copy-button]');
+
+if (copyBtn) {
+  const copyIcon = copyBtn.querySelector<HTMLElement>('.copy-icon');
+  const checkIcon = copyBtn.querySelector<HTMLElement>('.check-icon');
+  const copyText = copyBtn.dataset.copy;
+
+  if (copyIcon && checkIcon && copyText) {
+    copyBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      await navigator.clipboard.writeText(copyText);
+
+      copyBtn.setAttribute('data-copied', 'true');
+      copyBtn.title = 'Copiado';
+
+      navigator.vibrate?.(25);
+
+      setTimeout(() => {
+        copyBtn.removeAttribute('data-copied');
+        copyBtn.title = 'Copiar correo';
+      }, 1500);
+    });
+  }
+}
+
+  </script>
+)}
+
+<style>
+  [data-copy-button][data-copied] .copy-icon {
+    opacity: 0;
+    /* transform: scale(0.90); */
+  }
+
+  [data-copy-button][data-copied] .check-icon {
+    opacity: 1;
+    /* transform: scale(1); */
+  }
+</style>
