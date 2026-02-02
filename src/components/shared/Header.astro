@@ -14,149 +14,180 @@ const navItems = [
 ---
 
 <header
-   class="fixed top-0 z-9 w-full flex justify-center pt-3 transition-all duration-300"
+   id="header"
+   class="fixed top-0 inset-x-0 z-50
+         transition-colors duration-300
+         border-b border-transparent"
 >
-   <nav
-      id="main-nav"
-      class="flex items-center gap-1 p-1.5 rounded-full transition-all duration-500 ease-in-out border border-transparent bg-transparent"
-   >
-      {
-         navItems.map((link) => (
-            <a
-               class="nav-link relative block sm:px-4 py-1.5 px-2 transition-all duration-300 rounded-full 
-            text-bg-deep dark:text-title
-            text-xs sm:text-sm font-bold tracking-tight bg-transparent"
-               aria-label={link.label}
-               href={link.url}
-            >
-               {link.title}
-            </a>
-         ))
-      }
-
-      <div
-         id="nav-divider"
-         class="flex items-center pl-2 pr-1 border-l border-transparent transition-colors duration-500 ml-1"
+   <div class="mx-auto max-w-6xl sm:px-5 px-2">
+      <nav
+         class="flex items-center justify-between py-4
+             w-full mx-auto lg:w-[900px]"
       >
+         <a
+            class="nav-link text-xs sm:text-sm font-bold tracking-tight"
+            aria-label="inicio"
+            href="#top"
+         >
+            <img
+               src="/favicon.svg"
+               alt="Logo de Santiago Goncalvez"
+               class="sm:size-8 size-0"
+            />
+         </a>
+
+         <div class="flex items-center sm:gap-2 gap-0">
+            {
+               navItems.map((link) => (
+                  <a
+                     class="nav-link relative
+   sm:px-3.5 px-2 py-0.5 rounded-full
+   text-sm sm:text-base font-medium tracking-tight
+   transition-colors duration-300"
+                     aria-label={link.label}
+                     href={link.url}
+                  >
+                     {link.title}
+                  </a>
+               ))
+            }
+         </div>
+
          <ThemeToggle />
-      </div>
-   </nav>
+      </nav>
+   </div>
 </header>
 
 <script>
    const initNavScroll = () => {
-      const nav = document.getElementById("main-nav");
-      const divider = document.getElementById("nav-divider");
-      const sections = document.querySelectorAll("section[id]");
-      const navLinks = document.querySelectorAll(".nav-link");
+      const header = document.getElementById("header") as HTMLElement | null;
+      if (!header) return;
+
+      const sections = document.querySelectorAll<HTMLElement>("section[id]");
+      const links = document.querySelectorAll<HTMLElement>(".nav-link");
       const root = document.documentElement;
-      const HEADER_OFFSET = 120;
 
-      const renderActiveState = (activeId: string) => {
+      const OFFSET: number = 120;
+
+      const normalize = (str: string): string =>
+         str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+      const applyNavTextColor = (): void => {
+         const isDark: boolean = root.classList.contains("dark");
+
+         links.forEach((link) => {
+            link.classList.remove("text-title", "text-bg-base");
+
+            if (isDark) {
+               link.classList.add("text-title");
+            } else {
+               link.classList.add("text-bg-base");
+            }
+         });
+      };
+
+      const resetHeader = (): void => {
+         header.classList.remove(
+            "bg-title",
+            "bg-bg-surface",
+            "border-black/10",
+            "border-white/10",
+         );
+
+         // 🔑 estado inicial real
+         header.classList.add("border-transparent");
+      };
+
+      const applyHeaderState = (): void => {
+         const isDark: boolean = root.classList.contains("dark");
+         const y: number = window.scrollY;
+
+         // 🔥 Reset total
+         resetHeader();
+
+         // 🟢 Solo aparece fondo + borde después del primer scroll
+         if (y > 0) {
+            header.classList.remove("border-transparent");
+
+            if (isDark) {
+               header.classList.add("bg-bg-surface", "border-white/10");
+            } else {
+               header.classList.add("bg-title", "border-black/10");
+            }
+         }
+      };
+
+      const setActiveLink = (id: string): void => {
          const isDark = root.classList.contains("dark");
-         const idNormalized = activeId
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "");
 
-         navLinks.forEach((link) => {
-            const linkLabel = link
-               .getAttribute("aria-label")
-               ?.normalize("NFD")
-               .replace(/[\u0300-\u036f]/g, "");
+         links.forEach((link) => {
+            const label = normalize(link.getAttribute("aria-label") ?? "");
 
-            // Reset de todas las combinaciones posibles
+            // 🔥 Reset TOTAL
             link.classList.remove(
                "bg-bg-base",
-               "text-title",
                "bg-title",
+               "text-title",
                "text-bg-base",
-               "shadow-sm",
-            );
-            link.classList.add(
-               "bg-transparent",
-               "text-bg-deep",
-               "dark:text-title",
             );
 
-            if (linkLabel === idNormalized && activeId !== "") {
-               link.classList.remove(
-                  "bg-transparent",
-                  "text-bg-deep",
-                  "dark:text-title",
-               );
+            // 🟡 Estado base (no activo)
+            if (isDark) {
+               link.classList.add("text-title");
+            } else {
+               link.classList.add("text-bg-base");
+            }
+
+            // 🟢 Activo
+            if (label === id && id !== "") {
+               link.classList.remove("text-title", "text-bg-base");
 
                if (isDark) {
-                  // DARK MODE: Fondo Title (claro) y Texto Base (oscuro)
+                  // DARK
                   link.classList.add("bg-title", "text-bg-base");
                } else {
-                  // LIGHT MODE: Fondo Base (claro) y Texto Title (oscuro)
-                  link.classList.add("bg-bg-base", "text-title", "shadow-sm");
+                  // LIGHT
+                  link.classList.add("bg-bg-base", "text-title");
                }
             }
          });
       };
 
-      const onScroll = () => {
-         const scrollY = window.scrollY;
-         const isDark = root.classList.contains("dark");
-         let currentId = "";
+      const updateActiveSection = (): void => {
+         const y: number = window.scrollY;
 
-         const lightBorder = "border-black/10";
-         const darkBorder = "border-white/20";
-
-         if (scrollY > 20) {
-            nav?.classList.add("backdrop-blur-md", "shadow-xl");
-            nav?.classList.remove("border-transparent");
-            divider?.classList.remove("border-transparent");
-
-            if (isDark) {
-               nav?.classList.remove(
-                  "bg-white/95",
-                  "bg-transparent",
-                  lightBorder,
-               );
-               divider?.classList.remove(lightBorder);
-               nav?.classList.add("bg-[#121212]/95", darkBorder);
-               divider?.classList.add(darkBorder);
-            } else {
-               nav?.classList.remove(
-                  "bg-bg-base/90",
-                  "bg-transparent",
-                  darkBorder,
-               );
-               divider?.classList.remove(darkBorder);
-               nav?.classList.add("bg-white/95", lightBorder);
-               divider?.classList.add(lightBorder);
-            }
-         } else {
-            nav?.classList.remove(
-               "backdrop-blur-md",
-               "shadow-xl",
-               "bg-white/95",
-               "bg-[#121212]/95",
-               lightBorder,
-               darkBorder,
-            );
-            divider?.classList.remove(lightBorder, darkBorder);
-            nav?.classList.add("bg-transparent", "border-transparent");
-            divider?.classList.add("border-transparent");
+         if (y < 100) {
+            setActiveLink("");
+            return;
          }
 
-         if (scrollY < 100) return renderActiveState("");
+         let current: string = "";
 
          sections.forEach((section) => {
-            const sectionTop = (section as HTMLElement).offsetTop;
-            if (scrollY + HEADER_OFFSET >= sectionTop) {
-               currentId = section.id;
+            if (y + OFFSET >= section.offsetTop) {
+               current = normalize(section.id);
             }
          });
-         renderActiveState(currentId);
+
+         setActiveLink(current);
       };
 
-      window.addEventListener("scroll", onScroll, { passive: true });
-      const observer = new MutationObserver(() => onScroll());
-      observer.observe(root, { attributes: true, attributeFilter: ["class"] });
-      onScroll();
+      const update = (): void => {
+         applyHeaderState();
+         updateActiveSection();
+      };
+
+      // Scroll
+      window.addEventListener("scroll", update, { passive: true });
+
+      // Cambio de theme
+      const observer = new MutationObserver(() => update());
+      observer.observe(root, {
+         attributes: true,
+         attributeFilter: ["class"],
+      });
+
+      update();
    };
 
    document.addEventListener("DOMContentLoaded", initNavScroll);
