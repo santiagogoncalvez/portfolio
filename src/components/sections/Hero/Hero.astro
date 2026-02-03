@@ -14,10 +14,18 @@ import HeroNav from "./HeroNav.astro";
       sizes="256px"
    /> -->
 
-   <div class="w-full flex items-center flex-col sm:gap-8 gap-6">
-      <HeroHeader />
+   <div class="w-full flex items-center flex-col sm:gap-9 gap-6">
+      <!-- <HeroHeader /> -->
+      <div class="flex gap-6 items-center">
+         <ProfilePhoto
+            class="sm:size-14 size-8 order-first"
+            width={32}
+            height={32}
+            sizes="32px"
+         />
 
-      <PrincipalTitle />
+         <PrincipalTitle />
+      </div>
 
       <HeroDescription />
 

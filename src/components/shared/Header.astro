@@ -2,6 +2,11 @@
 import LogoSG from "./LogoSG.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 
+import SocialPill from "../sections/Hero/SocialPill.astro";
+import LinkedInIcon from "@icons/LinkedIn.astro";
+import GitHubIcon from "@icons/GitHub.astro";
+import MailIcon from "@icons/Mail.astro";
+
 const navItems = [
    { title: "Proyectos", label: "proyectos", url: "/#proyectos" },
    { title: "Sobre mí", label: "sobre-mi", url: "/#sobre-mi" },
@@ -26,7 +31,7 @@ const navItems = [
              w-full mx-auto lg:w-[900px]"
       >
          <div class="flex gap-8">
-            <LogoSG/>
+            <LogoSG />
 
             <div class="sm:hidden inline"></div>
 
@@ -48,34 +53,56 @@ const navItems = [
             </div>
          </div>
 
-         <div class="flex gap-2">
-            <a
+         <div class="flex gap-2 items-center">
+            <SocialPill
+               href="https://www.linkedin.com/in/santiagogoncalvez"
+               aria-label="Perfil de LinkedIn de Santiago Goncalvez"
+               class="p-2"
+            >
+               <LinkedInIcon class="size-4 sm:size-5.5 text-border-strong/90 dark:text-text" />
+            </SocialPill>
+
+            <SocialPill
+               href="https://github.com/santiagogoncalvez"
+               aria-label="Perfil de GitHub de Santiago Goncalvez"
+               class="p-2"
+            >
+               <GitHubIcon class="size-4 sm:size-5.5 text-border-strong/90 dark:text-text" />
+            </SocialPill>
+
+            <!-- <SocialPill
                href="mailto:santiago.goncalvez.dev@gmail.com"
+               aria-label="Correo electrónico de Santiago Goncalvez"
+               class="p-2"
+               copyText
+            >
+               <MailIcon class="size-5 sm:size-6" />
+               
+            </SocialPill> -->
+
+            <ThemeToggle />
+
+            <a
+               href="#footer"
                class="flex items-center justify-center
                text-sm sm:text-base
       sm:h-9 sm:min-w-9 h-7
       sm:px-3 px-1
       rounded-lg
-      text-bg-deep
-      dark:text-title
-      font-[500]
+      text-title dark:text-bg-base
+bg-bg-base dark:bg-title
+      font-semibold
       border
-      bg-bg-white
       border-text-light
       dark:border-border-strong
       hover:cursor-pointer
-      hover:bg-white
-      dark:bg-bg-surface
-      dark:hover:bg-[var(--color-bg-surface)]
       transition
       focus-visible:outline-none
       focus-visible:ring-2
       focus-visible:ring-[var(--color-border-strong)]"
             >
-               Contacto
+               Contactar
             </a>
-
-            <ThemeToggle />
          </div>
       </nav>
    </div>
