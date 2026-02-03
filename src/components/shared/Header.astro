@@ -5,11 +5,11 @@ const navItems = [
    { title: "Proyectos", label: "proyectos", url: "/#proyectos" },
    { title: "Sobre mí", label: "sobre-mi", url: "/#sobre-mi" },
    { title: "Formación", label: "formacion", url: "/#formacion" },
-   {
-      title: "Contacto",
-      label: "contacto",
-      url: "mailto:santiago.goncalvez.dev@gmail.com",
-   },
+   // {
+   //    title: "Contacto",
+   //    label: "contacto",
+   //    url: "mailto:santiago.goncalvez.dev@gmail.com",
+   // },
 ];
 ---
 
@@ -21,38 +21,66 @@ const navItems = [
 >
    <div class="mx-auto max-w-6xl sm:px-5 px-0.5">
       <nav
-         class="flex items-center justify-between  py-4
+         class="flex items-center justify-between py-4
              w-full mx-auto lg:w-[900px]"
       >
-         <a
-            class="text-2xl font-extrabold text-bg-base dark:text-title sm:inline hidden"
-            aria-label="inicio"
-            href="#top"
-         >
-            SG
-         </a>
-         <div class="sm:hidden inline">
+         <div class="flex gap-8">
+            <a
+               class="text-2xl font-extrabold text-bg-base dark:text-title sm:inline hidden"
+               aria-label="inicio"
+               href="#top"
+            >
+               SG
+            </a>
+            <div class="sm:hidden inline"></div>
 
-         </div>
-
-         <div class="flex items-center">
-            {
-               navItems.map((link) => (
-                  <a
-                     class="nav-link relative
+            <div class="flex items-center">
+               {
+                  navItems.map((link) => (
+                     <a
+                        class="nav-link relative
    sm:px-3.5 px-2 sm:py-1 py-0.5 rounded-full
-   text-sm sm:text-base font-[400] 
+   text-sm sm:text-base font-[500] 
    transition-colors duration-300"
-                     aria-label={link.label}
-                     href={link.url}
-                  >
-                     {link.title}
-                  </a>
-               ))
-            }
+                        aria-label={link.label}
+                        href={link.url}
+                     >
+                        {link.title}
+                     </a>
+                  ))
+               }
+            </div>
          </div>
 
-         <ThemeToggle />
+         <div class="flex gap-2">
+            <a
+               href="mailto:santiago.goncalvez.dev@gmail.com"
+               class="flex items-center justify-center
+               text-sm sm:text-base
+      sm:h-9 sm:min-w-9 h-7
+      sm:px-3 px-1
+      rounded-lg
+      text-bg-deep
+      dark:text-title
+      font-[500]
+      border
+      bg-bg-white
+      border-text-light
+      dark:border-border-strong
+      hover:cursor-pointer
+      hover:bg-white
+      dark:bg-bg-surface
+      dark:hover:bg-[var(--color-bg-surface)]
+      transition
+      focus-visible:outline-none
+      focus-visible:ring-2
+      focus-visible:ring-[var(--color-border-strong)]"
+            >
+               Contacto
+            </a>
+
+            <ThemeToggle />
+         </div>
       </nav>
    </div>
 </header>

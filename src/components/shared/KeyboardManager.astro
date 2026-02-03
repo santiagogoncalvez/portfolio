@@ -41,7 +41,7 @@ const profilesInfo: SocialInfo[] = profiles.map(({ network, url }) => ({
 <div id="command-container" class="no-print">
    <div
       id="command-label"
-      class="command command-label bg-title dark:bg-bg-surface text-bg-surface dark:text-title"
+      class="command command-label rounded-lg bg-title dark:bg-bg-surface text-bg-surface dark:text-title"
    >
       Comandos <kbd class="bg-title-secondary dark:bg-border-strong">Ctrl</kbd> +
       <kbd class="bg-title-secondary dark:bg-border-strong">K</kbd>
@@ -49,7 +49,7 @@ const profilesInfo: SocialInfo[] = profiles.map(({ network, url }) => ({
 
    <button
       id="command-button"
-      class="command command-button bg-title dark:bg-bg-elevated text-bg-elevated dark:text-title border border-text dark:border-text-muted"
+      class="command command-button rounded-lg bg-title dark:bg-bg-elevated text-bg-elevated dark:text-title border border-text dark:border-text-muted"
       aria-label="Abrir comandos"
    >
       <svg
@@ -152,7 +152,7 @@ const profilesInfo: SocialInfo[] = profiles.map(({ network, url }) => ({
 
       const updateVisibility = () => {
          const y = window.scrollY;
-         
+
          if (y < 24) {
             label?.classList.remove("is-visible");
             commandButton?.classList.remove("is-visible");
@@ -160,7 +160,7 @@ const profilesInfo: SocialInfo[] = profiles.map(({ network, url }) => ({
             label?.classList.add("is-visible");
             commandButton?.classList.add("is-visible");
          }
-         
+
          lastScroll = y;
          ticking = false;
       };
@@ -187,7 +187,6 @@ const profilesInfo: SocialInfo[] = profiles.map(({ network, url }) => ({
 </script>
 
 <style>
-
    #command-container {
       position: fixed;
       right: 0.7rem;
@@ -213,7 +212,7 @@ const profilesInfo: SocialInfo[] = profiles.map(({ network, url }) => ({
    .command-label {
       display: none;
       padding: 8px 12px;
-      border-radius: 10px;
+      /*border-radius: 10px; */
       font-size: 0.85rem;
    }
 
@@ -221,7 +220,7 @@ const profilesInfo: SocialInfo[] = profiles.map(({ network, url }) => ({
       display: none;
       width: 50px;
       height: 50px;
-      border-radius: 14px;
+      /*border-radius: 14px;*/
       cursor: pointer;
    }
 
