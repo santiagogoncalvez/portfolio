@@ -1,46 +1,112 @@
 ---
+import SocialPill from "../sections/Hero/SocialPill.astro";
+import LogoSG from "./LogoSG.astro";
+import LinkedInIcon from "@icons/LinkedIn.astro";
+import GitHubIcon from "@icons/GitHub.astro";
+import MailIcon from "@icons/Mail.astro";
+
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="opacity-80 mt-16 mb-10 min-w-full flex justify-center px-5">
+<footer class="opacity-98 mt-16 mb-10 min-w-full flex justify-center px-5">
    <div
-      class="w-full mx-auto lg:w-[900px] flex sm:flex-row flex-col items-center justify-between gap-y-4 flex-wrap py-4 rounded-lg"
+      class="w-full mx-auto lg:w-[900px] flex flex-col items-center justify-between gap-y-4 flex-wrap py-4 rounded-lg"
    >
-      <span class="text-sm text-center text-zinc-800/90 dark:text-zinc-200/90"
-         >&copy; {currentYear}
-         <a
-            href="https://www.linkedin.com/in/santiagogoncalvez"
-            class="hover:underline">Santiago Goncalvez</a
-         >.
-      </span>
-      <ul
-         class="flex flex-wrap items-center justify-center text-sm font-medium text-bg-elevated dark:text-white/90"
-      >
-         <li>
-            <a href="/#top" class="hover:underline me-4 md:me-6">Inicio</a>
-         </li>
-         <li>
-            <a href="/#proyectos" class="hover:underline me-4 md:me-6"
-               >Proyectos</a
-            >
-         </li>
-         <li>
-            <a href="/#sobre-mi" class="hover:underline me-4 md:me-6"
-               >Sobre mí</a
-            >
-         </li>
-         <li>
-            <a href="/#formacion" class="hover:underline me-4 md:me-6"
-               >Formación</a
-            >
-         </li>
-         <!-- <li>
+      <div class="w-full flex justify-between">
+         <div class="flex flex-col gap-4 text-border-strong dark:text-text">
+            <LogoSG />
+
             <a
-               id="contacto"
                href="mailto:santiago.goncalvez.dev@gmail.com"
-               class="hover:underline">Contacto</a
+               class="inline-flex items-center gap-2 w-fit
+         rounded-md px-2 py-2
+          select-none
+         hover:bg-text-light/60
+         transition-colors"
             >
-         </li> -->
-      </ul>
+               <span
+                  class="h-2 w-2 shrink-0 rounded-full bg-green-500
+           ring-2 ring-green-500/20
+           dark:ring-green-500/30"
+                  aria-hidden="true"></span>
+
+               <span>Disponible para trabajar</span>
+            </a>
+
+            <span
+               >&copy; {currentYear}
+               <a
+                  href="https://www.linkedin.com/in/santiagogoncalvez"
+                  target="_blank"
+                  class="hover:underline">Santiago Goncalvez</a
+               >.
+            </span>
+         </div>
+
+         <div class="flex gap-30">
+            <div class="flex flex-col gap-4">
+               <h2 class="text-border-strong font-medium">Porfolio</h2>
+               <ul
+                  class="flex flex-col gap-3 text-border-strong dark:text-text"
+               >
+                  <li>
+                     <a href="/#top" class="hover:underline me-4 md:me-6"
+                        >Inicio</a
+                     >
+                  </li>
+                  <li>
+                     <a href="/#proyectos" class="hover:underline me-4 md:me-6"
+                        >Proyectos</a
+                     >
+                  </li>
+                  <li>
+                     <a href="/#sobre-mi" class="hover:underline me-4 md:me-6"
+                        >Sobre mí</a
+                     >
+                  </li>
+                  <li>
+                     <a href="/#formacion" class="hover:underline me-4 md:me-6"
+                        >Formación</a
+                     >
+                  </li>
+               </ul>
+            </div>
+
+            <div class="flex flex-col gap-4">
+               <h2 class="text-border-strong font-medium">Contacto</h2>
+               <ul class="flex flex-col gap-3">
+                  <li>
+                     <SocialPill
+                        href="https://www.linkedin.com/in/santiagogoncalvez"
+                        aria-label="Perfil de LinkedIn de Santiago Goncalvez"
+                     >
+                        <LinkedInIcon class="size-3 sm:size-4" />
+                        <span class="sm:flex hidden">LinkedIn</span>
+                     </SocialPill>
+                  </li>
+
+                  <li>
+                     <SocialPill
+                        href="https://github.com/santiagogoncalvez"
+                        aria-label="Perfil de GitHub de Santiago Goncalvez"
+                     >
+                        <GitHubIcon class="size-3 sm:size-4" />
+                        <span class="sm:flex hidden">GitHub</span>
+                     </SocialPill>
+                  </li>
+
+                  <li>
+                     <SocialPill
+                        href="mailto:santiago.goncalvez.dev@gmail.com"
+                        aria-label="Correo electrónico de Santiago Goncalvez"
+                     >
+                        <MailIcon class="size-3 sm:size-4" />
+                        <span class="sm:flex hidden">Email</span>
+                     </SocialPill>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
    </div>
 </footer>
