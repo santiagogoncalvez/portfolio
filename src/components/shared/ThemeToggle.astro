@@ -10,39 +10,77 @@ const THEMES = ["Claro", "Oscuro", "Sistema"];
    <button
       transition:persist
       id="theme-toggle-btn"
-      class="appearance-none border-none flex hover:scale-125 transition-transform duration-300 relative size-5 items-center justify-center cursor-pointer md:p-3 p-1"
+      aria-haspopup="menu"
+      aria-expanded="false"
+      class="flex items-center justify-center
+      sm:h-9 sm:min-w-9 h-7
+      sm:px-2 px-1
+      rounded-md
+      border
+      bg-bg-white
+      border-text-light
+      dark:border-border-strong
+      hover:cursor-pointer
+      hover:bg-white
+      dark:bg-bg-surface
+      dark:hover:bg-[var(--color-bg-surface)]
+      transition
+      focus-visible:outline-none
+      focus-visible:ring-2
+      focus-visible:ring-[var(--color-border-strong)]"
    >
-      <span class="sr-only">Elige el tema</span>
+      <span class="sr-only">Elegir tema</span>
 
-      <div
-         id="claro"
-         class="theme-toggle-icon size-full absolute inset-0 m-auto flex items-center justify-center"
-      >
-         <SunIcon class="size-full stroke-bg-deep" />
-      </div>
-      <div
-         id="oscuro"
-         class="theme-toggle-icon size-full absolute inset-0 m-auto flex items-center justify-center"
-      >
-         <MoonIcon class="size-full" />
-      </div>
-      <div
-         id="sistema"
-         class="theme-toggle-icon size-full absolute inset-0 m-auto flex items-center justify-center"
-      >
-         <SystemIcon class="size-full" />
+      <div class="relative w-5 h-5">
+         <div id="claro" class="theme-toggle-icon absolute inset-0">
+            <SunIcon
+               class="w-full h-full stroke-[var(--color-bg-deep)] dark:stroke-[var(--color-title)]"
+            />
+         </div>
+         <div id="oscuro" class="theme-toggle-icon absolute inset-0">
+            <MoonIcon class="w-full h-full" />
+         </div>
+         <div id="sistema" class="theme-toggle-icon absolute inset-0">
+            <SystemIcon class="w-full h-full" />
+         </div>
       </div>
    </button>
 
    <div
       transition:persist
       id="themes-menu"
-      class="absolute hidden top-8 right-0 text-sm p-1 min-w-[8rem] rounded-md border border-gray-100 bg-white dark:bg-bg-base dark:border-gray-500/20 shadow-lg z-50"
+      class="absolute hidden
+      top-10 right-0
+      min-w-[9rem]
+      p-1
+      rounded-md
+      border
+      bg-[var(--color-bg-white)]
+      border-text-light
+      text-sm
+      shadow-lg
+      dark:bg-[var(--color-bg-elevated)]
+      dark:border-[var(--color-border-subtle)]
+      z-50"
    >
       <ul class="flex flex-col">
          {
             THEMES.map((theme) => (
-               <li class="themes-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm transition-colors text-black dark:text-white">
+               <li
+                  class="
+            themes-menu-option
+            px-2 py-1.5
+            rounded-sm
+            cursor-pointer
+            text-border-strong
+            hover:bg-black/5
+            hover:text-bg-deep
+            dark:hover:text-text-light
+            dark:text-text
+            dark:hover:bg-white/5
+            transition-colors
+          "
+               >
                   {theme}
                </li>
             ))
@@ -54,14 +92,11 @@ const THEMES = ["Claro", "Oscuro", "Sistema"];
 <style>
    .theme-toggle-icon {
       opacity: 0;
-      transform: scale(0.3);
+      transform: scale(0.85);
       transition:
-         opacity 0.3s ease,
-         transform 0.3s ease;
+         opacity 0.2s ease,
+         transform 0.2s ease;
       pointer-events: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
    }
 
    .theme-toggle-icon.active {
@@ -72,12 +107,12 @@ const THEMES = ["Claro", "Oscuro", "Sistema"];
 
    #themes-menu.open {
       display: block;
-      animation: scale-up-center 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+      animation: scale-up-center 0.12s ease-out both;
    }
 
    @keyframes scale-up-center {
       from {
-         transform: scale(0.9);
+         transform: scale(0.96);
          opacity: 0;
       }
       to {
