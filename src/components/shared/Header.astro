@@ -1,4 +1,5 @@
 ---
+import LogoSG from "@/icons/LogoSG.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 
 const navItems = [
@@ -25,24 +26,20 @@ const navItems = [
              w-full mx-auto lg:w-[900px]"
       >
          <a
-            class="nav-link text-xs sm:text-sm font-bold tracking-tight"
+            class="text-2xl font-extrabold text-bg-base"
             aria-label="inicio"
             href="#top"
          >
-            <img
-               src="/favicon.svg"
-               alt="Logo de Santiago Goncalvez"
-               class="sm:size-8 size-0"
-            />
+            SG
          </a>
 
-         <div class="flex items-center sm:gap-2 gap-0">
+         <div class="flex items-center">
             {
                navItems.map((link) => (
                   <a
                      class="nav-link relative
-   sm:px-3.5 px-2 py-0.5 rounded-full
-   text-sm sm:text-base font-medium tracking-tight
+   sm:px-3.5 px-2 sm:py-1 py-0.5 rounded-full
+   text-sm sm:text-base font-[400] 
    transition-colors duration-300"
                      aria-label={link.label}
                      href={link.url}
@@ -72,24 +69,10 @@ const navItems = [
       const normalize = (str: string): string =>
          str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-      const applyNavTextColor = (): void => {
-         const isDark: boolean = root.classList.contains("dark");
-
-         links.forEach((link) => {
-            link.classList.remove("text-title", "text-bg-base");
-
-            if (isDark) {
-               link.classList.add("text-title");
-            } else {
-               link.classList.add("text-bg-base");
-            }
-         });
-      };
-
       const resetHeader = (): void => {
          header.classList.remove(
             "bg-title",
-            "bg-bg-surface",
+            "bg-bg-base",
             "border-black/10",
             "border-white/10",
          );
@@ -110,7 +93,7 @@ const navItems = [
             header.classList.remove("border-transparent");
 
             if (isDark) {
-               header.classList.add("bg-bg-surface", "border-white/10");
+               header.classList.add("bg-bg-base", "border-white/10");
             } else {
                header.classList.add("bg-title", "border-black/10");
             }
@@ -123,31 +106,40 @@ const navItems = [
          links.forEach((link) => {
             const label = normalize(link.getAttribute("aria-label") ?? "");
 
-            // 🔥 Reset TOTAL
+            // 🔥 RESET TOTAL (acá estaba el problema)
             link.classList.remove(
-               "bg-bg-base",
-               "bg-title",
-               "text-title",
+               "bg-text-light",
+               "bg-border-light",
+               "text-white",
+               "text-text",
+               "text-border-strong/90",
                "text-bg-base",
             );
 
             // 🟡 Estado base (no activo)
             if (isDark) {
-               link.classList.add("text-title");
+               link.classList.add("text-text");
             } else {
-               link.classList.add("text-bg-base");
+               link.classList.add("text-border-strong/90");
             }
 
-            // 🟢 Activo
+            // 🟢 Estado activo (tipo Vercel)
             if (label === id && id !== "") {
-               link.classList.remove("text-title", "text-bg-base");
+               // Fondo suave en ambos modos
+               link.classList.remove("text-text");
+               link.classList.remove("text-border-strong/90");
 
                if (isDark) {
-                  // DARK
-                  link.classList.add("bg-title", "text-bg-base");
+                  link.classList.add("bg-border-light");
                } else {
-                  // LIGHT
-                  link.classList.add("bg-bg-base", "text-title");
+                  link.classList.add("bg-text-light");
+               }
+
+               // Texto SOLO cambia en dark
+               if (isDark) {
+                  link.classList.add("text-white");
+               } else {
+                  link.classList.add("text-bg-base");
                }
             }
          });
