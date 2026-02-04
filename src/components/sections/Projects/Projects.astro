@@ -1,6 +1,6 @@
 ---
 import GitHub from "@icons/GitHub.astro";
-import Link from "@icons/Link.astro";
+import ExternalLink from "@icons/ExternalLink.astro";
 import LinkButton from "./LinkButton.astro";
 import TechnologyPills from "./TechnologyPills.astro";
 import Code from "@icons/Code.astro";
@@ -75,9 +75,15 @@ const PROJECTS = [
 ];
 ---
 
-<Subtitle class="flex flex-row items-center gap-x-4">
+<!-- <Subtitle class="flex flex-row items-center gap-x-4">
    <Code class="size-8" />
    <span>Proyectos</span>
+</Subtitle> -->
+<Subtitle class="flex items-center gap-x-4 group">
+   <Code
+      class="size-7 text-border-strong dark:text-text-highlighted"
+   />
+   <span class="tracking-tight">Proyectos</span>
 </Subtitle>
 
 <div class="flex flex-col gap-y-12">
@@ -105,14 +111,13 @@ const PROJECTS = [
 
                {/* Columna Contenido */}
                <div class="w-full md:w-7/12 p-6 md:p-8 flex flex-col justify-center">
-               <h3 class="lg:text-2xl text-xl font-bold text-bg-deep dark:text-gray-100 mb-3">
+                  <h3 class="lg:text-2xl text-xl font-bold text-bg-deep dark:text-gray-100 mb-3">
                      {title}
                   </h3>
 
                   <div class="mb-4">
                      <TechnologyPills techs={tags} />
                   </div>
-
 
                   <p class="text-border-strong dark:text-text flex-grow leading-relaxed">
                      {description}
@@ -127,7 +132,7 @@ const PROJECTS = [
                      )}
                      {link && (
                         <LinkButton href={link}>
-                           <Link class="size-6" />
+                           <ExternalLink class="size-6" />
                            <span>Visitar página</span>
                         </LinkButton>
                      )}
