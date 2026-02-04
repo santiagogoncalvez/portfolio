@@ -1,84 +1,50 @@
 ---
 import SunIcon from "@icons/Sun.astro";
-import SystemIcon from "@icons/System.astro";
 import MoonIcon from "@icons/Moon.astro";
+import SystemIcon from "@icons/System.astro";
 
+const { id } = Astro.props; // Lo mantenemos por si quieres IDs únicos, pero no es vital para la lógica
 const THEMES = ["Claro", "Oscuro", "Sistema"];
 ---
 
-<div class="relative ml-1 mr-1">
+<div class="relative ml-1 mr-1 theme-toggle-container" data-theme-root={id}>
    <button
-      transition:persist
-      id="theme-toggle-btn"
       aria-haspopup="menu"
-      aria-expanded="false"
-      class="flex items-center justify-center
-      sm:h-9 sm:min-w-9 h-7
-      sm:px-2 px-1
-      rounded-lg
-      border
-      bg-bg-white
-      border-text-light
-      dark:border-border-strong
-      hover:cursor-pointer
-      hover:bg-white
-      dark:bg-bg-surface
-      dark:hover:bg-[var(--color-bg-surface)]
-      transition
-      focus-visible:outline-none
-      focus-visible:ring-2
-      focus-visible:ring-[var(--color-border-strong)]"
+      class="flex items-center justify-center h-9 min-w-9 px-2 hover:cursor-pointer rounded-lg border bg-bg-white dark:bg-bg-surface border-text-light dark:border-border-strong transition"
+      data-theme-btn
    >
       <span class="sr-only">Elegir tema</span>
-
       <div class="relative w-5 h-5">
-         <div id="claro" class="theme-toggle-icon absolute inset-0">
-            <SunIcon
-               class="w-full h-full stroke-[var(--color-bg-deep)] dark:stroke-[var(--color-title)]"
+         <div class="absolute inset-0" data-icon="claro">
+            <SunIcon class="w-full h-full stroke-bg-base dark:stroke-title" />
+         </div>
+         <div class="absolute inset-0" data-icon="oscuro">
+            <MoonIcon class="w-full h-full stroke-bg-base dark:stroke-title" />
+         </div>
+         <div class="absolute inset-0" data-icon="sistema">
+            <SystemIcon
+               class="w-full h-full stroke-bg-base dark:stroke-title"
             />
-         </div>
-         <div id="oscuro" class="theme-toggle-icon absolute inset-0">
-            <MoonIcon class="w-full h-full" />
-         </div>
-         <div id="sistema" class="theme-toggle-icon absolute inset-0">
-            <SystemIcon class="w-full h-full" />
          </div>
       </div>
    </button>
 
    <div
-      transition:persist
-      id="themes-menu"
-      class="absolute hidden
-      top-10 right-0
-      min-w-[9rem]
-      p-1
-      rounded-md
-      border
-      bg-[var(--color-bg-white)]
-      border-text-light
-      shadow-lg
-      dark:bg-[var(--color-bg-elevated)]
-      dark:border-[var(--color-border-subtle)]
-      z-50"
+      class="absolute hidden top-10 right-0 min-w-[9rem] p-1 rounded-md border bg-[var(--color-bg-white)] border-text-light shadow-lg dark:bg-[var(--color-bg-elevated)] dark:border-[var(--color-border-subtle)] z-30"
+      data-theme-menu
    >
       <ul class="flex flex-col">
          {
             THEMES.map((theme) => (
                <li
-                  class="
-            themes-menu-option
-            px-2 py-1.5
-            rounded-sm
-            cursor-pointer
-            text-border-strong
+                  class="px-2 py-1.5 rounded-sm cursor-pointer text-border-strong
             hover:bg-black/5
             hover:text-bg-deep
             dark:hover:text-text-light
             dark:text-text
             dark:hover:bg-white/5
-            transition-colors
-          "
+            transition-colors"
+                  data-theme={theme.toLowerCase()}
                >
                   {theme}
                </li>
@@ -89,7 +55,8 @@ const THEMES = ["Claro", "Oscuro", "Sistema"];
 </div>
 
 <style>
-   .theme-toggle-icon {
+   /* Tus estilos se mantienen igual */
+   [data-icon] {
       opacity: 0;
       transform: scale(0.85);
       transition:
@@ -97,19 +64,15 @@ const THEMES = ["Claro", "Oscuro", "Sistema"];
          transform 0.2s ease;
       pointer-events: none;
    }
-
-   .theme-toggle-icon.active {
+   [data-icon].active {
       opacity: 1;
       transform: scale(1);
-      pointer-events: auto;
    }
-
-   #themes-menu.open {
+   [data-theme-menu].open {
       display: block;
-      animation: scale-up-center 0.12s ease-out both;
+      animation: scale-up 0.12s ease-out both;
    }
-
-   @keyframes scale-up-center {
+   @keyframes scale-up {
       from {
          transform: scale(0.96);
          opacity: 0;
@@ -121,59 +84,72 @@ const THEMES = ["Claro", "Oscuro", "Sistema"];
    }
 </style>
 
-<script is:inline>
-   const getThemePreference = () => {
-      if (
-         typeof localStorage !== "undefined" &&
-         localStorage.getItem("theme")
-      ) {
-         return localStorage.getItem("theme");
-      }
-      return "sistema";
-   };
-
-   const updateIcon = (themePreference) => {
-      document.querySelectorAll(".theme-toggle-icon").forEach((element) => {
-         element.classList.toggle("active", element.id === themePreference);
-      });
-   };
-
-   const updateTheme = () => {
-      const themePreference = getThemePreference();
+<script>
+   // Esta función maneja la lógica visual de TODOS los componentes a la vez
+   const updateAllToggles = () => {
+      const theme = localStorage.getItem("theme") || "sistema";
       const isDark =
-         themePreference === "oscuro" ||
-         (themePreference === "sistema" &&
+         theme === "oscuro" ||
+         (theme === "sistema" &&
             window.matchMedia("(prefers-color-scheme: dark)").matches);
 
-      updateIcon(themePreference);
       document.documentElement.classList.toggle("dark", isDark);
+
+      // Actualizamos los iconos en todas las instancias (Desktop y Mobile)
+      document
+         .querySelectorAll(".theme-toggle-container")
+         .forEach((container) => {
+            const icons = container.querySelectorAll("[data-icon]");
+            icons.forEach((icon) => {
+               icon.classList.toggle("active", icon.dataset.icon === theme);
+            });
+         });
    };
 
-   updateTheme();
+   // Inicializamos cada componente de forma independiente para sus eventos de clic
+   const setupToggles = () => {
+      const containers = document.querySelectorAll(".theme-toggle-container");
 
+      containers.forEach((container) => {
+         const btn = container.querySelector("[data-theme-btn]");
+         const menu = container.querySelector("[data-theme-menu]");
+
+         btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            // Cerramos otros menús antes de abrir este
+            document.querySelectorAll("[data-theme-menu]").forEach((m) => {
+               if (m !== menu) m.classList.remove("open");
+            });
+            menu.classList.toggle("open");
+         });
+
+         menu.addEventListener("click", (e) => {
+            const option = e.target.closest("[data-theme]");
+            if (!option) return;
+
+            localStorage.setItem("theme", option.dataset.theme);
+            updateAllToggles();
+            menu.classList.remove("open");
+         });
+      });
+
+      // Cerrar menús al hacer clic fuera
+      document.addEventListener("click", () => {
+         document
+            .querySelectorAll("[data-theme-menu]")
+            .forEach((m) => m.classList.remove("open"));
+      });
+   };
+
+   // Ejecutar en la carga inicial
+   setupToggles();
+   updateAllToggles();
+
+   // Escuchar cambios de preferencia del sistema (opcional pero recomendado)
    window
       .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", updateTheme);
+      .addEventListener("change", updateAllToggles);
 
-   const themeBtn = document.getElementById("theme-toggle-btn");
-   const themesMenu = document.getElementById("themes-menu");
-
-   themeBtn?.addEventListener("click", (e) => {
-      e.stopPropagation();
-      themesMenu?.classList.toggle("open");
-   });
-
-   document.addEventListener("click", () =>
-      themesMenu?.classList.remove("open"),
-   );
-
-   document.querySelectorAll(".themes-menu-option").forEach((element) => {
-      element.addEventListener("click", (e) => {
-         const selectedTheme = e.target.innerText.toLowerCase().trim();
-         localStorage.setItem("theme", selectedTheme);
-         updateTheme();
-      });
-   });
-
-   document.addEventListener("astro:after-swap", updateTheme);
+   // Si usas ViewTransitions de Astro, añade esto:
+   // document.addEventListener('astro:after-swap', () => { setupToggles(); updateAllToggles(); });
 </script>

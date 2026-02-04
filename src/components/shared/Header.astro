@@ -5,17 +5,13 @@ import ThemeToggle from "./ThemeToggle.astro";
 import SocialPill from "../sections/Hero/SocialPill.astro";
 import LinkedInIcon from "@icons/LinkedIn.astro";
 import GitHubIcon from "@icons/GitHub.astro";
-import MailIcon from "@icons/Mail.astro";
+import Menu from "@icons/Menu.astro";
+import Close from "@icons/Close.astro";
 
 const navItems = [
    { title: "Proyectos", label: "proyectos", url: "/#proyectos" },
    { title: "Sobre mí", label: "sobre-mi", url: "/#sobre-mi" },
    { title: "Formación", label: "formacion", url: "/#formacion" },
-   // {
-   //    title: "Contacto",
-   //    label: "contacto",
-   //    url: "mailto:santiago.goncalvez.dev@gmail.com",
-   // },
 ];
 ---
 
@@ -25,32 +21,133 @@ const navItems = [
          transition-colors duration-300
          border-b border-transparent"
 >
-   <div class="mx-auto max-w-6xl sm:px-5 px-0.5">
+   <div class="mx-auto max-w-6xl px-5">
       <nav
          class="flex items-center justify-between py-4
              w-full mx-auto lg:w-[900px]"
       >
-         <div class="flex gap-8">
+         <!-- ================= DESKTOP ================= -->
+         <div class="hidden sm:flex w-full items-center justify-between">
+            <div class="flex gap-8">
+               <LogoSG />
+
+               <div class="flex items-center">
+                  {
+                     navItems.map((link) => (
+                        <a
+                           class="nav-link relative
+                    sm:px-3.5 px-2 sm:py-1 py-0.5 rounded-full
+                    text-sm sm:text-base font-[500]
+                    transition-colors duration-300"
+                           aria-label={link.label}
+                           href={link.url}
+                        >
+                           {link.title}
+                        </a>
+                     ))
+                  }
+               </div>
+            </div>
+
+            <div class="flex gap-2 items-center">
+               <SocialPill
+                  href="https://www.linkedin.com/in/santiagogoncalvez"
+                  aria-label="Perfil de LinkedIn de Santiago Goncalvez"
+                  class="p-2"
+               >
+                  <LinkedInIcon
+                     class="size-4 sm:size-5.5 text-border-strong/90 dark:text-text"
+                  />
+               </SocialPill>
+
+               <SocialPill
+                  href="https://github.com/santiagogoncalvez"
+                  aria-label="Perfil de GitHub de Santiago Goncalvez"
+                  class="p-2"
+               >
+                  <GitHubIcon
+                     class="size-4 sm:size-5.5 text-border-strong/90 dark:text-text"
+                  />
+               </SocialPill>
+
+               <ThemeToggle id="theme-desktop" />
+
+               <a
+                  href="#footer"
+                  class="flex items-center justify-center
+              text-sm sm:text-base
+              sm:h-9 sm:min-w-9 h-7
+              sm:px-3 px-1
+              rounded-lg
+              text-title dark:text-bg-base
+              bg-bg-base dark:bg-title
+              font-semibold
+              border
+              border-text-light
+              dark:border-border-strong
+              transition"
+               >
+                  Contactar
+               </a>
+            </div>
+         </div>
+
+         <!-- ================= MOBILE ================= -->
+         <div class="flex sm:hidden w-full items-center justify-between">
             <LogoSG />
 
-            <div class="sm:hidden inline"></div>
+            <button
+               id="mobile-menu-btn"
+               aria-label="Abrir menú"
+               class="h-9 w-9 hover:cursor-pointer flex items-center justify-center
+                 rounded-lg
+                 border border-text-light
+                 dark:border-border-strong text-bg-base dark:text-title"
+            >
+               <Menu class="size-5" />
+            </button>
+         </div>
+      </nav>
+   </div>
 
-            <div class="flex items-center">
-               {
-                  navItems.map((link) => (
-                     <a
-                        class="nav-link relative
-   sm:px-3.5 px-2 sm:py-1 py-0.5 rounded-full
-   text-sm sm:text-base font-[500] 
-   transition-colors duration-300"
-                        aria-label={link.label}
-                        href={link.url}
-                     >
-                        {link.title}
-                     </a>
-                  ))
-               }
-            </div>
+   <!-- ================= MOBILE MENU ================= -->
+   <div
+      id="mobile-menu"
+      class="sm:hidden fixed inset-0 z-20 hidden
+           dark:bg-bg-base bg-title"
+   >
+      <div
+         class="flex items-center justify-between px-5 py-4
+             border-b border-text-light
+             dark:border-border-strong"
+      >
+         <LogoSG />
+
+         <button
+            id="mobile-menu-close"
+            aria-label="Cerrar menú"
+            class="h-9 w-9 hover:cursor-pointer flex items-center justify-center rounded-lg"
+         >
+            <Close class="size-5 text-bg-base dark:text-title" />
+         </button>
+      </div>
+
+      <div class="flex flex-col gap-8 p-4">
+         <div class="flex flex-col gap-4">
+            {
+               navItems.map((link) => (
+                  <a
+                     class="w-fit nav-link relative
+                    px-3.5 py-1 rounded-full
+                    text-base font-[500]
+                    transition-colors duration-300"
+                     aria-label={link.label}
+                     href={link.url}
+                  >
+                     {link.title}
+                  </a>
+               ))
+            }
          </div>
 
          <div class="flex gap-2 items-center">
@@ -59,7 +156,9 @@ const navItems = [
                aria-label="Perfil de LinkedIn de Santiago Goncalvez"
                class="p-2"
             >
-               <LinkedInIcon class="size-4 sm:size-5.5 text-border-strong/90 dark:text-text" />
+               <LinkedInIcon
+                  class="size-5.5 text-border-strong/90 dark:text-text"
+               />
             </SocialPill>
 
             <SocialPill
@@ -67,58 +166,55 @@ const navItems = [
                aria-label="Perfil de GitHub de Santiago Goncalvez"
                class="p-2"
             >
-               <GitHubIcon class="size-4 sm:size-5.5 text-border-strong/90 dark:text-text" />
+               <GitHubIcon
+                  class="size-5.5 text-border-strong/90 dark:text-text"
+               />
             </SocialPill>
 
-            <!-- <SocialPill
-               href="mailto:santiago.goncalvez.dev@gmail.com"
-               aria-label="Correo electrónico de Santiago Goncalvez"
-               class="p-2"
-               copyText
-            >
-               <MailIcon class="size-5 sm:size-6" />
-               
-            </SocialPill> -->
-
-            <ThemeToggle />
+            <ThemeToggle id="theme-mobile" />
 
             <a
                href="#footer"
                class="flex items-center justify-center
-               text-sm sm:text-base
-      sm:h-9 sm:min-w-9 h-7
-      sm:px-3 px-1
-      rounded-lg
-      text-title dark:text-bg-base
-bg-bg-base dark:bg-title
-      font-semibold
-      border
-      border-text-light
-      dark:border-border-strong
-      hover:cursor-pointer
-      transition
-      focus-visible:outline-none
-      focus-visible:ring-2
-      focus-visible:ring-[var(--color-border-strong)]"
+              text-base
+              h-9 min-w-9
+              px-3 px-1
+              rounded-lg
+              text-title dark:text-bg-base
+              bg-bg-base dark:bg-title
+              font-semibold
+              border
+              border-text-light
+              dark:border-border-strong
+              transition"
             >
                Contactar
             </a>
          </div>
-      </nav>
+      </div>
    </div>
 </header>
 
 <script>
-   const initNavScroll = () => {
-      const header = document.getElementById("header") as HTMLElement | null;
+   const lockScroll = (): void => {
+      document.documentElement.style.overflow = "hidden";
+   };
+
+   const unlockScroll = (): void => {
+      document.documentElement.style.overflow = "";
+   };
+
+   const initNavScroll = (): void => {
+      const header = document.getElementById("header");
       if (!header) return;
 
+      // Se especifica HTMLElement para acceder a .offsetTop
       const sections = document.querySelectorAll<HTMLElement>("section[id]");
       const links = document.querySelectorAll<HTMLElement>(".nav-link");
       const root = document.documentElement;
+      const OFFSET = 120;
 
-      const OFFSET: number = 120;
-
+      // Tipado del parámetro str como string
       const normalize = (str: string): string =>
          str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
@@ -129,37 +225,31 @@ bg-bg-base dark:bg-title
             "border-black/10",
             "border-white/10",
          );
-
-         // 🔑 estado inicial real
          header.classList.add("border-transparent");
       };
 
       const applyHeaderState = (): void => {
-         const isDark: boolean = root.classList.contains("dark");
-         const y: number = window.scrollY;
+         const isDark = root.classList.contains("dark");
+         const y = window.scrollY;
 
-         // 🔥 Reset total
          resetHeader();
 
-         // 🟢 Solo aparece fondo + borde después del primer scroll
          if (y > 0) {
             header.classList.remove("border-transparent");
-
-            if (isDark) {
-               header.classList.add("bg-bg-base", "border-white/10");
-            } else {
-               header.classList.add("bg-title", "border-black/10");
-            }
+            header.classList.add(
+               isDark ? "bg-bg-base" : "bg-title",
+               isDark ? "border-white/10" : "border-black/10",
+            );
          }
       };
 
+      // Tipado del parámetro id como string
       const setActiveLink = (id: string): void => {
          const isDark = root.classList.contains("dark");
 
          links.forEach((link) => {
-            const label = normalize(link.getAttribute("aria-label") ?? "");
+            const label = normalize(link.getAttribute("aria-label") || "");
 
-            // 🔥 RESET TOTAL (acá estaba el problema)
             link.classList.remove(
                "bg-text-light",
                "bg-border-light",
@@ -169,45 +259,27 @@ bg-bg-base dark:bg-title
                "text-bg-base",
             );
 
-            // 🟡 Estado base (no activo)
-            if (isDark) {
-               link.classList.add("text-text");
-            } else {
-               link.classList.add("text-border-strong/90");
-            }
+            link.classList.add(isDark ? "text-text" : "text-border-strong/90");
 
-            // 🟢 Estado activo (tipo Vercel)
             if (label === id && id !== "") {
-               // Fondo suave en ambos modos
-               link.classList.remove("text-text");
-               link.classList.remove("text-border-strong/90");
-
-               if (isDark) {
-                  link.classList.add("bg-border-light");
-               } else {
-                  link.classList.add("bg-text-light");
-               }
-
-               // Texto SOLO cambia en dark
-               if (isDark) {
-                  link.classList.add("text-white");
-               } else {
-                  link.classList.add("text-bg-base");
-               }
+               link.classList.remove("text-text", "text-border-strong/90");
+               link.classList.add(
+                  isDark ? "bg-border-light" : "bg-text-light",
+                  isDark ? "text-white" : "text-bg-base",
+               );
             }
          });
       };
 
       const updateActiveSection = (): void => {
-         const y: number = window.scrollY;
+         const y = window.scrollY;
 
          if (y < 100) {
             setActiveLink("");
             return;
          }
 
-         let current: string = "";
-
+         let current = "";
          sections.forEach((section) => {
             if (y + OFFSET >= section.offsetTop) {
                current = normalize(section.id);
@@ -222,11 +294,9 @@ bg-bg-base dark:bg-title
          updateActiveSection();
       };
 
-      // Scroll
       window.addEventListener("scroll", update, { passive: true });
 
-      // Cambio de theme
-      const observer = new MutationObserver(() => update());
+      const observer = new MutationObserver(update);
       observer.observe(root, {
          attributes: true,
          attributeFilter: ["class"],
@@ -235,6 +305,38 @@ bg-bg-base dark:bg-title
       update();
    };
 
-   document.addEventListener("DOMContentLoaded", initNavScroll);
-   document.addEventListener("astro:after-swap", initNavScroll);
+   const initMobileMenu = (): void => {
+      const menu = document.getElementById("mobile-menu");
+      const openBtn = document.getElementById("mobile-menu-btn");
+      const closeBtn = document.getElementById("mobile-menu-close");
+
+      if (!menu || !openBtn || !closeBtn) return;
+
+      const closeMenu = (): void => {
+         menu.classList.add("hidden");
+         unlockScroll();
+      };
+
+      openBtn.addEventListener("click", () => {
+         menu.classList.remove("hidden");
+         lockScroll();
+         window.dispatchEvent(new Event("theme-sync"));
+      });
+
+      closeBtn.addEventListener("click", closeMenu);
+
+      menu.querySelectorAll("a[href^='/#'], a[href^='#']").forEach((link) => {
+         link.addEventListener("click", closeMenu);
+      });
+   };
+
+   document.addEventListener("DOMContentLoaded", () => {
+      initNavScroll();
+      initMobileMenu();
+   });
+
+   document.addEventListener("astro:after-swap", () => {
+      initNavScroll();
+      initMobileMenu();
+   });
 </script>
