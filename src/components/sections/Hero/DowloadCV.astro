@@ -1,16 +1,25 @@
 ---
-import DownloadIcon from "@icons/Dowload.astro";
+import DownloadIcon from "@icons/Dowload.astro"; // Ojo, revisa si es "Download" con 'n'
 import ExternalLinkIcon from "@icons/ExternalLink.astro";
 
 const { class: className } = Astro.props;
 
+// Cambia esto por tu URL real cuando lo subas (ej: https://tudominio.com/archivo.pdf)
 const CV_URL = "/Santiago-Goncalvez-CV.pdf";
+const CV_URL_ABSOLUTE =
+   "https://santiagogoncalvez.web.app/Santiago-Goncalvez-CV.pdf";
+
+// Esta es la URL para el visor de Google (solo funciona con URLs absolutas https://)
+// Si estás en local (localhost), esto no funcionará, así que usamos un condicional
+const isExternal = CV_URL.startsWith("http");
+const VIEW_URL = isExternal
+   ? `https://docs.google.com/viewer?url=${encodeURIComponent(CV_URL_ABSOLUTE)}&embedded=true`
+   : CV_URL;
 ---
 
-<div class={`flex items-center gap-3 ${className ?? ""}`}>
-   <!-- CTA PRINCIPAL: VER CV -->
+<div class={`flex flex-wrap items-center gap-3 ${className ?? ""}`}>
    <a
-      href={CV_URL}
+      href={VIEW_URL}
       target="_blank"
       rel="noopener noreferrer"
       class:list={[
@@ -40,13 +49,12 @@ const CV_URL = "/Santiago-Goncalvez-CV.pdf";
       <ExternalLinkIcon class="size-4 sm:size-5" />
    </a>
 
-   <!-- ACCIÓN SECUNDARIA: DESCARGAR -->
    <a
       href={CV_URL}
       download="Santiago-Goncalvez-CV.pdf"
-      class="group inline-flex items-center py-2.5 px-4 gap-2 text-sm sm:text-base text-bg-elevated dark:text-text font-semibold"
+      class="group inline-flex items-center py-2.5 px-4 gap-2 text-sm sm:text-base text-bg-elevated dark:text-text font-semibold hover:opacity-80 transition-opacity"
    >
-      Descargar CV
+      Descargar
       <DownloadIcon class="size-4 sm:size-5" />
    </a>
 </div>
