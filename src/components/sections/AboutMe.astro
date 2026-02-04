@@ -3,7 +3,8 @@ import ProfileCheckIcon from "@icons/ProfileCheck.astro";
 import Subtitle from "../shared/Subtitle.astro";
 import profilePic from "../../assets/santiago-goncalvez-front-face-casual.webp";
 
-const personalImageAlt = "Retrato casual de Santiago Goncalvez - Desarrollador Web";
+const personalImageAlt =
+   "Retrato casual de Santiago Goncalvez - Desarrollador Web";
 
 import { Image } from "astro:assets";
 ---
@@ -13,66 +14,64 @@ import { Image } from "astro:assets";
    <span>Sobre mí</span>
 </Subtitle>
 
-<article
-   class="flex flex-col justify-center gap-8
-         text-gray-700 dark:text-gray-300
-         sm:flex-row"
->
+<article class="flex flex-col md:flex-row gap-6 items-stretch">
    <div
-      class="order-2 sm:order-1
-           [&>p]:mb-4
-           [&>p>strong]:text-text-muted
-           dark:[&>p>strong]:text-text-highlighted
-           [&>p>strong]:font-normal
-           [&>p>strong]:font-mono
-           text-border-strong dark:text-text
-           text-pretty"
+      class="md:w-2/3 p-8 rounded-xl bg-white/50 dark:bg-bg-surface border border-black/5 dark:border-border-subtle flex flex-col justify-center"
    >
-      <p>
-         Soy <strong>Santiago Goncalvez</strong>, estudiante de
-         <strong>Ingeniería Informática (1.º año)</strong> y
-         <strong>desarrollador frontend</strong> con énfasis en el ecosistema
-         <strong>React</strong> y el
-         <strong>desarrollo de interfaces modernas</strong>.
-      </p>
-
-      <p>
-         Disfruto resolver problemas desde lo técnico y lo creativo. Desarrollé
-         proyectos como <strong>Tu País</strong> y un
-         <strong>cliente avanzado de Hacker News</strong>, priorizando una
-         <strong>experiencia de usuario fluida y escalable</strong>.
-      </p>
-
-      <p>
-         Busco mi
-         <strong
-            >primera oportunidad profesional como desarrollador frontend</strong
+      <div class="space-y-4 text-border-strong dark:text-text leading-relaxed">
+         <div
+            class="space-y-4 text-border-strong dark:text-text leading-relaxed"
          >
-         en <strong>startups</strong> o <strong>equipos de producto</strong>, donde
-         pueda aportar criterio técnico, seguir aprendiendo y crecer junto al equipo.
-      </p>
+            <p>
+               Estudiante de <strong
+                  class="text-bg-deep dark:text-text-highlighted"
+                  >Ingeniería Informática</strong
+               > enfocado en el ecosistema <strong>React</strong>. Fusiono el
+               rigor analítico de la carrera con la construcción de interfaces
+               modernas, priorizando arquitecturas limpias y una experiencia de
+               usuario optimizada.
+            </p>
+
+            <p>
+               Especializado en transformar problemas lógicos en <strong
+                  >interfaces escalables</strong
+               >, cuidando tanto la integridad del código interno como la
+               fluidez visual que percibe el usuario final.
+            </p>
+
+            <footer
+               class="pt-4 border-t border-black/5 dark:border-white/5 flex flex-wrap items-center justify-between gap-4"
+            >
+               <div class="flex items-center gap-x-2">
+                  <div
+                     class="size-2 rounded-full bg-bg-deep/20 dark:bg-text-highlighted/20 border border-bg-deep/10 dark:border-white/10"
+                  >
+                  </div>
+                  <span
+                     class="text-xs font-medium uppercase tracking-widest text-border-strong/90 dark:text-text/80"
+                  >
+                     Foco: Arquitecturas Escalables
+                  </span>
+               </div>
+
+               <span
+                  class="text-xs font-medium uppercase tracking-widest text-border-strong/90 dark:text-text/80"
+               >
+                  Buenos Aires, AR
+               </span>
+            </footer>
+         </div>
+      </div>
    </div>
 
-   <div
-      class="order-1 sm:order-2
-         w-full sm:w-[45%]
-         p-1 lg:p-2
-         rounded-xl"
-   >
-      <div class="relative w-full aspect-square overflow-hidden rounded-xl">
+   <div class="md:w-1/3 relative group">
+      <div
+         class="h-full w-full overflow-hidden rounded-xl border border-black/5 dark:border-border-subtle shadow-sm"
+      >
          <Image
             src={profilePic}
             alt={personalImageAlt}
-            width={512}
-            height={512}
-            widths={[256, 384, 512]}
-            sizes="(max-width: 768px) 100vw, 45vw"
-            quality={80}
-            format="webp"
-            loading="lazy"
-            decoding="async"
             class="w-full h-full object-cover"
-            style="object-position: 50% 50%"
          />
       </div>
    </div>
