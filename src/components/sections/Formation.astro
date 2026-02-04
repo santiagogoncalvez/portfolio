@@ -30,7 +30,7 @@ const formationItems: BentoItem[] = [
       description:
          "Desarrollo de aplicaciones modernas con Hooks, patrones de estado y optimización.",
       icon: ReactIcon,
-      class: "md:col-span-2 border-l-2 border-l-bg-deep/10 dark:border-l-white/10",
+      class: "md:col-span-2 border-l-2 border-l-border-strong/10 dark:border-l-border-subtle",
    },
    {
       title: "The Road to React",
@@ -67,25 +67,27 @@ const formationItems: BentoItem[] = [
             <article
                class={`
                   group relative overflow-hidden rounded-xl p-6 flex flex-col transition-all duration-500
- 
-                   border border-transparent
-                   bg-title/80 dark:bg-[#171717] 
+                  
+                  bg-bg-white border border-border-strong/5 shadow-sm
+                  
+                  dark:bg-bg-surface dark:border-border-subtle
 
                   hover:scale-[1.01] 
-                  hover:border-text-highlighted/60
+                  hover:border-border-strong/20 dark:hover:border-text-highlighted/30
                   ${item.class || ""}
                `}
             >
-               <div class="absolute top-0 right-0 -mr-10 -mt-10 w-32 h-32 rounded-full bg-blue-500/10 dark:bg-white/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+               {/* Efecto de brillo sutil en la esquina */}
+               <div class="absolute top-0 right-0 -mr-10 -mt-10 w-32 h-32 rounded-full bg-text-muted/5 dark:bg-white/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
                <div class="relative w-full">
                   <div class="flex items-center justify-between mb-3">
-                     <span class="text-[10px] font-bold uppercase tracking-widest text-text-muted dark:text-text-highlighted border border-black/[0.05] dark:border-white/10 px-4 py-1.5 rounded-full bg-white/50 dark:bg-bg-base">
+                     <span class="text-[10px] font-bold uppercase tracking-widest text-text-muted dark:text-text-highlighted border border-border-strong/10 dark:border-border-subtle px-4 py-1.5 rounded-full bg-bg-deep/5 dark:bg-bg-base">
                         {item.subtitle}
                      </span>
 
                      {item.icon && (
-                        <div class="flex justify-center items-center size-8 text-bg-deep/40 dark:text-text-muted group-hover:text-bg-deep dark:group-hover:text-title transition-colors">
+                        <div class="flex justify-center items-center size-8 text-text-dimmed dark:text-text-muted group-hover:text-bg-deep dark:group-hover:text-title transition-colors">
                            <IconComponent class="stroke-1" />
                         </div>
                      )}
@@ -93,12 +95,12 @@ const formationItems: BentoItem[] = [
                </div>
 
                <div class="relative flex-grow flex flex-col justify-center">
-                  <h3 class="text-xl md:text-2xl font-bold text-bg-deep dark:text-title leading-tight transition-transform duration-300">
+                  <h3 class="text-xl md:text-2xl font-bold text-bg-deep dark:text-title leading-tight">
                      {item.title}
                   </h3>
 
                   {item.description && (
-                     <p class="text-sm text-border-strong dark:text-text mt-3 leading-relaxed opacity-80">
+                     <p class="text-text-muted dark:text-text mt-3 leading-relaxed opacity-90">
                         {item.description}
                      </p>
                   )}
@@ -106,7 +108,7 @@ const formationItems: BentoItem[] = [
                   {item.tags && (
                      <div class="flex flex-wrap gap-2 mt-5">
                         {item.tags.map((tag) => (
-                           <span class="text-[10px] font-medium px-2 py-1 rounded-md bg-black/[0.03] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/10 text-bg-deep dark:text-text">
+                           <span class="text-sm font-medium px-2 py-1 rounded-md bg-bg-deep/5 dark:bg-white/5 border border-border-strong/5 dark:border-border-subtle text-text-muted dark:text-text-light">
                               {tag}
                            </span>
                         ))}
@@ -115,8 +117,8 @@ const formationItems: BentoItem[] = [
                </div>
 
                {item.class?.includes("row-span-2") && (
-                  <div class="relative mt-6 pt-4 border-t border-black/[0.05] dark:border-white/5 sm:opacity-80 opacity-100 group-hover:opacity-100 transition-opacity">
-                     <span class="text-[9px] font-black uppercase tracking-[0.2em] text-bg-deep dark:text-text">
+                  <div class="relative mt-6 pt-4 border-t border-border-strong/10 dark:border-white/5 sm:opacity-80 opacity-100 group-hover:opacity-100 transition-opacity">
+                     <span class="text-xs font-bold uppercase tracking-[0.2em] text-border-strong dark:text-text">
                         Sistemas · Algoritmos · Lógica
                      </span>
                   </div>

@@ -41,15 +41,16 @@ const profilesInfo: SocialInfo[] = profiles.map(({ network, url }) => ({
 <div id="command-container" class="no-print">
    <div
       id="command-label"
-      class="command command-label rounded-lg bg-title dark:bg-bg-surface text-bg-surface dark:text-title"
+      class="command command-label rounded-lg border border-text-light dark:border-border-subtle bg-white dark:bg-bg-surface text-bg-deep dark:text-title"
    >
-      Comandos <kbd class="bg-title-secondary dark:bg-border-strong">Ctrl</kbd> +
+      <span>Comandos</span>
+      <kbd class="bg-title-secondary dark:bg-border-strong">Ctrl</kbd> +
       <kbd class="bg-title-secondary dark:bg-border-strong">K</kbd>
    </div>
 
    <button
       id="command-button"
-      class="command command-button rounded-lg bg-title dark:bg-bg-elevated text-bg-elevated dark:text-title border border-text dark:border-text-muted"
+      class="command command-button rounded-lg bg-white dark:bg-bg-elevated text-bg-base dark:text-title border border-text dark:border-text-muted"
       aria-label="Abrir comandos"
    >
       <svg
@@ -213,7 +214,6 @@ const profilesInfo: SocialInfo[] = profiles.map(({ network, url }) => ({
       display: none;
       padding: 8px 12px;
       /*border-radius: 10px; */
-      font-size: 0.85rem;
    }
 
    .command-button {
@@ -251,9 +251,8 @@ const profilesInfo: SocialInfo[] = profiles.map(({ network, url }) => ({
    }
 
    kbd {
-      padding: 2px 6px;
+      padding: 0px 4px;
       border-radius: 4px;
-      font-size: 10px;
    }
 
    /* ============================= */
