@@ -1,14 +1,40 @@
 ---
-const { href } = Astro.props;
+interface Props {
+   href: string;
+   variant?: "primary" | "secondary";
+   class?: string;
+   ariaLabel?: string;
+}
+
+const { href, variant = "primary", class: className, ariaLabel } = Astro.props;
+
+// Definición de estilos basada en tu paleta
+const variantStyles = {
+   primary: `
+    bg-bg-deep text-bg-white border-transparent hover:bg-bg-elevated
+    dark:bg-bg-white dark:text-bg-deep dark:hover:bg-title
+  `,
+   secondary: `
+    bg-transparent text-border-strong border-border-strong/20 hover:border-border-strong hover:text-bg-deep
+    dark:border-border-subtle dark:text-text dark:bg-bg-surface/50 dark:hover:border-text-highlighted dark:hover:text-title
+  `,
+};
 ---
 
 <a
    target="_blank"
-   aria-label={Astro.props.ariaLabel}
+   aria-label={ariaLabel}
    href={href}
    role="link"
-   class={"inline-flex bg-transparent text-bg-elevated border border-text-highlighted hover:border-border-strong items-center justify-center gap-2 px-3 py-2 space-x-2 text-base transition dark:text-white dark:bg-transparent dark:border-text/50 text-md dark:hover:border-text group max-w-fit rounded-lg focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2"}
-   
+   class={`
+    inline-flex items-center justify-center gap-2 px-4 py-2 
+     font-medium transition-all duration-300
+    border rounded-lg focus:outline-none focus-visible:ring-2 
+    focus-visible:ring-offset-2 focus-visible:ring-text-muted
+    group max-w-fit
+    ${variantStyles[variant]}
+    ${className}
+  `}
 >
    <slot />
 </a>

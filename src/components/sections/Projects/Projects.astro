@@ -35,7 +35,7 @@ const PROJECTS = [
    {
       title: "Hacker Stories",
       description:
-         "Cliente avanzado de Hacker News enfocado en explorar arquitecturas escalables y patrones reales de aplicaciones de producto. Implementé scroll infinito, persistencia de favoritos, gestión de historial de búsqueda y navegación optimizada con React Router. Prioricé la experiencia de usuario mediante fallbacks y estados de carga. Incluye tests unitarios y de integración con Vitest para garantizar la robustez del código.",
+         "Cliente de Hacker News centrado en arquitecturas escalables. Implementé scroll infinito, persistencia de datos y gestión de historial. Optimizado con React Router y React Query, incluyendo una suite de tests robusta con Vitest para asegurar la integridad del producto.",
       link: "https://hackerstories-dev.web.app",
 
       github: "https://github.com/santiagogoncalvez/hacker-stories",
@@ -80,77 +80,58 @@ const PROJECTS = [
    <span>Proyectos</span>
 </Subtitle>
 
-<div class="flex flex-col gap-y-18">
+<div class="flex flex-col gap-y-12">
    {
       PROJECTS.map(
          ({ image, title, description, tags, link, github }, index) => (
-            <article
-               class={`flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0 ${
-                  index % 2 === 0 ? "" : "md:flex-row-reverse"
-               }`}
-            >
-               <div
-                  class={`w-full md:w-1/2 ${
-                     index % 2 === 0 ? "md:mr-10" : "md:ml-10"
-                  } m-0 mb-10`}
-               >
-                  {/* Card */}
-                  <div class="bg-white/80 border border-black/5 shadow-lg rounded-xl p-8 sm:p-10 dark:bg-[--color-bg-surface] dark:border-[--color-border-subtle] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition duration-500 ease-in-out transform md:group-hover:-translate-y-1 md:group-hover:shadow-2xl md:group-hover:dark:shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
-                     {/* Wrapper con ratio fijo (anti layout shift) */}
-                     <div class="relative w-full aspect-video overflow-hidden rounded-xl md:scale-95 md:group-hover:scale-100 transition-transform duration-500 shadow-xl">
+            <article class="flex flex-col md:flex-row bg-white/50 dark:bg-bg-surface border border-black/5 dark:border-border-subtle rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group">
+               {/* Columna Imagen (Full Bleed - Sin márgenes internos) */}
+               <div class="w-full md:w-5/12 flex items-center justify-center p-6 bg-gradient-to-br from-bg-deep/5 to-transparent dark:from-white/5">
+                  <div class="w-full shadow-lg rounded-lg overflow-hidden border border-border-strong/10 dark:border-white/10 transform md:group-hover:-translate-y-1 transition-transform duration-500">
+                     {/* Barra superior del navegador */}
+                     <div class="h-6 bg-white/80 dark:bg-[#252525] border-b border-black/5 dark:border-white/5 flex items-center px-3 gap-1.5">
+                        <div class="size-2 rounded-full bg-border-strong/20 dark:bg-white/10" />
+                        <div class="size-2 rounded-full bg-border-strong/20 dark:bg-white/10" />
+                     </div>
+                     <div class="aspect-video overflow-hidden">
                         <Image
                            src={IMAGES[image]}
-                           alt={`Vista previa del proyecto ${title}`}
-                           width={800}
-                           height={450}
-                           widths={[400, 800, 1200]}
-                           sizes="(max-width: 768px) 100vw, 400px"
-                           format="webp"
-                           quality={80}
-                           loading={index === 0 ? "eager" : "lazy"}
-                           fetchpriority={index === 0 ? "high" : "low"}
-                           decoding="async"
-                           class="w-full h-full object-cover object-top scale-105 border border-transparent dark:border-[--color-border-strong]/30"
+                           alt={title}
+                           class="w-full h-full object-cover object-top"
                         />
                      </div>
                   </div>
                </div>
 
-               {/* Content */}
-               <div class="w-full md:w-1/2 md:max-w-lg">
-                  <h3 class="lg:text-2xl text-xl font-bold text-bg-deep dark:text-gray-100">
+               {/* Columna Contenido */}
+               <div class="w-full md:w-7/12 p-6 md:p-8 flex flex-col justify-center">
+               <h3 class="lg:text-2xl text-xl font-bold text-bg-deep dark:text-gray-100 mb-3">
                      {title}
                   </h3>
 
-                  <div class="flex flex-wrap mt-4">
+                  <div class="mb-4">
                      <TechnologyPills techs={tags} />
-
-                     <div class="mt-4 text-border-strong dark:text-text">
-                        {description}
-                     </div>
-
-                     <footer class="flex items-end justify-start mt-4 gap-x-4">
-                        {github && (
-                           <LinkButton
-                              href={github}
-                              ariaLabel={`Ver código fuente de ${title} en GitHub`}
-                           >
-                              <GitHub class="size-6" />
-                              Code
-                           </LinkButton>
-                        )}
-
-                        {link && (
-                           <LinkButton
-                              href={link}
-                              ariaLabel={`Ir al sitio web de ${title}`}
-                           >
-                              <Link class="size-4" />
-                              Preview
-                           </LinkButton>
-                        )}
-                     </footer>
                   </div>
+
+
+                  <p class="text-border-strong dark:text-text flex-grow leading-relaxed">
+                     {description}
+                  </p>
+
+                  <footer class="flex items-center gap-x-4 mt-6 pt-4 border-t border-black/5 dark:border-white/5">
+                     {github && (
+                        <LinkButton href={github} variant="secondary">
+                           <GitHub class="size-6" />
+                           <span>Código</span>
+                        </LinkButton>
+                     )}
+                     {link && (
+                        <LinkButton href={link}>
+                           <Link class="size-6" />
+                           <span>Visitar página</span>
+                        </LinkButton>
+                     )}
+                  </footer>
                </div>
             </article>
          ),
