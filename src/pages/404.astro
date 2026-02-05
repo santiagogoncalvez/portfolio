@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ProfilePhoto from "../components/sections/Hero/ProfilePhoto.astro";
+// import ProfilePhoto from "../components/sections/Hero/ProfilePhoto.astro";
 import Badge from "../components/sections/Hero/Badge.astro";
 import SectionContainer from "../components/shared/SectionContainer.astro";
 ---
@@ -11,50 +11,32 @@ import SectionContainer from "../components/shared/SectionContainer.astro";
 >
    <meta slot="head" name="robots" content="noindex" />
 
-   <div class="w-full py-16 md:py-18 px-5 flex-1">
+   <div
+      class="w-full sm:pt-24 pt-24 md:pt-48 px-5 flex flex-col sm:gap-24 gap-16"
+   >
       <SectionContainer>
          <div class="flex flex-row items-center gap-8">
-            <!-- Imagen (desktop) -->
-            <ProfilePhoto
-               class="w-64 h-64 hidden md:block opacity-80"
-               width={256}
-               height={256}
-               sizes="256px"
-            />
-
-            <div class="w-full flex flex-col gap-6">
+            <div class="w-full flex flex-col items-center gap-6">
                <!-- Header -->
                <header
                   class="flex items-center flex-row flex-wrap md:gap-4 gap-2"
                >
-                  <ProfilePhoto
-                     class="w-8 h-8 md:hidden"
-                     width={32}
-                     height={32}
-                     sizes="32px"
-                  />
-
                   <Badge>
                      <strong>Error 404</strong>
                   </Badge>
-
-                  <span
-                     class="text-bg-surface dark:text-text md:text-sm text-xs"
-                  >
-                     Página no encontrada
-                  </span>
                </header>
 
-               <!-- Título -->
-               <h1
-                  class="text-3xl md:text-5xl font-bold text-bg-deep dark:text-[#fafafa] leading-tight"
+               <div
+                  class="flex sm:flex-row flex-col sm:gap-6 gap-3 items-center"
                >
-                  Esta página no existe
-               </h1>
-
-               <!-- Descripción -->
+                  <h1
+                     class="text-3xl md:text-5xl font-bold text-bg-deep dark:text-[#fafafa] leading-tight"
+                  >
+                     Esta página no existe
+                  </h1>
+               </div>
                <h2
-                  class="text-xl lg:text-2xl
+                  class="text-center text-xl lg:text-2xl
         text-border-strong dark:text-[#B0B0B0]
         max-w-2xl"
                >
@@ -79,5 +61,5 @@ import SectionContainer from "../components/shared/SectionContainer.astro";
             </div>
          </div>
       </SectionContainer>
-   </div>
+   </main>
 </Layout>

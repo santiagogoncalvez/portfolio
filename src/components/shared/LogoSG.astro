@@ -1,7 +1,15 @@
+---
+// Obtener la ruta actual
+const { pathname } = Astro.url;
+
+// Si la ruta es "/" (o "/index.html"), el link es "#top", de lo contrario es "/"
+const href = pathname === "/" || pathname === "/index.html" ? "#top" : "/";
+---
+
 <a
    class="text-2xl font-extrabold text-bg-base dark:text-title"
    aria-label="inicio"
-   href="#top"
+   href={href}
 >
    SG
 </a>
