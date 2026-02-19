@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://santiagogoncalvez.web.app/sitemap.xml
+Sitemap: https://santiagogoncalvez.com/sitemap.xml

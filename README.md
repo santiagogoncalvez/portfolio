@@ -37,13 +37,13 @@ El objetivo de este sitio es mostrar mi trabajo de forma clara, rápida y profes
 
 ## 🌍 Demo en vivo
 
-👉 https://santiagogoncalvez.web.app
+👉 https://santiagogoncalvez.com
 
 ## 📬 Contacto
 
-- Email: santiago.goncalvez.dev@gmail.com  
-- LinkedIn: https://linkedin.com/in/santiagogoncalvez  
-- GitHub: https://github.com/santiagogoncalvez  
+- Email: santiago.goncalvez.dev@gmail.com
+- LinkedIn: https://linkedin.com/in/santiagogoncalvez
+- GitHub: https://github.com/santiagogoncalvez
 
 ---
 
