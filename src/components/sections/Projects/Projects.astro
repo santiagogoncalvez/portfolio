@@ -9,19 +9,30 @@ import { Image } from "astro:assets";
 
 import imageCrud from "@assets/project-core-crud-interface.webp";
 import imageHakcerStories from "@assets/project-hacker-stories.webp";
-
 import imageTestTypeScript from "@assets/project-typescript-test-with-react-query.webp";
-
 import imageTuPais from "@assets/project-tu-pais.webp";
+import imageIsabelLopez from "@assets/project-isabellopez.webp";
 
 const IMAGES: Record<string, ImageMetadata> = {
    "/project-typescript-test-with-react-query.webp": imageTestTypeScript,
    "/project-hacker-stories.webp": imageHakcerStories,
    "/project-core-crud-interface.webp": imageCrud,
    "/project-tu-pais.webp": imageTuPais,
+   "/project-isabellopez.webp": imageIsabelLopez,
 };
 
 const PROJECTS = [
+   {
+      title: "Plataforma de Identidad Digital — Coach Ontológica",
+      description:
+         "Diseño y desarrollo de una landing page de alta conversión para marca personal. Optimicé la velocidad de carga para reducir la tasa de rebote y desarrollé una interfaz que proyecta autoridad y confianza, integrando canales de contacto directo para maximizar la captación de clientes.",
+      link: "https://isabellopez.com.ar",
+
+      github: "",
+
+      image: "/project-isabellopez.webp",
+      tags: ["Astro", "Tailwind", "UI/UX", "SEO"],
+   },
    {
       title: "Data Management Dashboard",
       description:
@@ -50,28 +61,6 @@ const PROJECTS = [
          "vite",
       ],
    },
-
-   {
-      title: "Admin User Management System",
-      description:
-         "CRUD profesional con Redux Toolkit, orientado a un manejo de estado global predecible y escalable. Incluye diseño de interfaz con Tremor, tipado estricto y un sistema de actualización optimista con rollback para garantizar la integridad de los datos.",
-      link: "https://core-crud-interface.web.app",
-
-      github:
-         "https://github.com/santiagogoncalvez/midudevs-react-course/tree/main/projects/10-crud-redux",
-
-      image: "/project-core-crud-interface.webp",
-      tags: ["typescript", "React", "ReduxToolkit", "tailwind", "vite"],
-   },
-   {
-      title: "Tu País - Página de adivinanzas de banderas",
-      description:
-         "Juego interactivo de banderas desarrollado en Vanilla JavaScript, con arquitectura inspirada en Flux. Implementa estado global, routing por hash y un sistema de gamificación basado en reconocimiento visual, priorizando una experiencia de usuario ágil y fluida.",
-      link: "https://santiagogoncalvez.github.io/tupais/",
-      github: "https://github.com/santiagogoncalvez/tupais",
-      image: "/project-tu-pais.webp",
-      tags: ["javascript", "html5", "css", "vite"],
-   },
 ];
 ---
 
@@ -80,9 +69,7 @@ const PROJECTS = [
    <span>Proyectos</span>
 </Subtitle> -->
 <Subtitle class="flex items-center gap-x-4 group">
-   <Code
-      class="size-7 text-border-strong dark:text-text-highlighted"
-   />
+   <Code class="size-7 text-border-strong dark:text-text-highlighted" />
    <span class="tracking-tight">Proyectos</span>
 </Subtitle>
 

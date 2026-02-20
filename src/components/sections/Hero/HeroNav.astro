@@ -1,43 +1,16 @@
 ---
-import SocialPill from "./SocialPill.astro";
-import LinkedInIcon from "@icons/LinkedIn.astro";
-import GitHubIcon from "@icons/GitHub.astro";
-import MailIcon from "@icons/Mail.astro";
-import DowloadCV from "./DowloadCV.astro";
+import CtaButton from "@/components/shared/CtaButton.astro";
+import CtaButtonInner from "@/components/shared/CtaButtonInner.astro";
 ---
 
-<nav class="w-full flex items-center gap-x-4 gap-y-6 flex-col no-mobile-motion">
-   <!-- <div
-      class="w-full flex items-center justify-center gap-x-4 gap-y-6 flex-wrap"
+<nav class="w-full flex items-center gap-x-4 gap-y-6 flex-col">
+   <div
+      class="flex flex-col sm:flex-row gap-4 items-center justify-center w-full"
    >
-      <SocialPill
-         href="https://www.linkedin.com/in/santiagogoncalvez"
-         aria-label="Perfil de LinkedIn de Santiago Goncalvez"
-         class="p-2 md:px-4 md:py-2 hover:border-border-strong/50 dark:hover:border-text-highlighted/50"
+      <CtaButton class="rounded-full px-6 py-2.5 text-lg"
+         >Trabajemos juntos</CtaButton
       >
-         <LinkedInIcon class="size-5 sm:size-6" />
-         <span class="sm:flex hidden">LinkedIn</span>
-      </SocialPill>
 
-      <SocialPill
-         href="https://github.com/santiagogoncalvez"
-         aria-label="Perfil de GitHub de Santiago Goncalvez"
-         class="p-2 md:px-4 md:py-2 hover:border-border-strong/50 dark:hover:border-text-highlighted/50"
-      >
-         <GitHubIcon class="size-5 sm:size-6" />
-         <span class="sm:flex hidden">GitHub</span>
-      </SocialPill>
-
-      <SocialPill
-         href="mailto:santiago.goncalvez.dev@gmail.com"
-         aria-label="Correo electrónico de Santiago Goncalvez"
-         class="p-2 md:px-4 md:py-2 hover:border-border-strong/50 dark:hover:border-text-highlighted/50"
-         copyText
-      >
-         <MailIcon class="size-5 sm:size-6" />
-         <span class="sm:flex hidden">santiago.goncalvez.dev@gmail.com</span>
-      </SocialPill>
-   </div> -->
-
-   <DowloadCV />
+      <CtaButtonInner>Ver proyectos</CtaButtonInner>
+   </div>
 </nav>

@@ -7,11 +7,14 @@ import LinkedInIcon from "@icons/LinkedIn.astro";
 import GitHubIcon from "@icons/GitHub.astro";
 import Menu from "@icons/Menu.astro";
 import Close from "@icons/Close.astro";
+import CtaButton from "./CtaButton.astro";
 
 const navItems = [
+   { title: "Soluciones", label: "soluciones", url: "/#soluciones" },
    { title: "Proyectos", label: "proyectos", url: "/#proyectos" },
    { title: "Sobre mí", label: "sobre-mi", url: "/#sobre-mi" },
    { title: "Formación", label: "formacion", url: "/#formacion" },
+   { title: "Contacto", label: "contacto", url: "/#contacto" },
 ];
 ---
 
@@ -24,7 +27,7 @@ const navItems = [
    <div class="mx-auto max-w-6xl px-5">
       <nav
          class="flex items-center justify-between py-4
-             w-full mx-auto lg:w-[900px]"
+             w-full mx-auto lg:max-w-5xl"
       >
          <!-- ================= DESKTOP ================= -->
          <div class="hidden sm:flex w-full items-center justify-between">
@@ -72,23 +75,7 @@ const navItems = [
 
                <ThemeToggle id="theme-desktop" />
 
-               <a
-                  href="#footer"
-                  class="flex items-center justify-center
-              text-sm sm:text-base
-              sm:h-9 sm:min-w-9 h-7
-              sm:px-3 px-1
-              rounded-lg
-              text-title dark:text-bg-base
-              bg-bg-base dark:bg-title
-              font-semibold
-              border
-              border-text-light
-              dark:border-border-strong
-              transition"
-               >
-                  Contactar
-               </a>
+               <CtaButton class="rounded-lg">Trabajemos juntos</CtaButton>
             </div>
          </div>
 
@@ -173,23 +160,7 @@ const navItems = [
 
             <ThemeToggle id="theme-mobile" />
 
-            <a
-               href="#footer"
-               class="flex items-center justify-center
-              text-base
-              h-9 min-w-9
-              px-3 px-1
-              rounded-lg
-              text-title dark:text-bg-base
-              bg-bg-base dark:bg-title
-              font-semibold
-              border
-              border-text-light
-              dark:border-border-strong
-              transition"
-            >
-               Contactar
-            </a>
+            <CtaButton class="rounded-lg">Trabajemos juntos</CtaButton>
          </div>
       </div>
    </div>

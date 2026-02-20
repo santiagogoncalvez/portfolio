@@ -1,0 +1,25 @@
+---
+import WhatsApp from "@/icons/WhatsApp.astro";
+
+import { whatsappUrl } from "@/constants/contact.mjs";
+---
+
+<a
+   href={whatsappUrl}
+   target="_blank"
+   rel="noopener noreferrer"
+   class=`flex items-center justify-center gap-2
+              text-base
+              font-medium
+              px-3 py-1.5
+              
+              text-title dark:text-bg-base
+              bg-bg-base dark:bg-title
+              border
+              border-text-light
+              dark:border-border-strong
+              transition ${Astro.props.class}`
+>
+   <WhatsApp class="min-h-full min-w-auto" />
+   <slot />
+</a>

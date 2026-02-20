@@ -8,29 +8,41 @@ import AboutMe from "../components/sections/AboutMe.astro";
 
 import Formation from "../components/sections/Formation.astro";
 import Hero from "../components/sections/Hero/Hero.astro";
+import Services from "@/components/sections/Services.astro";
+import Contact from "@/components/sections/Contact.astro";
 ---
 
 <Layout
-   title="Santiago Goncalvez - Desarrollador Frontend React & TypeScript"
-   description="Desarrollador Frontend enfocado en React y TypeScript. Construyo interfaces rápidas, escalables y con foco en rendimiento y experiencia de usuario."
+   title="Santiago Goncalvez | Desarrollo Web & Sistemas a Medida"
+   description="Potenciá tu negocio con sitios web de alto rendimiento. Especialista en React y Astro para crear interfaces rápidas, modernas y escalables a medida."
 >
-   <main class="w-full  sm:pt-24 pt-24 md:pt-48  px-5 flex flex-col sm:gap-24 gap-16">
+   <main
+      class="w-full md:pt-26 sm:pt-24 pt-24 px-5 flex flex-col sm:gap-24 gap-16"
+   >
       <SectionContainer>
          <Hero />
       </SectionContainer>
 
-      <SectionContainer id="proyectos" class="no-mobile-motion">
+      <SectionContainer id="soluciones">
+         <Services />
+      </SectionContainer>
+
+      <SectionContainer id="proyectos">
          <Projects />
       </SectionContainer>
 
-      <SectionContainer id="sobre-mi" class="no-mobile-motion">
+      <SectionContainer id="sobre-mi">
          <AboutMe />
       </SectionContainer>
 
-      <SectionContainer id="formacion" class="no-mobile-motion">
+      <SectionContainer id="formacion">
          <Formation />
+      </SectionContainer>
+
+      <SectionContainer id="contacto">
+         <Contact />
       </SectionContainer>
    </main>
 
-   <KeyboardManager/>
+   <!-- <KeyboardManager /> -->
 </Layout>

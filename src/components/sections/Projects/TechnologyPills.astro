@@ -11,6 +11,7 @@ import ReactQueryLogo from "@icons/ReactQueryLogo.astro";
 import ReduxToolkit from "@icons/ReduxToolkit.astro";
 import VitestLogo from "@icons/VitestLogo.astro";
 import TechnologyPill from "./TechnologyPill.astro";
+import AstroLogo from "@icons/Astro.astro";
 
 const TECH_MAP = {
    tailwind: { name: "Tailwind", color: "", icon: TailwindLogo },
@@ -24,6 +25,7 @@ const TECH_MAP = {
    reactquery: { name: "React Query", color: "", icon: ReactQueryLogo },
    reduxtoolkit: { name: "Redux Toolkit", color: "", icon: ReduxToolkit },
    vitest: { name: "Vitest", color: "#00FF74", icon: VitestLogo },
+   astro: { name: "Astro", color: "#00FF74", icon: AstroLogo },
 } as const;
 
 type TechKey = keyof typeof TECH_MAP;
@@ -44,7 +46,14 @@ const isTechKey = (key: string): key is TechKey => {
       techs.map((key) => {
          const lowerKey = key.toLowerCase();
 
-         if (!isTechKey(lowerKey)) return null;
+         if (!isTechKey(lowerKey)) {
+            return (
+               <TechnologyPill
+                  name={key.toUpperCase()}
+                  class="group transition hover:-translate-y-1"
+               />
+            );
+         }
 
          const { name, icon: TechLogo, color } = TECH_MAP[lowerKey];
 

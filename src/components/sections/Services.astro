@@ -1,0 +1,82 @@
+---
+import Subtitle from "@shared/Subtitle.astro";
+
+// Nota: Podés reemplazar estos SVGs por tus propios componentes de íconos en @icons
+const SERVICES = [
+   {
+      title: "Velocidad extrema y SEO técnico",
+      subtitle: "PERFORMANCE · ASTRO",
+      description:
+         "Sitios web estáticos que cargan en milisegundos. Maximizo las métricas de Core Web Vitals para dominar en buscadores y retener a cada usuario.",
+      icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-full h-full"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>`,
+   },
+   {
+      title: "Interfaces dinámicas y fluidas",
+      subtitle: "INTERACTIVIDAD · REACT",
+      description:
+         "Desarrollo de aplicaciones modernas y reactivas. Transformo flujos de datos complejos en experiencias de usuario intuitivas y sin fricciones.",
+      icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-full h-full"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" /></svg>`,
+   },
+   {
+      title: "Sistemas robustos a medida",
+      subtitle: "ARQUITECTURA · INGENIERÍA",
+      description:
+         "Adiós a las plantillas limitantes. Aplico principios de ingeniería de software para construir bases de código limpias, seguras y listas para escalar.",
+      icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-full h-full"><path stroke-linecap="round" stroke-linejoin="round" d="M6.936 3.276h9.927c.892 0 1.46.984 1.014 1.764l-2.022 3.54h2.516c.883 0 1.45.973 1.023 1.748L11.532 21.6c-.457.8-1.666.8-2.123 0l-2.03-3.552h-2.51c-.88 0-1.448-.968-1.026-1.743l2.026-3.546H3.353c-.886 0-1.455-.978-1.017-1.76l5.614-9.832c.45-.788 1.656-.788 2.106-.008z" /></svg>`,
+   }, // Nota: Cambié este último ícono a uno que funciona mejor si el anterior falla, podés usar Heroicons de Server o Code.
+];
+---
+
+<Subtitle class="flex items-center gap-x-4 group mb-8">
+   <div class="size-7 text-border-strong dark:text-text-highlighted">
+      <svg
+         xmlns="http://www.w3.org/2000/svg"
+         fill="none"
+         viewBox="0 0 24 24"
+         stroke-width="1.5"
+         stroke="currentColor"
+         class="w-full h-full"
+      >
+         <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"
+         ></path>
+      </svg>
+   </div>
+   <span>Soluciones</span>
+</Subtitle>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+   {
+      SERVICES.map((service) => (
+         <article class="group relative overflow-hidden rounded-xl p-6 md:p-8 flex flex-col transition-all duration-500 bg-bg-white border border-border-strong/5 shadow-sm dark:bg-bg-surface dark:border-border-subtle hover:scale-[1.01] hover:border-border-strong/20 dark:hover:border-text-highlighted/30">
+            {/* Efecto de brillo sutil en la esquina (Extraído de Formation.astro) */}
+            <div class="absolute top-0 right-0 -mr-10 -mt-10 w-32 h-32 rounded-full bg-text-muted/5 dark:bg-white/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+            <div class="relative w-full">
+               <div class="flex items-center justify-between mb-6">
+                  <span class="text-[10px] font-bold uppercase tracking-widest text-text-muted dark:text-text-highlighted border border-border-strong/10 dark:border-border-subtle px-4 py-1.5 rounded-full bg-bg-deep/5 dark:bg-bg-base">
+                     {service.subtitle}
+                  </span>
+
+                  <div
+                     class="flex justify-center items-center size-7 text-text-dimmed dark:text-text-muted group-hover:text-bg-deep dark:group-hover:text-title transition-colors"
+                     set:html={service.icon}
+                  />
+               </div>
+            </div>
+
+            <div class="relative flex-grow flex flex-col">
+               <h3 class="text-xl font-bold text-bg-deep dark:text-title leading-tight">
+                  {service.title}
+               </h3>
+
+               <p class="text-text-muted dark:text-text mt-3 leading-relaxed opacity-90 text-sm md:text-base">
+                  {service.description}
+               </p>
+            </div>
+         </article>
+      ))
+   }
+</div>
