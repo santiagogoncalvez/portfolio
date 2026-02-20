@@ -3,11 +3,21 @@ import SunIcon from "@icons/Sun.astro";
 import MoonIcon from "@icons/Moon.astro";
 import SystemIcon from "@icons/System.astro";
 
-const { id } = Astro.props; // Lo mantenemos por si quieres IDs únicos, pero no es vital para la lógica
+// Añadimos 'position' a las props, por defecto 'down'
+interface Props {
+   id?: string;
+   position?: "up" | "down";
+}
+
+const { id, position = "down" } = Astro.props;
 const THEMES = ["Claro", "Oscuro", "Sistema"];
+
+// Definimos dinámicamente la clase de posición y el origen de la animación
+const positionClasses =
+   position === "up" ? "bottom-12 origin-bottom" : "top-10 origin-top";
 ---
 
-<div class="relative ml-1 mr-1 theme-toggle-container" data-theme-root={id}>
+<div class="relative theme-toggle-container" data-theme-root={id}>
    <button
       aria-haspopup="menu"
       class="flex items-center justify-center h-9 min-w-9 px-2 hover:cursor-pointer rounded-lg border bg-bg-white dark:bg-bg-surface border-text-light dark:border-border-strong transition"
@@ -30,20 +40,17 @@ const THEMES = ["Claro", "Oscuro", "Sistema"];
    </button>
 
    <div
-      class="absolute hidden top-10 right-0 min-w-[9rem] p-1 rounded-md border bg-[var(--color-bg-white)] border-text-light shadow-lg dark:bg-[var(--color-bg-elevated)] dark:border-[var(--color-border-subtle)] z-30"
+      class:list={[
+         "absolute hidden right-0 min-w-[9rem] p-1 rounded-md border bg-[var(--color-bg-white)] border-text-light shadow-lg dark:bg-[var(--color-bg-elevated)] dark:border-[var(--color-border-subtle)] z-30",
+         positionClasses,
+      ]}
       data-theme-menu
    >
       <ul class="flex flex-col">
          {
             THEMES.map((theme) => (
                <li
-                  class="px-2 py-1.5 rounded-sm cursor-pointer text-border-strong
-            hover:bg-black/5
-            hover:text-bg-deep
-            dark:hover:text-text-light
-            dark:text-text
-            dark:hover:bg-white/5
-            transition-colors"
+                  class="px-2 py-1.5 rounded-sm cursor-pointer text-border-strong hover:bg-black/5 hover:text-bg-deep dark:hover:text-text-light dark:text-text dark:hover:bg-white/5 transition-colors"
                   data-theme={theme.toLowerCase()}
                >
                   {theme}
@@ -55,7 +62,7 @@ const THEMES = ["Claro", "Oscuro", "Sistema"];
 </div>
 
 <style>
-   /* Tus estilos se mantienen igual */
+   /* Mantenemos tus estilos, solo ajustamos la animación para que use el origin definido arriba */
    [data-icon] {
       opacity: 0;
       transform: scale(0.85);
@@ -74,6 +81,7 @@ const THEMES = ["Claro", "Oscuro", "Sistema"];
    }
    @keyframes scale-up {
       from {
+         /* Usamos scale(0.96) para que no sea tan brusco */
          transform: scale(0.96);
          opacity: 0;
       }

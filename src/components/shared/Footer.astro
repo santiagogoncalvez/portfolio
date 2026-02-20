@@ -14,10 +14,10 @@ const currentYear = new Date().getFullYear();
    class="opacity-98 mt-24 mb-24 min-w-full flex justify-center px-5"
 >
    <div
-      class="w-full mx-auto lg:max-w-5xl flex flex-col items-center justify-between gap-y-4 flex-wrap rounded-lg"
+      class="w-full mx-auto lg:max-w-5xl flex flex-col items-center justify-between gap-y-12 flex-wrap rounded-lg"
    >
       <div
-         class="w-full flex sm:flex-row flex-col flex-col-reverse sm:justify-between justify-center gap-15"
+         class="w-full flex sm:flex-row flex-col sm:justify-between justify-center gap-12"
       >
          <div class="flex flex-col gap-4 text-border-strong dark:text-text">
             <LogoSG />
@@ -41,14 +41,14 @@ const currentYear = new Date().getFullYear();
                <span>Disponible para nuevos proyectos</span>
             </a>
 
-            <span
+            <!-- <span
                >&copy; {currentYear}
                <a
                   href="https://www.linkedin.com/in/santiagogoncalvez"
                   target="_blank"
                   class="hover:underline">Santiago Goncalvez</a
                >.
-            </span>
+            </span> -->
          </div>
 
          <div class="flex gap-x-25 gap-y-15 flex-wrap">
@@ -129,9 +129,20 @@ const currentYear = new Date().getFullYear();
                   </li>
                </ul>
             </div>
-
-            <ThemeToggle id="theme-desktop" />
          </div>
+      </div>
+
+      <div class="w-full flex justify-between items-center text-border-strong dark:text-text">
+         <span
+            >&copy; {currentYear}
+            <a
+               href="https://www.linkedin.com/in/santiagogoncalvez"
+               target="_blank"
+               class="hover:underline">Santiago Goncalvez</a
+            >.
+         </span>
+
+         <ThemeToggle id="theme-desktop" position="up"/>
       </div>
    </div>
 </footer>
