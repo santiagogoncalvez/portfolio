@@ -1,8 +1,8 @@
 ---
-import Subtitle from "@shared/Subtitle.astro";
-import LinkButton from "@shared/LinkButton.astro";
 import CtaButton from "../shared/CtaButton.astro";
 import CtaButtonInner from "../shared/CtaButtonInner.astro";
+import LinkedIn from "@/icons/LinkedIn.astro";
+import WhatsApp from "@/icons/WhatsApp.astro";
 
 // Nota: Podés importar tus iconos de Mail, LinkedIn o WhatsApp aquí
 ---
@@ -58,10 +58,16 @@ import CtaButtonInner from "../shared/CtaButtonInner.astro";
             class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
          >
             <CtaButton class="rounded-full px-6 py-2.5 text-lg"
-               >Agendar una charla</CtaButton
+               >
+               <WhatsApp class="min-h-full min-w-auto" />
+               
+               Agendar una charla</CtaButton
             >
 
-            <CtaButtonInner>Linkedin</CtaButtonInner>
+            <CtaButtonInner>
+               <LinkedIn class="min-h-full min-w-auto" variant="outline" />
+               <span> Linkedin</span>
+            </CtaButtonInner>
          </div>
 
          <div class="pt-8 flex flex-col items-center gap-2">

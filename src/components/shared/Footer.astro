@@ -4,6 +4,7 @@ import LogoSG from "./LogoSG.astro";
 import LinkedInIcon from "@icons/LinkedIn.astro";
 import GitHubIcon from "@icons/GitHub.astro";
 import MailIcon from "@icons/Mail.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 
 const currentYear = new Date().getFullYear();
 ---
@@ -128,6 +129,8 @@ const currentYear = new Date().getFullYear();
                   </li>
                </ul>
             </div>
+
+            <ThemeToggle id="theme-desktop" />
          </div>
       </div>
    </div>

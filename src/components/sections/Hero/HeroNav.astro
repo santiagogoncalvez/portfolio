@@ -1,14 +1,17 @@
 ---
 import CtaButton from "@/components/shared/CtaButton.astro";
 import CtaButtonInner from "@/components/shared/CtaButtonInner.astro";
+import WhatsApp from "@/icons/WhatsApp.astro";
 ---
 
 <nav class="w-full flex items-center gap-x-4 gap-y-6 flex-col">
    <div
       class="flex flex-col sm:flex-row gap-4 items-center justify-center w-full"
    >
-      <CtaButton class="rounded-full px-6 py-2.5 text-lg"
-         >Trabajemos juntos</CtaButton
+      <CtaButton class="rounded-full px-6 py-2.5 text-lg">
+         <WhatsApp class="min-h-full min-w-auto" />
+
+         Trabajemos juntos</CtaButton
       >
 
       <CtaButtonInner>Ver proyectos</CtaButtonInner>
