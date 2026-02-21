@@ -1,9 +1,22 @@
 ---
-import { whatsappUrl } from "@/constants/contact.mjs";
+// CtaButton.astro
+import {
+   whatsappUrlprojectMessage,
+   whatsappUrlchatMessage,
+} from "@/constants/contact.mjs";
+
+interface Props {
+   class?: string;
+   isChatIntent?: boolean; // Cambiado de isCharla
+}
+
+const { class: className, isChatIntent = false } = Astro.props;
+
+const url = isChatIntent ? whatsappUrlchatMessage : whatsappUrlprojectMessage;
 ---
 
 <a
-   href={whatsappUrl}
+   href={url}
    target="_blank"
    rel="noopener noreferrer"
    class=`flex items-center justify-center gap-2
