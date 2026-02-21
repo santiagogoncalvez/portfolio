@@ -61,65 +61,76 @@ const PROJECTS = [
 ---
 
 <div id="projects-container">
-      <Subtitle class="flex items-center gap-x-4 group">
-         <Code
-            class="sm:size-8 size-7 text-border-strong dark:text-text-highlighted"
-         />
-         <span class="tracking-tight">Proyectos</span>
-      </Subtitle>
+   <Subtitle class="flex items-center gap-x-4 group">
+      <Code
+         class="sm:size-8 size-7 text-border-strong dark:text-text-highlighted"
+      />
+      <span class="tracking-tight">Proyectos</span>
+   </Subtitle>
 
    <div class="flex flex-col gap-y-12 mt-12">
       {
-         PROJECTS.map(({ image, title, description, tags, link, github }) => (
-            <article class="project-item opacity-0 flex flex-col md:flex-row bg-white/80 dark:bg-transparent border border-black/5 dark:border-border-subtle rounded-lg overflow-hidden shadow-sm hover:shadow-md group transition-[box-shadow,background-color] duration-500 ease-out">
-               {/* Columna Imagen */}
-               <div class="w-full md:w-5/12 flex items-center justify-center p-6 bg-gradient-to-br from-bg-deep/5 to-transparent dark:from-white/5">
-                  <div class="w-full shadow-lg rounded-lg overflow-hidden border border-border-strong/10 dark:border-white/10 transform md:group-hover:-translate-y-1 transition-transform duration-500 ease-out">
-                     <div class="h-6 bg-white/80 dark:bg-[#252525] border-b border-black/5 dark:border-white/5 flex items-center px-3 gap-1.5">
-                        <div class="size-2 rounded-full bg-border-strong/20 dark:bg-white/10" />
-                        <div class="size-2 rounded-full bg-border-strong/20 dark:bg-white/10" />
-                     </div>
-                     <div class="aspect-video overflow-hidden">
-                        <Image
-                           src={IMAGES[image]}
-                           alt={title}
-                           class="w-full h-full object-cover object-top"
-                        />
+         PROJECTS.map(
+            ({ image, title, description, tags, link, github }, index) => (
+               <article class="project-item opacity-0 flex flex-col md:flex-row bg-white/80 dark:bg-transparent border border-black/5 dark:border-border-subtle rounded-lg overflow-hidden shadow-sm hover:shadow-md group transition-[box-shadow,background-color] duration-500 ease-out">
+                  {/* Columna Imagen */}
+                  <div class="w-full md:w-5/12 flex items-center justify-center p-6 bg-gradient-to-br from-bg-deep/5 to-transparent dark:from-white/5">
+                     <div class="w-full shadow-lg rounded-lg overflow-hidden border border-border-strong/10 dark:border-white/10 transform md:group-hover:-translate-y-1 transition-transform duration-500 ease-out">
+                        <div class="h-6 bg-white/80 dark:bg-[#252525] border-b border-black/5 dark:border-white/5 flex items-center px-3 gap-1.5">
+                           <div class="size-2 rounded-full bg-border-strong/20 dark:bg-white/10" />
+                           <div class="size-2 rounded-full bg-border-strong/20 dark:bg-white/10" />
+                        </div>
+                        <div class="aspect-video overflow-hidden">
+                           <Image
+                              src={IMAGES[image]}
+                              alt={`Captura de pantalla del proyecto ${title}`}
+                              widths={[400, 800, 1200]}
+                              sizes={`(max-width: 768px) 95vw, 500px`}
+                              width={700}
+                              height={392}
+                              format="webp"
+                              quality={80}
+                              loading={index === 0 ? "eager" : "lazy"}
+                              decoding={index === 0 ? "sync" : "async"}
+                              fetchpriority={index === 0 ? "high" : "low"}
+                              class="w-full h-full object-cover object-top"
+                           />
+                        </div>
                      </div>
                   </div>
-               </div>
 
-               {/* Columna Contenido */}
-               <div class="w-full md:w-7/12 p-6 md:p-8 flex flex-col justify-center">
-                  <h3 class="lg:text-2xl text-xl font-bold text-bg-deep dark:text-gray-100 mb-3">
-                     {title}
-                  </h3>
-                  <div class="mb-4">
-                     <TechnologyPills techs={tags} />
+                  {/* Columna Contenido */}
+                  <div class="w-full md:w-7/12 p-6 md:p-8 flex flex-col justify-center">
+                     <h3 class="lg:text-2xl text-xl font-bold text-bg-deep dark:text-gray-100 mb-3">
+                        {title}
+                     </h3>
+                     <div class="mb-4">
+                        <TechnologyPills techs={tags} />
+                     </div>
+                     <p class="text-border-strong dark:text-text flex-grow leading-relaxed">
+                        {description}
+                     </p>
+                     <footer class="flex items-center gap-x-4 mt-6 pt-4 border-t border-black/5 dark:border-white/5">
+                        {github && (
+                           <LinkButton href={github} variant="secondary">
+                              <GitHub class="sm:size-5 size-4" />
+                              <span>Código</span>
+                           </LinkButton>
+                        )}
+                        {link && (
+                           <LinkButton
+                              href={link}
+                              ariaLabel={`Ver sitio web del proyecto ${title}`}
+                           >
+                              <span>Ver sitio</span>
+                              <ExternalLink class="sm:size-5 size-4" />
+                           </LinkButton>
+                        )}
+                     </footer>
                   </div>
-                  <p class="text-border-strong dark:text-text flex-grow leading-relaxed">
-                     {description}
-                  </p>
-                  <footer class="flex items-center gap-x-4 mt-6 pt-4 border-t border-black/5 dark:border-white/5">
-                     {github && (
-                        <LinkButton href={github} variant="secondary">
-                           <GitHub class="sm:size-5 size-4" />
-                           <span>Código</span>
-                        </LinkButton>
-                     )}
-                     {link && (
-                        <LinkButton
-                           href={link}
-                           ariaLabel={`Ver sitio web del proyecto ${title}`}
-                        >
-                           <span>Ver sitio</span>
-                           <ExternalLink class="sm:size-5 size-4" />
-                        </LinkButton>
-                     )}
-                  </footer>
-               </div>
-            </article>
-         ))
+               </article>
+            ),
+         )
       }
    </div>
 </div>
