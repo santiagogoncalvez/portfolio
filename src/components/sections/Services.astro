@@ -12,7 +12,7 @@ const SERVICES = [
       description:
          "Sitios web estáticos que cargan en milisegundos. Maximizo las métricas de Core Web Vitals para dominar en buscadores y retener a cada usuario.",
       icon: GaugeIcon,
-      label: "Métricas Core Web Vitals", // Etiqueta técnica en español
+      label: "Métricas Core Web Vitals",
    },
    {
       title: "Interfaces dinámicas y fluidas",
@@ -20,7 +20,7 @@ const SERVICES = [
       description:
          "Desarrollo de aplicaciones modernas y reactivas. Transformo flujos de datos complejos en experiencias de usuario intuitivas y sin fricciones.",
       icon: LayersIcon,
-      label: "UX Reactiva e Intuitiva", // Etiqueta técnica en español
+      label: "UX Reactiva e Intuitiva",
    },
    {
       title: "Sistemas robustos a medida",
@@ -28,67 +28,96 @@ const SERVICES = [
       description:
          "Adiós a las plantillas limitantes. Aplico principios de ingeniería de software para construir bases de código limpias, seguras y listas para escalar.",
       icon: CpuIcon,
-      label: "Código Limpio y Escalable", // Etiqueta técnica en español
+      label: "Código Limpio y Escalable",
    },
 ];
 ---
 
-<Subtitle class="flex items-center gap-x-4 group">
-   <div class="size-7 text-border-strong dark:text-text-highlighted">
-      <GridIcon class="w-full h-full" />
-   </div>
-   <span>Soluciones</span>
-</Subtitle>
+<div id="services-container" class="w-full">
+      <Subtitle class="flex items-center gap-x-4 group mb-12">
+         <div
+            class="sm:size-8 size-7 text-border-strong dark:text-text-highlighted"
+         >
+            <GridIcon class="w-full h-full" />
+         </div>
+         <span>Soluciones</span>
+      </Subtitle>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-   {
-      SERVICES.map(({ icon: Icon, subtitle, title, description, label }) => (
-         <article class="group relative flex flex-col p-8 rounded-lg transition-all duration-500 bg-white/80 dark:bg-bg-surface border border-border-card-outline dark:border-border-strong/80 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] dark:hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)]">
-            <div class="absolute inset-0 bg-gradient-to-br from-text-highlighted/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg pointer-events-none" />
+   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {
+         SERVICES.map(({ icon: Icon, subtitle, title, description, label }) => (
+            <article
+               class="service-item opacity-0 group relative flex flex-col p-8 rounded-lg bg-white/80 dark:bg-bg-surface border border-border-card-outline dark:border-border-strong/80 
+               /* INGENIERÍA DE ANIMACIÓN: 
+                  1. Evitamos transition-all para no chocar con el 'y' de Motion.
+                  2. Declaramos explícitamente qué transicionar para el hover.
+                  3. El transform solo se transiciona al hacer hover.
+               */
+               transition-[box-shadow,background-color,border-color] duration-500 ease-out
+               hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] dark:hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)]
+               hover:-translate-y-1 hover:transition-transform"
+            >
+               <div class="absolute inset-0 bg-gradient-to-br from-text-highlighted/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg pointer-events-none" />
 
-            <div class="relative flex flex-col h-full">
-               <div class="relative size-12 mb-8 flex items-center justify-center rounded-lg bg-bg-deep/[0.03] dark:bg-white/[0.03] border border-black/[0.08] dark:border-white/[0.08] group-hover:border-text-highlighted/30 transition-all duration-500">
-                  <div class="absolute inset-0 bg-text-highlighted/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+               <div class="relative flex flex-col h-full">
+                  <div class="relative size-12 mb-8 flex items-center justify-center rounded-lg bg-bg-deep/[0.03] dark:bg-white/[0.03] border border-black/[0.08] dark:border-white/[0.08] group-hover:border-text-highlighted/30 transition-all duration-500">
+                     <div class="absolute inset-0 bg-text-highlighted/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                     <div class="relative size-6 text-text-dimmed dark:text-text-muted group-hover:text-bg-deep dark:group-hover:text-title transition-colors duration-300">
+                        <Icon class="w-full h-full" />
+                     </div>
+                  </div>
 
-                  <div class="relative size-6 text-text-dimmed dark:text-text-muted group-hover:text-bg-deep dark:group-hover:text-title transition-colors duration-300">
-                     <Icon class="w-full h-full" />
+                  <div class="flex flex-col gap-y-2">
+                     <span class="text-xs font-bold uppercase tracking-[0.25em] text-text-muted/95 dark:text-text-highlighted">
+                        {subtitle}
+                     </span>
+                     <h3 class="text-xl font-bold text-bg-deep dark:text-title tracking-tight ">
+                        {title}
+                     </h3>
+                  </div>
+
+                  <p class="text-base leading-relaxed text-border-strong dark:text-text mt-4 flex-grow font-light">
+                     {description}
+                  </p>
+
+                  <div class="mt-8 pt-6 border-t border-black/[0.03] dark:border-white/[0.05] flex items-center justify-between">
+                     <span class="text-xs font-mono tracking-widest text-text-muted/90 dark:text-text-highlighted uppercase">
+                        {label}
+                     </span>
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="size-4 text-text-muted/20 group-hover:text-text-highlighted/50 group-hover:translate-x-1 transition-all"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                     >
+                        <path
+                           stroke-linecap="round"
+                           stroke-linejoin="round"
+                           stroke-width="2"
+                           d="M13 7l5 5m0 0l-5 5m5-5H6"
+                        />
+                     </svg>
                   </div>
                </div>
-
-               <div class="flex flex-col gap-y-2">
-                  <span class="text-xs font-bold uppercase tracking-[0.25em] text-text-muted/95 dark:text-text-highlighted">
-                     {subtitle}
-                  </span>
-                  <h3 class="text-xl font-bold text-bg-deep dark:text-title tracking-tight ">
-                     {title}
-                  </h3>
-               </div>
-
-               <p class="text-base leading-relaxed text-border-strong dark:text-text mt-4 flex-grow  font-light">
-                  {description}
-               </p>
-
-               <div class="mt-8 pt-6 border-t border-black/[0.03] dark:border-white/[0.05] flex items-center justify-between">
-                  <span class="text-xs font-mono tracking-widest text-text-muted/90 dark:text-text-highlighted uppercase">
-                     {label}
-                  </span>
-                  <svg
-                     xmlns="http://www.w3.org/2000/svg"
-                     class="size-4 text-text-muted/20 group-hover:text-text-highlighted/50 group-hover:translate-x-1 transition-all"
-                     fill="none"
-                     viewBox="0 0 24 24"
-                     stroke="currentColor"
-                  >
-                     <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M13 7l5 5m0 0l-5 5m5-5H6"
-                     />
-                  </svg>
-               </div>
-            </div>
-         </article>
-      ))
-   }
+            </article>
+         ))
+      }
+   </div>
 </div>
+
+<script>
+   import { animate, stagger, inView } from "motion";
+
+   inView("#services-container", () => {
+      animate(
+         ".service-item",
+         { opacity: [0, 1], y: [12, 0] },
+         {
+            delay: stagger(0.05),
+            duration: 0.35,
+            easing: [0.22, 1, 0.36, 1],
+         },
+      );
+   });
+</script>

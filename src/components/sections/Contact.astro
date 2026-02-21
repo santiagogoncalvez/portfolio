@@ -8,10 +8,12 @@ import WhatsApp from "@/icons/WhatsApp.astro";
 <div class="w-full">
    <div
       id="contact-card"
-      class="group relative overflow-hidden rounded-xl border border-border-card-outline dark:border-white/10
+      class="contact-element opacity-0 group relative overflow-hidden rounded-xl border border-border-card-outline dark:border-white/10
              bg-white dark:bg-bg-deep
              p-8 md:p-20 text-center
-             shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-none transition-colors duration-500
+             shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-none
+             /* Transiciones específicas para no chocar con Motion */
+             transition-[border-color,background-color] duration-500
              hover:border-border-strong/15
              dark:hover:border-text-highlighted/20"
    >
@@ -19,13 +21,11 @@ import WhatsApp from "@/icons/WhatsApp.astro";
       <div
          class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 z-0"
       >
-         {/* Luz para Light Mode: Sutil sombra gris azulada */}
          <div
             class="absolute inset-0 dark:hidden"
             style="background: radial-gradient(350px circle at var(--mouse-x) var(--mouse-y), rgba(0, 0, 0, 0.05), transparent 80%);"
          >
          </div>
-         {/* Luz para Dark Mode: Brillo de "cristal" */}
          <div
             class="absolute inset-0 hidden dark:block"
             style="background: radial-gradient(350px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.04), transparent 80%);"
@@ -33,7 +33,7 @@ import WhatsApp from "@/icons/WhatsApp.astro";
          </div>
       </div>
 
-      {/* 2. Tus efectos estáticos de fondo (Desenfoques) */}
+      {/* 2. Desenfoques de fondo */}
       <div
          class="absolute -top-24 -left-24 size-96 rounded-full bg-text-highlighted/[0.08] dark:bg-text-highlighted/5 blur-[100px] pointer-events-none z-0"
       >
@@ -43,18 +43,16 @@ import WhatsApp from "@/icons/WhatsApp.astro";
       >
       </div>
 
-      {
-         /* 3. Contenido de la Card (Asegurado con z-10 para que esté por encima de la luz) */
-      }
+      {/* 3. Contenido de la Card */}
       <div class="relative max-w-2xl mx-auto space-y-6 z-1 pointer-events-auto">
          <h3
-            class="text-3xl md:text-5xl font-bold text-bg-deep dark:text-title tracking-tighter text-pretty"
+            class="contact-content opacity-0 text-3xl md:text-5xl font-bold text-bg-deep dark:text-title tracking-tighter text-pretty"
          >
             ¿Tenés un proyecto en mente?
          </h3>
 
          <p
-            class="md:text-lg text-base text-border-strong dark:text-text leading-relaxed"
+            class="contact-content opacity-0 md:text-lg text-base text-border-strong dark:text-text leading-relaxed"
          >
             Colaboro con marcas y profesionales en soluciones digitales
             escalables. Si buscás transformar una idea en una interfaz real y
@@ -62,13 +60,12 @@ import WhatsApp from "@/icons/WhatsApp.astro";
          </p>
 
          <div
-            class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
+            class="contact-content opacity-0 flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
          >
             <CtaButton class="rounded-full px-6 py-2.5 md:text-lg text-base">
                <WhatsApp class="min-h-full min-w-auto" />
-
-               Agendar una charla</CtaButton
-            >
+               Agendar una charla
+            </CtaButton>
 
             <CtaButtonInner
                href="https://www.linkedin.com/in/santiagogoncalvez"
@@ -79,7 +76,9 @@ import WhatsApp from "@/icons/WhatsApp.astro";
             </CtaButtonInner>
          </div>
 
-         <div class="pt-4 flex flex-col items-center gap-2">
+         <div
+            class="contact-content opacity-0 pt-4 flex flex-col items-center gap-2"
+         >
             <div class="flex items-center gap-x-3 px-4 py-2">
                <span class="relative flex h-2 w-2">
                   <span
@@ -101,25 +100,41 @@ import WhatsApp from "@/icons/WhatsApp.astro";
 </div>
 
 <script>
-   // Esta función inicia el efecto
-   function initSpotlight() {
+   import { animate, stagger, inView } from "motion";
+
+   function initContactAnimations() {
+      // 1. Animación del contenedor principal (Scale + Fade)
+      inView("#contact-card", () => {
+         animate(
+            "#contact-card",
+            {
+               opacity: [0, 1],
+               scale: [0.98, 1],
+               y: [20, 0],
+            },
+            { duration: 0.5, easing: [0.22, 1, 0.36, 1] },
+         );
+
+         // 2. Animación del contenido interno (Cascada)
+         animate(
+            ".contact-content",
+            { opacity: [0, 1], y: [10, 0] },
+            { delay: stagger(0.05), duration: 0.3 },
+         );
+      });
+
+      // 3. Lógica de Spotlight (Tu código original)
       const card = document.getElementById("contact-card");
-
       if (!card) return;
-
       card.addEventListener("mousemove", (e) => {
          const rect = card.getBoundingClientRect();
          const x = e.clientX - rect.left;
          const y = e.clientY - rect.top;
-
          card.style.setProperty("--mouse-x", `${x}px`);
          card.style.setProperty("--mouse-y", `${y}px`);
       });
    }
 
-   // 1. Ejecutamos normalmente por si NO usás ViewTransitions
-   initSpotlight();
-
-   // 2. Ejecutamos en el evento de Astro por si SÍ usás ViewTransitions
-   document.addEventListener("astro:page-load", initSpotlight);
+   initContactAnimations();
+   document.addEventListener("astro:page-load", initContactAnimations);
 </script>

@@ -18,7 +18,7 @@ const IMAGES: Record<string, ImageMetadata> = {
    "/project-hacker-stories.webp": imageHakcerStories,
    "/project-core-crud-interface.webp": imageCrud,
    "/project-tu-pais.webp": imageTuPais,
-   "/project-isabellopez.webp": imageIsabelLopez,
+   "/project-isabel-lopez.webp": imageIsabelLopez,
 };
 
 const PROJECTS = [
@@ -27,10 +27,8 @@ const PROJECTS = [
       description:
          "Diseño y desarrollo de una landing page de alta conversión para marca personal. Optimicé la velocidad de carga para reducir la tasa de rebote y desarrollé una interfaz que proyecta autoridad y confianza, integrando canales de contacto directo para maximizar la captación de clientes.",
       link: "https://isabellopez.com.ar",
-
       github: "",
-
-      image: "/project-isabellopez.webp",
+      image: "/project-isabel-lopez.webp",
       tags: ["Astro", "Tailwind", "UI/UX", "SEO"],
    },
    {
@@ -48,9 +46,7 @@ const PROJECTS = [
       description:
          "Cliente de Hacker News centrado en arquitecturas escalables. Implementé scroll infinito, persistencia de datos y gestión de historial. Optimizado con React Router y React Query, incluyendo una suite de tests robusta con Vitest para asegurar la integridad del producto.",
       link: "https://hackerstories-dev.web.app",
-
       github: "https://github.com/santiagogoncalvez/hacker-stories",
-
       image: "/project-hacker-stories.webp",
       tags: [
          "typescript",
@@ -64,24 +60,21 @@ const PROJECTS = [
 ];
 ---
 
-<!-- <Subtitle class="flex flex-row items-center gap-x-4">
-   <Code class="size-8" />
-   <span>Proyectos</span>
-</Subtitle> -->
-<Subtitle class="flex items-center gap-x-4 group">
-   <Code class="size-7 text-border-strong dark:text-text-highlighted" />
-   <span class="tracking-tight">Proyectos</span>
-</Subtitle>
+<div id="projects-container">
+      <Subtitle class="flex items-center gap-x-4 group">
+         <Code
+            class="sm:size-8 size-7 text-border-strong dark:text-text-highlighted"
+         />
+         <span class="tracking-tight">Proyectos</span>
+      </Subtitle>
 
-<div class="flex flex-col gap-y-12">
-   {
-      PROJECTS.map(
-         ({ image, title, description, tags, link, github }, index) => (
-            <article class="flex flex-col md:flex-row bg-white/80 dark:bg-transparent border border-black/5 dark:border-border-subtle rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group">
-               {/* Columna Imagen (Full Bleed - Sin márgenes internos) */}
+   <div class="flex flex-col gap-y-12 mt-12">
+      {
+         PROJECTS.map(({ image, title, description, tags, link, github }) => (
+            <article class="project-item opacity-0 flex flex-col md:flex-row bg-white/80 dark:bg-transparent border border-black/5 dark:border-border-subtle rounded-lg overflow-hidden shadow-sm hover:shadow-md group transition-[box-shadow,background-color] duration-500 ease-out">
+               {/* Columna Imagen */}
                <div class="w-full md:w-5/12 flex items-center justify-center p-6 bg-gradient-to-br from-bg-deep/5 to-transparent dark:from-white/5">
-                  <div class="w-full shadow-lg rounded-lg overflow-hidden border border-border-strong/10 dark:border-white/10 transform md:group-hover:-translate-y-1 transition-transform duration-500">
-                     {/* Barra superior del navegador */}
+                  <div class="w-full shadow-lg rounded-lg overflow-hidden border border-border-strong/10 dark:border-white/10 transform md:group-hover:-translate-y-1 transition-transform duration-500 ease-out">
                      <div class="h-6 bg-white/80 dark:bg-[#252525] border-b border-black/5 dark:border-white/5 flex items-center px-3 gap-1.5">
                         <div class="size-2 rounded-full bg-border-strong/20 dark:bg-white/10" />
                         <div class="size-2 rounded-full bg-border-strong/20 dark:bg-white/10" />
@@ -101,15 +94,12 @@ const PROJECTS = [
                   <h3 class="lg:text-2xl text-xl font-bold text-bg-deep dark:text-gray-100 mb-3">
                      {title}
                   </h3>
-
                   <div class="mb-4">
                      <TechnologyPills techs={tags} />
                   </div>
-
                   <p class="text-border-strong dark:text-text flex-grow leading-relaxed">
                      {description}
                   </p>
-
                   <footer class="flex items-center gap-x-4 mt-6 pt-4 border-t border-black/5 dark:border-white/5">
                      {github && (
                         <LinkButton href={github} variant="secondary">
@@ -129,7 +119,26 @@ const PROJECTS = [
                   </footer>
                </div>
             </article>
-         ),
-      )
-   }
+         ))
+      }
+   </div>
 </div>
+
+<script>
+   import { animate, stagger, inView } from "motion";
+
+   inView("#projects-container", () => {
+      animate(
+         ".project-item",
+         {
+            opacity: [0, 1],
+            y: [20, 0],
+         },
+         {
+            delay: stagger(0.05),
+            duration: 0.3,
+            easing: [0.22, 1, 0.36, 1],
+         },
+      );
+   });
+</script>

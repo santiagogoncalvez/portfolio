@@ -7,26 +7,22 @@ import TypeScriptIcon from "@icons/TypeScriptLogo.astro";
 const technologies = [
    { name: "React", icon: ReactIcon },
    { name: "TypeScript", icon: TypeScriptIcon },
-   // { name: "JavaScript", icon: JavaScriptIcon },
    { name: "Astro", icon: AstroIcon },
    { name: "Tailwind", icon: TailwindIcon },
 ];
 ---
 
-<div class="w-full">
+<div id="tech-container" class="w-full">
    <div class="flex flex-col items-center px-4">
       <div
+         id="tech-container"
          class="grid grid-cols-2 sm:flex sm:flex-row sm:flex-wrap justify-center gap-3 sm:gap-6 max-w-4xl w-full sm:w-auto"
       >
          {
             technologies.map(({ name, icon: Icon }) => (
-               <div
-                  class="group relative flex items-center justify-center sm:justify-start gap-x-2 px-4 py-2 rounded-full border border-black/7 dark:border-white/3 bg-white/40 dark:bg-white/1 backdrop-blur-sm transition-all duration-300 hover:border-black/15 dark:hover:border-white/10 hover:scale-105
-               text-border-strong/95 dark:text-text
-               "
-               >
+               <div class="tech-pill group relative flex items-center justify-center sm:justify-start gap-x-2 px-4 py-2 rounded-full border border-black/7 dark:border-white/3 bg-white/40 dark:bg-white/1 backdrop-blur-sm transition-all duration-300 hover:border-black/15 dark:hover:border-white/10 hover:scale-105 text-border-strong/95 dark:text-text opacity-0">
                   <Icon class="sm:size-5 size-4" />
-                  <span class="sm:text-base text-sm font-medium  group-hover:text-bg-deep dark:group-hover:text-title transition-colors whitespace-nowrap">
+                  <span class="sm:text-base text-sm font-medium group-hover:text-bg-deep dark:group-hover:text-title transition-colors whitespace-nowrap">
                      {name}
                   </span>
                </div>
@@ -35,3 +31,22 @@ const technologies = [
       </div>
    </div>
 </div>
+
+<script>
+   import { animate, stagger, inView } from "motion";
+
+   inView("#tech-container", () => {
+      animate(
+         ".tech-pill",
+         {
+            opacity: [0, 1],
+         },
+         {
+            // Stagger casi inexistente para que entren prácticamente juntas
+            delay: stagger(0.05),
+            duration: 0.2, // Animación más corta
+            easing: "ease-out", // Salida limpia y sin rebotes
+         },
+      );
+   });
+</script>
