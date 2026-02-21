@@ -33,16 +33,16 @@ const PROJECTS = [
       image: "/project-isabellopez.webp",
       tags: ["Astro", "Tailwind", "UI/UX", "SEO"],
    },
-   // {
-   //    title: "Data Management Dashboard",
-   //    description:
-   //       "Dashboard de usuarios con filtrado avanzado, ordenamiento multicapa y recuperación de datos, con enfoque en optimización de rendimiento y manejo de estado asíncrono.",
-   //    link: "https://userops-dashboard.web.app",
-   //    github:
-   //       "https://github.com/santiagogoncalvez/midudevs-react-course/tree/main/projects/11b-typescript-prueba-tecnica-with-reacty-query",
-   //    image: "/project-typescript-test-with-react-query.webp",
-   //    tags: ["typescript", "React", "ReactQuery", "vite"],
-   // },
+   {
+      title: "Data Management Dashboard",
+      description:
+         "Dashboard de usuarios con filtrado avanzado, ordenamiento multicapa y recuperación de datos, con enfoque en optimización de rendimiento y manejo de estado asíncrono.",
+      link: "https://userops-dashboard.web.app",
+      github:
+         "https://github.com/santiagogoncalvez/midudevs-react-course/tree/main/projects/11b-typescript-prueba-tecnica-with-reacty-query",
+      image: "/project-typescript-test-with-react-query.webp",
+      tags: ["typescript", "React", "ReactQuery", "vite"],
+   },
    {
       title: "Hacker Stories",
       description:
@@ -77,7 +77,7 @@ const PROJECTS = [
    {
       PROJECTS.map(
          ({ image, title, description, tags, link, github }, index) => (
-            <article class="flex flex-col md:flex-row bg-white/50 dark:bg-bg-surface border border-black/5 dark:border-border-subtle rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group">
+            <article class="flex flex-col md:flex-row bg-white/80 dark:bg-transparent border border-black/5 dark:border-border-subtle rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group">
                {/* Columna Imagen (Full Bleed - Sin márgenes internos) */}
                <div class="w-full md:w-5/12 flex items-center justify-center p-6 bg-gradient-to-br from-bg-deep/5 to-transparent dark:from-white/5">
                   <div class="w-full shadow-lg rounded-lg overflow-hidden border border-border-strong/10 dark:border-white/10 transform md:group-hover:-translate-y-1 transition-transform duration-500">
@@ -118,7 +118,10 @@ const PROJECTS = [
                         </LinkButton>
                      )}
                      {link && (
-                        <LinkButton href={link}>
+                        <LinkButton
+                           href={link}
+                           ariaLabel={`Ver sitio web del proyecto ${title}`}
+                        >
                            <span>Ver sitio</span>
                            <ExternalLink class="sm:size-5 size-4" />
                         </LinkButton>

@@ -25,6 +25,7 @@ const currentYear = new Date().getFullYear();
             <a
                href="https://www.linkedin.com/in/santiagogoncalvez"
                target="_blank"
+               rel="noopener noreferrer"
                class="inline-flex items-center gap-2 w-fit
          rounded-md px-2 py-2
           select-none
@@ -33,9 +34,9 @@ const currentYear = new Date().getFullYear();
          transition-colors"
             >
                <span
-                  class="h-2 w-2 shrink-0 rounded-full bg-green-500
-           ring-2 ring-green-500/20
-           dark:ring-green-500/30"
+                  class="h-2 w-2 shrink-0 rounded-full
+           ring-2 ring-green-500
+           dark:ring-green-500"
                   aria-hidden="true"></span>
 
                <span>Disponible para nuevos proyectos</span>
@@ -46,7 +47,7 @@ const currentYear = new Date().getFullYear();
                <a
                   href="https://www.linkedin.com/in/santiagogoncalvez"
                   target="_blank"
-                  class="hover:underline">Santiago Goncalvez</a
+                  class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out">Santiago Goncalvez</a
                >.
             </span> -->
          </div>
@@ -60,33 +61,38 @@ const currentYear = new Date().getFullYear();
                   class="flex flex-col gap-3 text-border-strong dark:text-text"
                >
                   <!-- <li>
-                     <a href="/#top" class="hover:underline me-4 md:me-6"
+                     <a href="/#top" class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6"
                         >Inicio</a
                      >
                   </li> -->
                   <li>
-                     <a href="/#soluciones" class="hover:underline me-4 md:me-6"
-                        >Soluciones</a
+                     <a
+                        href="/#soluciones"
+                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6">Soluciones</a
                      >
                   </li>
                   <li>
-                     <a href="/#proyectos" class="hover:underline me-4 md:me-6"
-                        >Proyectos</a
+                     <a
+                        href="/#proyectos"
+                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6">Proyectos</a
                      >
                   </li>
                   <li>
-                     <a href="/#sobre-mi" class="hover:underline me-4 md:me-6"
-                        >Sobre mí</a
+                     <a
+                        href="/#sobre-mi"
+                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6">Sobre mí</a
                      >
                   </li>
                   <li>
-                     <a href="/#formacion" class="hover:underline me-4 md:me-6"
-                        >Formación</a
+                     <a
+                        href="/#formacion"
+                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6">Formación</a
                      >
                   </li>
                   <li>
-                     <a href="/#contacto" class="hover:underline me-4 md:me-6"
-                        >Contacto</a
+                     <a
+                        href="/#contacto"
+                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6">Contacto</a
                      >
                   </li>
                </ul>
@@ -101,8 +107,9 @@ const currentYear = new Date().getFullYear();
                      <SocialPill
                         href="https://www.linkedin.com/in/santiagogoncalvez"
                         aria-label="Perfil de LinkedIn de Santiago Goncalvez"
+                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out"
                      >
-                        <LinkedInIcon class="size-3 sm:size-4" />
+                        <LinkedInIcon class="size-4" />
                         <span>LinkedIn</span>
                      </SocialPill>
                   </li>
@@ -111,8 +118,9 @@ const currentYear = new Date().getFullYear();
                      <SocialPill
                         href="https://github.com/santiagogoncalvez"
                         aria-label="Perfil de GitHub de Santiago Goncalvez"
+                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out"
                      >
-                        <GitHubIcon class="size-3 sm:size-4" />
+                        <GitHubIcon class="size-4" />
                         <span>GitHub</span>
                      </SocialPill>
                   </li>
@@ -121,9 +129,10 @@ const currentYear = new Date().getFullYear();
                      <SocialPill
                         href="mailto:santiago.goncalvez.dev@gmail.com"
                         aria-label="Correo electrónico de Santiago Goncalvez"
+                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out"
                         copyText="santiago.goncalvez.dev@gmail.com"
                      >
-                        <MailIcon class="size-3 sm:size-4" />
+                        <MailIcon class="size-4" />
                         <span>Email</span>
                      </SocialPill>
                   </li>
@@ -132,17 +141,20 @@ const currentYear = new Date().getFullYear();
          </div>
       </div>
 
-      <div class="w-full flex justify-between items-center text-border-strong dark:text-text">
+      <div
+         class="w-full flex justify-between items-center text-border-strong dark:text-text"
+      >
          <span
             >&copy; {currentYear}
             <a
                href="https://www.linkedin.com/in/santiagogoncalvez"
                target="_blank"
-               class="hover:underline">Santiago Goncalvez</a
+               rel="noopener noreferrer"
+               class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out">Santiago Goncalvez</a
             >.
          </span>
 
-         <ThemeToggle id="theme-desktop" position="up"/>
+         <ThemeToggle id="theme-desktop" position="up" />
       </div>
    </div>
 </footer>

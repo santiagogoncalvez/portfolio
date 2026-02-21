@@ -12,7 +12,7 @@ import SectionContainer from "../components/shared/SectionContainer.astro";
    <meta slot="head" name="robots" content="noindex" />
 
    <div
-      class="w-full sm:pt-24 pt-24 md:pt-48 px-5 flex flex-col sm:gap-24 gap-16"
+      class="w-full md:pt-26 sm:pt-24 pt-22 px-5 flex flex-col sm:gap-24 gap-16"
    >
       <SectionContainer>
          <div class="flex flex-row items-center gap-8">
@@ -21,9 +21,9 @@ import SectionContainer from "../components/shared/SectionContainer.astro";
                <header
                   class="flex items-center flex-row flex-wrap md:gap-4 gap-2"
                >
-                  <Badge>
-                     <strong>Error 404</strong>
-                  </Badge>
+                  <strong class="text-border-strong dark:text-text"
+                     >Error 404</strong
+                  >
                </header>
 
                <div
@@ -61,5 +61,5 @@ import SectionContainer from "../components/shared/SectionContainer.astro";
             </div>
          </div>
       </SectionContainer>
-   </main>
+   </div>
 </Layout>

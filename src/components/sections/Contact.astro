@@ -3,74 +3,84 @@ import CtaButton from "../shared/CtaButton.astro";
 import CtaButtonInner from "../shared/CtaButtonInner.astro";
 import LinkedIn from "@/icons/LinkedIn.astro";
 import WhatsApp from "@/icons/WhatsApp.astro";
-
-// Nota: Podés importar tus iconos de Mail, LinkedIn o WhatsApp aquí
 ---
 
-<section class="">
-   <!-- <Subtitle class="flex items-center gap-x-4 group mb-8">
-      <div class="size-7 text-border-strong dark:text-text-highlighted">
-         <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-full h-full"
-         >
-            <path
-               stroke-linecap="round"
-               stroke-linejoin="round"
-               d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
-            ></path>
-         </svg>
-      </div>
-      <span class="tracking-tight">Contacto</span>
-   </Subtitle> -->
-
+<div class="w-full">
    <div
-      class="relative overflow-hidden rounded-xl border border-black/8.5 dark:border-border-subtle bg-white/50 dark:bg-bg-surface p-8 md:p-20 text-center"
+      id="contact-card"
+      class="group relative overflow-hidden rounded-xl border border-border-card-outline dark:border-white/10
+             bg-white dark:bg-bg-deep
+             p-8 md:p-20 text-center
+             shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-none transition-colors duration-500
+             hover:border-border-strong/15
+             dark:hover:border-text-highlighted/20"
    >
-      {/* Efecto de luz de fondo sutil */}
+      {/* 1. EL EFECTO SPOTLIGHT REFINADO */}
       <div
-         class="absolute -top-24 -left-24 size-64 rounded-full bg-text-highlighted/5 blur-3xl pointer-events-none"
+         class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 z-0"
+      >
+         {/* Luz para Light Mode: Sutil sombra gris azulada */}
+         <div
+            class="absolute inset-0 dark:hidden"
+            style="background: radial-gradient(350px circle at var(--mouse-x) var(--mouse-y), rgba(0, 0, 0, 0.05), transparent 80%);"
+         >
+         </div>
+         {/* Luz para Dark Mode: Brillo de "cristal" */}
+         <div
+            class="absolute inset-0 hidden dark:block"
+            style="background: radial-gradient(350px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.04), transparent 80%);"
+         >
+         </div>
+      </div>
+
+      {/* 2. Tus efectos estáticos de fondo (Desenfoques) */}
+      <div
+         class="absolute -top-24 -left-24 size-96 rounded-full bg-text-highlighted/[0.08] dark:bg-text-highlighted/5 blur-[100px] pointer-events-none z-0"
       >
       </div>
       <div
-         class="absolute -bottom-24 -right-24 size-64 rounded-full bg-bg-deep/5 dark:bg-white/5 blur-3xl pointer-events-none"
+         class="absolute -bottom-24 -right-24 size-96 rounded-full bg-bg-deep/[0.03] dark:bg-white/5 blur-[100px] pointer-events-none z-0"
       >
       </div>
 
-      <div class="relative max-w-2xl mx-auto space-y-6">
+      {
+         /* 3. Contenido de la Card (Asegurado con z-10 para que esté por encima de la luz) */
+      }
+      <div class="relative max-w-2xl mx-auto space-y-6 z-1 pointer-events-auto">
          <h3
-            class="text-3xl md:text-5xl font-bold text-bg-deep dark:text-title tracking-tight text-pretty"
+            class="text-3xl md:text-5xl font-bold text-bg-deep dark:text-title tracking-tighter text-pretty"
          >
             ¿Tenés un proyecto en mente?
          </h3>
 
-         <p class="text-lg text-text-muted dark:text-text leading-relaxed">
-            Busco colaborar con marcas y profesionales que necesiten soluciones
-            digitales escalables y de alto rendimiento. Si buscás transformar
-            una idea en una interfaz real y eficiente, hablemos.
+         <p
+            class="md:text-lg text-base text-border-strong dark:text-text leading-relaxed"
+         >
+            Colaboro con marcas y profesionales en soluciones digitales
+            escalables. Si buscás transformar una idea en una interfaz real y
+            eficiente, hablemos.
          </p>
 
          <div
             class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
          >
-            <CtaButton class="rounded-full px-6 py-2.5 text-lg">
+            <CtaButton class="rounded-full px-6 py-2.5 md:text-lg text-base">
                <WhatsApp class="min-h-full min-w-auto" />
 
                Agendar una charla</CtaButton
             >
 
-            <CtaButtonInner>
+            <CtaButtonInner
+               href="https://www.linkedin.com/in/santiagogoncalvez"
+               target="_blank"
+            >
                <LinkedIn class="min-h-full min-w-auto" variant="outline" />
-               <span> Linkedin</span>
+               <span>Linkedin</span>
             </CtaButtonInner>
          </div>
 
-         <div class="pt-8 flex flex-col items-center gap-2">
-            <div class="flex items-center gap-x-2">
+         <div class="pt-4 flex flex-col items-center gap-2">
+            <div class="flex items-center gap-x-3 px-4 py-2">
                <span class="relative flex h-2 w-2">
                   <span
                      class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
@@ -79,11 +89,37 @@ import WhatsApp from "@/icons/WhatsApp.astro";
                      class="relative inline-flex rounded-full h-2 w-2 bg-green-500"
                   ></span>
                </span>
-               <p class="text-xs uppercase tracking-[0.2em] text-text-muted">
+               <p
+                  class="text-xs uppercase tracking-[0.2em] font-medium text-text-muted dark:text-text-highlighted"
+               >
                   Respuesta promedio: Menos de 24hs
                </p>
             </div>
          </div>
       </div>
    </div>
-</section>
+</div>
+
+<script>
+   // Esta función inicia el efecto
+   function initSpotlight() {
+      const card = document.getElementById("contact-card");
+
+      if (!card) return;
+
+      card.addEventListener("mousemove", (e) => {
+         const rect = card.getBoundingClientRect();
+         const x = e.clientX - rect.left;
+         const y = e.clientY - rect.top;
+
+         card.style.setProperty("--mouse-x", `${x}px`);
+         card.style.setProperty("--mouse-y", `${y}px`);
+      });
+   }
+
+   // 1. Ejecutamos normalmente por si NO usás ViewTransitions
+   initSpotlight();
+
+   // 2. Ejecutamos en el evento de Astro por si SÍ usás ViewTransitions
+   document.addEventListener("astro:page-load", initSpotlight);
+</script>

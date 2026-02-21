@@ -1,22 +1,29 @@
 ---
 interface Props {
    href: string;
-   variant?: "primary" | "secondary";
+   variant?: "primary" | "secondary"; // Aquí "primary" ahora será el principal del PROYECTO
    class?: string;
    ariaLabel?: string;
 }
 
 const { href, variant = "primary", class: className, ariaLabel } = Astro.props;
 
-// Definición de estilos basada en tu paleta
 const variantStyles = {
+   // PRIMARIO DEL PROYECTO: Estilo "Outline-Soft"
+   // No es un bloque sólido, es un borde definido con un fondo casi invisible.
    primary: `
-    bg-bg-deep text-bg-white border-transparent hover:bg-bg-elevated
-    dark:bg-bg-white dark:text-bg-deep dark:hover:bg-title
+    bg-black/[0.02] text-bg-deep border-black/10 
+    hover:bg-bg-deep hover:text-white hover:border-bg-deep
+    dark:bg-white/[0.03] dark:text-title dark:border-white/10 
+    dark:hover:bg-white dark:hover:text-bg-deep dark:hover:border-white
   `,
+
+   // SECUNDARIO DEL PROYECTO: Estilo "Minimal Ghost"
+   // Solo texto y un cambio de opacidad. Cero ruido visual.
    secondary: `
-    bg-transparent text-border-strong border-border-strong/20 hover:border-text-muted hover:text-bg-deep
-    dark:border-border-subtle dark:text-text dark:bg-bg-surface/50 dark:hover:border-text-highlighted dark:hover:text-title
+    bg-transparent text-text-muted border-transparent
+    hover:text-bg-deep hover:bg-black/[0.04]
+    dark:text-text dark:hover:text-title dark:hover:bg-white/[0.05]
   `,
 };
 ---
@@ -26,15 +33,16 @@ const variantStyles = {
    aria-label={ariaLabel}
    href={href}
    role="link"
+   rel="noopener noreferrer"
    class={`
-    inline-flex items-center justify-center gap-2 px-4 py-2 
-     font-medium transition-all duration-300
-    border rounded-lg focus:outline-none focus-visible:ring-2 
-    focus-visible:ring-offset-2 focus-visible:ring-text-muted
-    group max-w-fit
-    ${variantStyles[variant]}
-    ${className}
-  `}
+     inline-flex items-center justify-center gap-2 px-4 py-2 
+     text-sm font-medium transition-all duration-300
+     border rounded-md focus:outline-none focus-visible:ring-2 
+     focus-visible:ring-offset-2 focus-visible:ring-text-muted
+     group max-w-fit
+     ${variantStyles[variant]}
+     ${className}
+   `}
 >
    <slot />
 </a>

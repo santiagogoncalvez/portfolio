@@ -50,7 +50,7 @@ const isTechKey = (key: string): key is TechKey => {
             return (
                <TechnologyPill
                   name={key.toUpperCase()}
-                  class="group transition hover:-translate-y-1"
+                  class="group transition hover:-translate-y-0.5"
                />
             );
          }
@@ -62,7 +62,7 @@ const isTechKey = (key: string): key is TechKey => {
                Icon={TechLogo}
                color={color}
                name={name}
-               class="group transition hover:-translate-y-1"
+               class="group transition hover:-translate-y-0.5"
             />
          );
       })

@@ -7,16 +7,19 @@ import { whatsappUrl } from "@/constants/contact.mjs";
    target="_blank"
    rel="noopener noreferrer"
    class=`flex items-center justify-center gap-2
-              text-base
-              font-medium
-              px-3 py-1.5
-              
-              text-title dark:text-bg-base
-              bg-bg-base dark:bg-title
-              border
-              border-text-light
-              dark:border-border-strong
-              transition ${Astro.props.class}`
+          font-semibold
+          px-3 py-1.5
+          
+          /* Colores base */
+          text-white dark:text-bg-deep
+          bg-bg-deep dark:bg-white
+          border border-black/10 dark:border-white/10
+          
+          /* HOVER: Elevación + Glow */
+          transition-all duration-300 ease-out
+          hover:-translate-y-0.5
+          active:scale-95
+          ${Astro.props.class}`
 >
    <slot />
 </a>

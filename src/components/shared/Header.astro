@@ -30,7 +30,7 @@ const navItems = [
              w-full mx-auto lg:max-w-5xl"
       >
          <!-- ================= DESKTOP ================= -->
-         <div class="hidden sm:flex w-full items-center justify-between">
+         <div class="hidden lg:flex w-full items-center justify-between">
             <div class="flex gap-8">
                <LogoSG />
 
@@ -56,38 +56,38 @@ const navItems = [
                <SocialPill
                   href="https://www.linkedin.com/in/santiagogoncalvez"
                   aria-label="Perfil de LinkedIn de Santiago Goncalvez"
-                  class="p-2"
+                  class="p-1.5 transition-all rounded-lg hover:bg-black/[0.05] dark:hover:bg-white/[0.05] group"
                >
                   <LinkedInIcon
-                     class="size-4 sm:size-6 text-border-strong/90 dark:text-text"
+                     class="size-4 sm:size-6 text-border-strong/90 dark:text-text group-hover:text-black dark:group-hover:text-white transition-colors"
                   />
                </SocialPill>
 
                <SocialPill
                   href="https://github.com/santiagogoncalvez"
                   aria-label="Perfil de GitHub de Santiago Goncalvez"
-                  class="p-2"
+                  class="p-1.5 transition-all rounded-lg hover:bg-black/[0.05] dark:hover:bg-white/[0.05] group"
                >
                   <GitHubIcon
-                     class="size-4 sm:size-6 text-border-strong/90 dark:text-text"
+                     class="size-4 sm:size-6 text-border-strong/90 dark:text-text group-hover:text-black dark:group-hover:text-white transition-colors"
                   />
                </SocialPill>
 
                <!-- <ThemeToggle id="theme-desktop" /> -->
 
-               <CtaButton class="rounded-lg">Trabajemos juntos</CtaButton>
+               <CtaButton class="rounded-md">Trabajemos juntos</CtaButton>
             </div>
          </div>
 
          <!-- ================= MOBILE ================= -->
-         <div class="flex sm:hidden w-full items-center justify-between">
+         <div class="flex lg:hidden w-full items-center justify-between">
             <LogoSG />
 
             <button
                id="mobile-menu-btn"
                aria-label="Abrir menú"
                class="h-9 w-9 hover:cursor-pointer flex items-center justify-center
-                 rounded-lg
+                 rounded-md
                  border border-text-light
                  dark:border-border-strong text-bg-base dark:text-title"
             >
@@ -100,7 +100,7 @@ const navItems = [
    <!-- ================= MOBILE MENU ================= -->
    <div
       id="mobile-menu"
-      class="sm:hidden fixed inset-0 z-20 hidden
+      class="lg:hidden fixed inset-0 z-20 hidden
            dark:bg-bg-base bg-title"
    >
       <div
@@ -113,13 +113,17 @@ const navItems = [
          <button
             id="mobile-menu-close"
             aria-label="Cerrar menú"
-            class="h-9 w-9 hover:cursor-pointer flex items-center justify-center rounded-lg"
+            class="h-9 w-9 hover:cursor-pointer flex items-center justify-center rounded-md"
          >
             <Close class="size-5 text-bg-base dark:text-title" />
          </button>
       </div>
 
       <div class="flex flex-col gap-8 p-4">
+         <div class="w-full px-3.5">
+            <CtaButton class="rounded-md">Trabajemos juntos</CtaButton>
+         </div>
+
          <div class="flex flex-col gap-4">
             {
                navItems.map((link) => (
@@ -137,30 +141,39 @@ const navItems = [
             }
          </div>
 
-         <div class="flex gap-2 items-center">
-            <SocialPill
-               href="https://www.linkedin.com/in/santiagogoncalvez"
-               aria-label="Perfil de LinkedIn de Santiago Goncalvez"
-               class="p-2"
+         <div class="w-full px-3.5">
+            <div class="min-w-full flex h-[1px] bg-border-card-outline"></div>
+         </div>
+
+         <div class="flex flex-col gap-4">
+            <div
+               class="w-full flex justify-between px-3.5 text-border-strong dark:text-text"
             >
-               <LinkedInIcon
-                  class="size-5.5 text-border-strong/90 dark:text-text"
-               />
-            </SocialPill>
+               <span>Tema</span>
+               <ThemeToggle id="theme-mobile" />
+            </div>
 
-            <SocialPill
-               href="https://github.com/santiagogoncalvez"
-               aria-label="Perfil de GitHub de Santiago Goncalvez"
-               class="p-2"
-            >
-               <GitHubIcon
-                  class="size-5.5 text-border-strong/90 dark:text-text"
-               />
-            </SocialPill>
+            <div class="w-full flex gap-2 items-center justify-center px-1.5">
+               <SocialPill
+                  href="https://www.linkedin.com/in/santiagogoncalvez"
+                  aria-label="Perfil de LinkedIn de Santiago Goncalvez"
+                  class="p-1.5 transition-all rounded-lg hover:bg-black/[0.05] dark:hover:bg-white/[0.05] group"
+               >
+                  <LinkedInIcon
+                     class="size-4 sm:size-6 text-border-strong/90 dark:text-text group-hover:text-black dark:group-hover:text-white transition-colors"
+                  />
+               </SocialPill>
 
-            <ThemeToggle id="theme-mobile" />
-
-            <CtaButton class="rounded-lg">Trabajemos juntos</CtaButton>
+               <SocialPill
+                  href="https://github.com/santiagogoncalvez"
+                  aria-label="Perfil de GitHub de Santiago Goncalvez"
+                  class="p-1.5 transition-all rounded-lg hover:bg-black/[0.05] dark:hover:bg-white/[0.05] group"
+               >
+                  <GitHubIcon
+                     class="size-4 sm:size-6 text-border-strong/90 dark:text-text group-hover:text-black dark:group-hover:text-white transition-colors"
+                  />
+               </SocialPill>
+            </div>
          </div>
       </div>
    </div>
@@ -193,7 +206,7 @@ const navItems = [
          header.classList.remove(
             "bg-title",
             "bg-bg-base",
-            "border-black/8.5",
+            "border-border-card-outline",
             "border-white/10",
          );
          header.classList.add("border-transparent");
@@ -209,7 +222,7 @@ const navItems = [
             header.classList.remove("border-transparent");
             header.classList.add(
                isDark ? "bg-bg-base" : "bg-title",
-               isDark ? "border-white/10" : "border-black/8.5",
+               isDark ? "border-white/10" : "border-border-card-outline",
             );
          }
       };
