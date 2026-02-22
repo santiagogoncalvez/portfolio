@@ -35,18 +35,24 @@ const technologies = [
 <script>
    import { animate, stagger, inView } from "motion";
 
-   inView("#tech-container", () => {
-      animate(
-         ".tech-pill",
-         {
-            opacity: [0, 1],
-         },
-         {
-            // Stagger casi inexistente para que entren prácticamente juntas
-            delay: stagger(0.05),
-            duration: 0.2, // Animación más corta
-            easing: "ease-out", // Salida limpia y sin rebotes
-         },
-      );
-   });
+   const threshold = window.innerWidth >= 640 ? 0.05 : 0.04;
+
+   inView(
+      "#tech-container",
+      () => {
+         animate(
+            ".tech-pill",
+            {
+               opacity: [0, 1],
+            },
+            {
+               // Stagger casi inexistente para que entren prácticamente juntas
+               delay: stagger(0.06),
+               duration: 0.2, // Animación más corta
+               easing: "ease-out", // Salida limpia y sin rebotes
+            },
+         );
+      },
+      { amount: threshold },
+   );
 </script>

@@ -105,26 +105,32 @@ import WhatsApp from "@/icons/WhatsApp.astro";
 <script>
    import { animate, stagger, inView } from "motion";
 
+   const threshold = window.innerWidth >= 640 ? 0.1 : 0.05;
+
    function initContactAnimations() {
       // 1. Animación del contenedor principal (Scale + Fade)
-      inView("#contact-card", () => {
-         animate(
-            "#contact-card",
-            {
-               opacity: [0, 1],
-               scale: [0.98, 1],
-               y: [20, 0],
-            },
-            { duration: 0.5, easing: [0.22, 1, 0.36, 1] },
-         );
+      inView(
+         "#contact-card",
+         () => {
+            animate(
+               "#contact-card",
+               {
+                  opacity: [0, 1],
+                  scale: [0.98, 1],
+                  y: [20, 0],
+               },
+               { duration: 0.2, easing: [0.22, 1, 0.36, 1] },
+            );
 
-         // 2. Animación del contenido interno (Cascada)
-         animate(
-            ".contact-content",
-            { opacity: [0, 1], y: [10, 0] },
-            { delay: stagger(0.05), duration: 0.3 },
-         );
-      });
+            // 2. Animación del contenido interno (Cascada)
+            animate(
+               ".contact-content",
+               { opacity: [0, 1], y: [10, 0] },
+               { delay: stagger(0.025), duration: 0.1 },
+            );
+         },
+         { amount: threshold },
+      );
 
       // 3. Lógica de Spotlight (Tu código original)
       const card = document.getElementById("contact-card");

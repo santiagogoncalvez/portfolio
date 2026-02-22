@@ -9,79 +9,75 @@ const personalImageAlt =
 import { Image } from "astro:assets";
 ---
 
-<div id="about-container">
-      <Subtitle class="flex flex-row items-center gap-x-4 mb-8">
-         <ProfileCheckIcon
-            class="sm:size-8 size-7 text-border-strong dark:text-text-highlighted"
-         />
-         <span>Sobre mí</span>
-      </Subtitle>
+<Subtitle class="flex flex-row items-center gap-x-4">
+   <ProfileCheckIcon
+      class="sm:size-8 size-7 text-border-strong dark:text-text-highlighted"
+   />
+   <span>Sobre mí</span>
+</Subtitle>
 
-   <div class="flex flex-col md:flex-row gap-6 items-stretch">
-      <div
-         class="about-item opacity-0 md:w-2/3 p-8 rounded-lg bg-white/80 dark:bg-transparent border border-border-card-outline dark:border-border-strong/80 flex flex-col justify-center transition-[border-color,background-color] duration-500"
-      >
-         <div
-            class="space-y-5 text-border-strong dark:text-text leading-relaxed"
+<div id="about-container" class="flex flex-col md:flex-row gap-6 items-stretch">
+   <div
+      class="about-item opacity-0 md:w-2/3 p-8 rounded-lg bg-white/80 dark:bg-transparent border border-border-card-outline dark:border-border-strong/80 flex flex-col justify-center transition-[border-color,background-color] duration-500"
+   >
+      <div class="space-y-5 text-border-strong dark:text-text leading-relaxed">
+         <p>
+            Combino el rigor de la <strong
+               class="text-bg-deep dark:text-text-highlighted"
+               >Ingeniería Informática</strong
+            > con la agilidad de <strong
+               class="text-bg-deep dark:text-text-highlighted"
+               >React y Astro</strong
+            > para crear productos digitales que no solo se ven bien, sino que rinden
+            al máximo.
+         </p>
+
+         <p>
+            Mi enfoque es simple: resolver problemas técnicos con <strong
+               class="text-bg-deep dark:text-text-highlighted"
+               >interfaces de alto rendimiento</strong
+            >, código limpio y una experiencia de usuario optimizada de
+            principio a fin.
+         </p>
+
+         <footer
+            class="pt-4 border-t border-black/5 dark:border-white/5 flex flex-wrap items-center justify-between gap-4"
          >
-            <p>
-               Combino el rigor de la <strong
-                  class="text-bg-deep dark:text-text-highlighted"
-                  >Ingeniería Informática</strong
-               > con la agilidad de <strong
-                  class="text-bg-deep dark:text-text-highlighted"
-                  >React y Astro</strong
-               > para crear productos digitales que no solo se ven bien, sino que
-               rinden al máximo.
-            </p>
-
-            <p>
-               Mi enfoque es simple: resolver problemas técnicos con <strong
-                  class="text-bg-deep dark:text-text-highlighted"
-                  >interfaces de alto rendimiento</strong
-               >, código limpio y una experiencia de usuario optimizada de
-               principio a fin.
-            </p>
-
-            <footer
-               class="pt-4 border-t border-black/5 dark:border-white/5 flex flex-wrap items-center justify-between gap-4"
-            >
-               <div class="flex items-center gap-x-2">
-                  <div class="relative flex h-2 w-2">
-                     <span
-                        class="absolute inline-flex h-full w-full rounded-full bg-text-highlighted opacity-75"
-                     ></span>
-                     <div
-                        class="relative inline-flex rounded-full h-2 w-2 bg-text-highlighted/60"
-                     >
-                     </div>
-                  </div>
+            <div class="flex items-center gap-x-2">
+               <div class="relative flex h-2 w-2">
                   <span
-                     class="text-xs font-medium uppercase tracking-widest opacity-80"
+                     class="absolute inline-flex h-full w-full rounded-full bg-text-highlighted opacity-75"
+                  ></span>
+                  <div
+                     class="relative inline-flex rounded-full h-2 w-2 bg-text-highlighted/60"
                   >
-                     Disponible para nuevos proyectos
-                  </span>
+                  </div>
                </div>
-
                <span
                   class="text-xs font-medium uppercase tracking-widest opacity-80"
                >
-                  Buenos Aires, AR
+                  Disponible para nuevos proyectos
                </span>
-            </footer>
-         </div>
-      </div>
+            </div>
 
-      <div class="about-item opacity-0 md:w-1/3 relative group">
-         <div
-            class="h-full w-full overflow-hidden rounded-lg border border-black/5 dark:border-border-subtle shadow-sm bg-bg-deep/5 transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-         >
-            <Image
-               src={profilePic}
-               alt={personalImageAlt}
-               class="w-full h-full object-cover"
-            />
-         </div>
+            <span
+               class="text-xs font-medium uppercase tracking-widest opacity-80"
+            >
+               Buenos Aires, AR
+            </span>
+         </footer>
+      </div>
+   </div>
+
+   <div class="about-item opacity-0 md:w-1/3 relative group">
+      <div
+         class="h-full w-full overflow-hidden rounded-lg border border-black/5 dark:border-border-subtle shadow-sm bg-bg-deep/5 transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+      >
+         <Image
+            src={profilePic}
+            alt={personalImageAlt}
+            class="w-full h-full object-cover"
+         />
       </div>
    </div>
 </div>
@@ -89,18 +85,24 @@ import { Image } from "astro:assets";
 <script>
    import { animate, stagger, inView } from "motion";
 
-   inView("#about-container", () => {
-      animate(
-         ".about-item",
-         {
-            opacity: [0, 1],
-            x: [-15, 0], // Entrada lateral sutil desde la izquierda
-         },
-         {
-            delay: stagger(0.1),
-            duration: 0.4,
-            easing: [0.22, 1, 0.36, 1],
-         },
-      );
-   });
+   const threshold = window.innerWidth >= 640 ? 0.05 : 0.02;
+
+   inView(
+      "#about-container",
+      () => {
+         animate(
+            ".about-item",
+            {
+               opacity: [0, 1],
+               x: [-15, 0], // Entrada lateral sutil desde la izquierda
+            },
+            {
+               delay: stagger(0.1),
+               duration: 0.2,
+               easing: [0.22, 1, 0.36, 1],
+            },
+         );
+      },
+      { amount: threshold },
+   );
 </script>
