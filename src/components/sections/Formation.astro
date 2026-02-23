@@ -75,8 +75,8 @@ const formationItems: BentoItem[] = [
                      shadow-sm hover:shadow-md
                      
                      /* Transiciones específicas para no romper el 'y' de la entrada */
-                     transition-[box-shadow,border-color,background-color] duration-500 ease-out
-                     hover:scale-[1.01] hover:transition-transform
+                     transition-[box-shadow,border-color,background-color,scale] duration-500 ease-out
+                     hover:scale-[1.01] 
                      hover:border-border-strong/20 dark:hover:border-text-highlighted/30
                      ${item.class || ""}
                   `}
