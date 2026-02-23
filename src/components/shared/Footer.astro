@@ -5,6 +5,9 @@ import LinkedInIcon from "@icons/LinkedIn.astro";
 import GitHubIcon from "@icons/GitHub.astro";
 import MailIcon from "@icons/Mail.astro";
 import ThemeToggle from "./ThemeToggle.astro";
+import { instagram, whatsappWithoutMessage } from "@/constants/contact.mjs";
+import WhatsApp from "@/icons/WhatsApp.astro";
+import Instagram from "@/icons/Instagram.astro";
 
 const currentYear = new Date().getFullYear();
 ---
@@ -68,31 +71,36 @@ const currentYear = new Date().getFullYear();
                   <li>
                      <a
                         href="/#soluciones"
-                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6">Soluciones</a
+                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6"
+                        >Soluciones</a
                      >
                   </li>
                   <li>
                      <a
                         href="/#proyectos"
-                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6">Proyectos</a
+                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6"
+                        >Proyectos</a
                      >
                   </li>
                   <li>
                      <a
                         href="/#sobre-mi"
-                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6">Sobre mí</a
+                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6"
+                        >Sobre mí</a
                      >
                   </li>
                   <li>
                      <a
                         href="/#formacion"
-                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6">Formación</a
+                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6"
+                        >Formación</a
                      >
                   </li>
                   <li>
                      <a
                         href="/#contacto"
-                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6">Contacto</a
+                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6"
+                        >Contacto</a
                      >
                   </li>
                </ul>
@@ -103,6 +111,27 @@ const currentYear = new Date().getFullYear();
                   Contacto
                </h2>
                <ul class="flex flex-col gap-3">
+                  <li>
+                     <SocialPill
+                        href={whatsappWithoutMessage}
+                        aria-label="WhatsApp de Santiago Goncalvez"
+                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out"
+                     >
+                        <WhatsApp class="size-4" />
+                        <span>WhatsApp</span>
+                     </SocialPill>
+                  </li>
+                  <li>
+                     <SocialPill
+                        href="mailto:santiago.goncalvez.dev@gmail.com"
+                        aria-label="Correo electrónico de Santiago Goncalvez"
+                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out"
+                        copyText="santiago.goncalvez.dev@gmail.com"
+                     >
+                        <MailIcon class="size-4" />
+                        <span>Email</span>
+                     </SocialPill>
+                  </li>
                   <li>
                      <SocialPill
                         href="https://www.linkedin.com/in/santiagogoncalvez"
@@ -124,16 +153,14 @@ const currentYear = new Date().getFullYear();
                         <span>GitHub</span>
                      </SocialPill>
                   </li>
-
                   <li>
                      <SocialPill
-                        href="mailto:santiago.goncalvez.dev@gmail.com"
-                        aria-label="Correo electrónico de Santiago Goncalvez"
+                        href={instagram}
+                        aria-label="Perfil de GitHub de Santiago Goncalvez"
                         class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out"
-                        copyText="santiago.goncalvez.dev@gmail.com"
                      >
-                        <MailIcon class="size-4" />
-                        <span>Email</span>
+                        <Instagram class="size-4" />
+                        <span>Instagram</span>
                      </SocialPill>
                   </li>
                </ul>
@@ -150,7 +177,8 @@ const currentYear = new Date().getFullYear();
                href="https://www.linkedin.com/in/santiagogoncalvez"
                target="_blank"
                rel="noopener noreferrer"
-               class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out">Santiago Goncalvez</a
+               class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out"
+               >Santiago Goncalvez</a
             >.
          </span>
 

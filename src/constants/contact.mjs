@@ -1,4 +1,5 @@
 const phone = "5491135821266";
+
 // El que ya tenías (Proyecto específico)
 const projectMessage =
    "¡Hola Santiago! Vi tu portfolio y me interesó tu trabajo. Me gustaría contarte sobre un proyecto web que tengo en mente y consultar tu disponibilidad. ¡Saludos!";
@@ -9,5 +10,8 @@ const chatMessage =
 
 export const whatsappUrlprojectMessage = `https://wa.me/${phone}?text=${encodeURIComponent(projectMessage)}`;
 export const whatsappUrlchatMessage = `https://wa.me/${phone}?text=${encodeURIComponent(chatMessage)}`;
+export const whatsappWithoutMessage = `https://wa.me/${phone}`;
 
 export const mail = "santiago.goncalvez.dev@gmail.com";
+export const instagram = "https://www.instagram.com/santiagogoncalvez.dev/";
+export const gitHub = "https://github.com/santiagogoncalvez";
