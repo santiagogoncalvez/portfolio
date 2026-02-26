@@ -45,11 +45,11 @@ import WhatsApp from "@/icons/WhatsApp.astro";
 
       {/* 3. Contenido de la Card */}
       <div class="relative max-w-2xl mx-auto space-y-6 z-1 pointer-events-auto">
-         <h3
+         <h2
             class="contact-content opacity-0 text-3xl md:text-5xl font-bold text-bg-deep dark:text-title tracking-tighter text-pretty"
          >
             ¿Impulsamos tu próximo proyecto?
-         </h3>
+         </h2>
 
          <p
             class="contact-content opacity-0 md:text-lg text-base text-border-strong dark:text-text leading-relaxed"
@@ -119,14 +119,14 @@ import WhatsApp from "@/icons/WhatsApp.astro";
                   scale: [0.98, 1],
                   y: [20, 0],
                },
-               { duration: 0.2, easing: [0.22, 1, 0.36, 1] },
+               { duration: 0.4, easing: [0.22, 1, 0.36, 1] },
             );
 
             // 2. Animación del contenido interno (Cascada)
             animate(
                ".contact-content",
                { opacity: [0, 1], y: [10, 0] },
-               { delay: stagger(0.025), duration: 0.1 },
+               { delay: stagger(0.05), duration: 0.25 },
             );
          },
          { amount: threshold },

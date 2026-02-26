@@ -137,6 +137,78 @@ const { title, description } = Astro.props;
          name="google-site-verification"
          content="W3Lp3GsRg9PNa6c8hQ_83vaBqEHlKQrae7YLXjDRMZ0"
       />
+
+      <script>
+         (function () {
+            // IMPORTANTE: Aquí solo ponemos el nombre del dominio, sin https ni barras
+            var oldDomain = "santiagogoncalvez.web.app";
+            var oldDomain2 = "santiagogoncalvez.firebaseapp.com"; // Firebase siempre da dos
+            var newDomain = "https://santiagogoncalvez.com";
+
+            if (
+               window.location.hostname.includes(oldDomain) ||
+               window.location.hostname.includes(oldDomain2)
+            ) {
+               // Redirige manteniendo la ruta y los parámetros de búsqueda
+               window.location.replace(
+                  newDomain + window.location.pathname + window.location.search,
+               );
+            }
+         })();
+      </script>
+
+      <script type="application/ld+json">
+         {
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "name": "Santiago Goncalvez - Desarrollo Web & Sistemas a Medida",
+            "image": "https://santiagogoncalvez.com/santiago-goncalvez-desarrollador-frontend.webp",
+            "@id": "https://santiagogoncalvez.com/",
+            "url": "https://santiagogoncalvez.com/",
+            "telephone": "+5491135821266",
+            "priceRange": "$$",
+            "description": "Desarrollador Frontend especializado en React y Astro. Creación de sitios web de alto rendimiento, optimización SEO y aplicaciones dinámicas en Buenos Aires.",
+            "address": {
+               "@type": "PostalAddress",
+               "addressLocality": "Buenos Aires",
+               "addressCountry": "AR"
+            },
+            "knowsAbout": [
+               "Astro Framework",
+               "React.js",
+               "TypeScript",
+               "Performance Web",
+               "SEO Técnico",
+               "Tailwind CSS"
+            ],
+            "hasOfferCatalog": {
+               "@type": "OfferCatalog",
+               "name": "Servicios de Desarrollo",
+               "itemListElement": [
+                  {
+                     "@type": "Offer",
+                     "itemOffered": {
+                        "@type": "Service",
+                        "name": "Desarrollo Web con Astro y Performance"
+                     }
+                  },
+                  {
+                     "@type": "Offer",
+                     "itemOffered": {
+                        "@type": "Service",
+                        "name": "Aplicaciones Modernas con React y TypeScript"
+                     }
+                  }
+               ]
+            },
+            "sameAs": [
+               "https://www.instagram.com/santiagogoncalvez.dev/",
+               "https://www.linkedin.com/in/santiagogoncalvez",
+               "https://github.com/santiagogoncalvez",
+               "https://wa.me/5491135821266"
+            ]
+         }
+      </script>
    </head>
 
    <body class="relative min-h-screen bg-title dark:bg-bg-base">
