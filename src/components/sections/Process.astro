@@ -1,6 +1,7 @@
 ---
 import Subtitle from "@shared/Subtitle.astro";
 import PlayIcon from "@icons/Play.astro";
+import ProcessIcon from "@icons/Process.astro";
 
 const STEPS = [
    {
@@ -27,7 +28,10 @@ const VIDEO_FULL =
 ---
 
 <Subtitle class="flex items-center gap-x-4">
-   <span>Mi Proceso</span>
+   <div class="sm:size-8 size-7 text-border-strong dark:text-text-highlighted">
+      <ProcessIcon class="w-full h-full" />
+   </div>
+   <span>Mi proceso</span>
 </Subtitle>
 
 <div class="flex flex-col gap-y-12 items-center" id="process-section">
@@ -36,7 +40,7 @@ const VIDEO_FULL =
       id="video-trigger"
    >
       <div
-         class="overflow-hidden rounded-2xl border border-black/5 dark:border-white/10  aspect-video bg-bg-deep/50 relative"
+         class="overflow-hidden rounded-2xl border border-black/5 dark:border-white/10 aspect-video bg-bg-deep/50 relative"
       >
          <video
             src={VIDEO_PREVIEW}
@@ -50,7 +54,7 @@ const VIDEO_FULL =
 
          <div class="absolute inset-0 flex items-center justify-center">
             <div
-               class="bg-title  p-5 rounded-full group-hover:scale-110 transition-transform duration-300"
+               class="bg-title p-5 rounded-full group-hover:scale-110 transition-transform duration-300"
             >
                <div class="size-6 text-bg-deep">
                   <PlayIcon />
@@ -96,7 +100,7 @@ const VIDEO_FULL =
       <video
          id="main-video"
          controls
-         class="w-full rounded-2xl  border border-white/10"
+         class="w-full rounded-2xl border border-white/10"
       >
          <source src={VIDEO_FULL} type="video/mp4" />
       </video>
