@@ -17,7 +17,7 @@ const currentYear = new Date().getFullYear();
    class="opacity-98 mt-24 mb-24 min-w-full flex justify-center px-5"
 >
    <div
-      class="w-full mx-auto lg:max-w-5xl flex flex-col items-center justify-between gap-y-12 flex-wrap rounded-lg"
+      class="w-full mx-auto lg:max-w-5xl flex flex-col items-center justify-between gap-y-20 flex-wrap rounded-lg"
    >
       <div
          class="w-full flex sm:flex-row flex-col sm:justify-between justify-center gap-12"
@@ -25,7 +25,7 @@ const currentYear = new Date().getFullYear();
          <div class="flex flex-col gap-4 text-border-strong dark:text-text">
             <LogoSG />
 
-            <a
+            <!-- <a
                href="https://www.linkedin.com/in/santiagogoncalvez"
                target="_blank"
                rel="noopener noreferrer"
@@ -43,7 +43,7 @@ const currentYear = new Date().getFullYear();
                   aria-hidden="true"></span>
 
                <span>Disponible para nuevos proyectos</span>
-            </a>
+            </a> -->
 
             <!-- <span
                >&copy; {currentYear}
@@ -89,13 +89,7 @@ const currentYear = new Date().getFullYear();
                         >Sobre mí</a
                      >
                   </li>
-                  <li>
-                     <a
-                        href="/#formacion"
-                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6"
-                        >Formación</a
-                     >
-                  </li>
+                  
                   <li>
                      <a
                         href="/#contacto"
@@ -143,7 +137,7 @@ const currentYear = new Date().getFullYear();
                      </SocialPill>
                   </li>
 
-                  <li>
+                  <!-- <li>
                      <SocialPill
                         href="https://github.com/santiagogoncalvez"
                         aria-label="Perfil de GitHub de Santiago Goncalvez"
@@ -152,8 +146,8 @@ const currentYear = new Date().getFullYear();
                         <GitHubIcon class="size-4" />
                         <span>GitHub</span>
                      </SocialPill>
-                  </li>
-                  <li>
+                  </li> -->
+                  <!-- <li>
                      <SocialPill
                         href={instagram}
                         aria-label="Perfil de GitHub de Santiago Goncalvez"
@@ -162,7 +156,7 @@ const currentYear = new Date().getFullYear();
                         <Instagram class="size-4" />
                         <span>Instagram</span>
                      </SocialPill>
-                  </li>
+                  </li> -->
                </ul>
             </div>
          </div>
@@ -171,16 +165,9 @@ const currentYear = new Date().getFullYear();
       <div
          class="w-full flex justify-between items-center text-border-strong dark:text-text"
       >
-         <span
-            >&copy; {currentYear}
-            <a
-               href="https://www.linkedin.com/in/santiagogoncalvez"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out"
-               >Santiago Goncalvez</a
-            >.
-         </span>
+         <p>
+            &copy; {currentYear} Santiago Goncalvez. Todos los derechos reservados.
+         </p>
 
          <ThemeToggle id="theme-desktop" position="up" />
       </div>
