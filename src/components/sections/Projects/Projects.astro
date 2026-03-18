@@ -7,30 +7,28 @@ import Code from "@icons/Code.astro";
 import Subtitle from "@shared/Subtitle.astro";
 import { Image } from "astro:assets";
 
-import imageCrud from "@assets/project-core-crud-interface.webp";
 import imageHakcerStories from "@assets/project-hacker-stories.webp";
-import imageTestTypeScript from "@assets/project-typescript-test-with-react-query.webp";
-import imageTuPais from "@assets/project-tu-pais.webp";
 import imageIsabelLopez from "@assets/project-isabellopez.webp";
 import imageAnyGiraldez from "@assets/project-anygiraldez.webp";
-
-const IMAGES: Record<string, ImageMetadata> = {
-   "/project-typescript-test-with-react-query.webp": imageTestTypeScript,
-   "/project-hacker-stories.webp": imageHakcerStories,
-   "/project-core-crud-interface.webp": imageCrud,
-   "/project-tu-pais.webp": imageTuPais,
-   "/project-isabel-lopez.webp": imageIsabelLopez,
-   "/project-anygiraldez.webp": imageAnyGiraldez,
-};
+import imageJorgelinaReales from "@assets/project-jorgelinareales.webp";
 
 const PROJECTS = [
+   {
+      title: "Plataforma de Identidad Espiritual - La Flor Sagrada",
+      description:
+         "Desarrollo de una plataforma digital integral para el método de Jorgelina Reales. Traduje una identidad mística a una arquitectura técnica de alto nivel, logrando un rendimiento perfecto (Lighthouse 100) y un posicionamiento orgánico en el Top de Google. Una web diseñada para elevar la marca personal y conectar con la audiencia desde la primera carga.",
+      link: "https://jorgelinareales.com.ar",
+      github: "", // Podés dejarlo vacío ya que es un proyecto privado
+      image: imageJorgelinaReales,
+      tags: ["Astro", "Tailwind", "Performance", "SEO", "UI/UX"],
+   },
    {
       title: "Plataforma Boutique - Estilista de TV",
       description:
          "Creación de una plataforma digital con estética editorial para el sector de moda. El foco estuvo en equilibrar un diseño Dark Mode con una arquitectura ligera, logrando el puntaje máximo en rendimiento (Lighthouse 100). Una web diseñada para cargar al instante y mostrar la identidad de Any Giraldez.",
       link: "https://anygiraldez.com", // Reemplazar por la URL real
       github: "",
-      image: "/project-anygiraldez.webp",
+      image: imageAnyGiraldez,
       tags: ["Astro", "Tailwind", "Performance", "SEO", "Motion"],
    },
    {
@@ -39,26 +37,17 @@ const PROJECTS = [
          "Diseño y desarrollo de una landing page de alta conversión para marca personal. Optimicé la velocidad de carga y desarrollé una interfaz que proyecta autoridad y confianza, integrando canales de contacto directo para maximizar la captación de clientes.",
       link: "https://isabellopez.com.ar",
       github: "",
-      image: "/project-isabel-lopez.webp",
+      image: imageIsabelLopez,
       tags: ["Astro", "Tailwind", "UI/UX", "SEO"],
    },
-   {
-      title: "Data Management Dashboard",
-      description:
-         "Panel de administración inteligente para la gestión de usuarios. Desarrollé herramientas de filtrado avanzado y organización de datos en tiempo real, optimizando el tiempo de respuesta del sistema y garantizando que la información esté siempre sincronizada y accesible.",
-      link: "https://userops-dashboard.web.app",
-      github:
-         "https://github.com/santiagogoncalvez/midudevs-react-course/tree/main/projects/11b-typescript-prueba-tecnica-with-reacty-query",
-      image: "/project-typescript-test-with-react-query.webp",
-      tags: ["typescript", "React", "ReactQuery", "vite"],
-   },
+   
    {
       title: "Hacker Stories",
       description:
          "Aplicación de noticias en tiempo real diseñada para ofrecer una navegación fluida y sin esperas. Implementé carga infinita de contenido y guardado de datos local, asegurando una experiencia estable. Todo el sistema está respaldado por pruebas automatizadas para garantizar que la plataforma funcione siempre a la perfección.",
       link: "https://hackerstories-dev.web.app",
       github: "https://github.com/santiagogoncalvez/hacker-stories",
-      image: "/project-hacker-stories.webp",
+      image: imageHakcerStories,
       tags: [
          "typescript",
          "React",
@@ -92,7 +81,7 @@ const PROJECTS = [
                      </div>
                      <div class="aspect-video overflow-hidden">
                         <Image
-                           src={IMAGES[image]}
+                           src={image}
                            alt={`Captura de pantalla del proyecto ${title}`}
                            widths={[400, 800, 1200]}
                            sizes={`(max-width: 768px) 95vw, 500px`}
