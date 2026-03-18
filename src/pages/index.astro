@@ -5,11 +5,12 @@ import SectionContainer from "../components/shared/SectionContainer.astro";
 import Projects from "../components/sections/Projects/Projects.astro";
 import AboutMe from "../components/sections/AboutMe.astro";
 
-import Formation from "../components/sections/Formation.astro";
 import Hero from "../components/sections/Hero/Hero.astro";
 import Services from "@/components/sections/Services.astro";
 import Contact from "@/components/sections/Contact.astro";
 import Technologies from "@/components/sections/Technologies.astro";
+import Testimonies from "@/components/sections/Testimonies.astro";
+import Process from "@/components/sections/Process.astro";
 ---
 
 <Layout
@@ -23,16 +24,20 @@ import Technologies from "@/components/sections/Technologies.astro";
          <Hero />
       </SectionContainer>
 
-      <SectionContainer id="tecnologías">
-         <Technologies />
-      </SectionContainer>
-
       <SectionContainer id="soluciones">
          <Services />
       </SectionContainer>
 
+      <SectionContainer id="mi-proceso">
+         <Process />
+      </SectionContainer>
+
       <SectionContainer id="proyectos">
          <Projects />
+      </SectionContainer>
+
+      <SectionContainer id="testimonios">
+         <Testimonies />
       </SectionContainer>
 
       <SectionContainer id="sobre-mi">

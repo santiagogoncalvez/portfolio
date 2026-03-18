@@ -1,0 +1,146 @@
+---
+import Subtitle from "@shared/Subtitle.astro";
+import PlayIcon from "@icons/Play.astro";
+
+const STEPS = [
+   {
+      title: "Diagnóstico",
+      description:
+         "Analizamos tu marca para diseñar una estrategia que realmente convierta.",
+   },
+   {
+      title: "Desarrollo",
+      description:
+         "Construyo tu sitio con React y Astro, priorizando velocidad y diseño premium.",
+   },
+   {
+      title: "Despegue",
+      description:
+         "Lanzamos tu web optimizada y te entrego el control total de tu contenido.",
+   },
+];
+
+const VIDEO_PREVIEW =
+   "https://res.cloudinary.com/dyd911y6h/video/upload/v1634571068/video-preview-coding_stf7ba.mp4";
+const VIDEO_FULL =
+   "https://res.cloudinary.com/dyd911y6h/video/upload/v1634571068/video-preview-coding_stf7ba.mp4";
+---
+
+<Subtitle class="flex items-center gap-x-4">
+   <span>Mi Proceso</span>
+</Subtitle>
+
+<div class="flex flex-col gap-y-12 items-center" id="process-section">
+   <div
+      class="relative group cursor-pointer w-full max-w-lg"
+      id="video-trigger"
+   >
+      <div
+         class="overflow-hidden rounded-2xl border border-black/5 dark:border-white/10  aspect-video bg-bg-deep/50 relative"
+      >
+         <video
+            src={VIDEO_PREVIEW}
+            autoplay
+            muted
+            loop
+            playsinline
+            class="w-full h-full object-cover group-hover:opacity-100 transition-opacity duration-500"
+         >
+         </video>
+
+         <div class="absolute inset-0 flex items-center justify-center">
+            <div
+               class="bg-title  p-5 rounded-full group-hover:scale-110 transition-transform duration-300"
+            >
+               <div class="size-6 text-bg-deep">
+                  <PlayIcon />
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- <p
+         class="text-center mt-4 text-xs uppercase tracking-widest text-text-muted font-medium opacity-0 group-hover:opacity-100 transition-opacity"
+      >
+         Ver video del proceso (1 min)
+      </p> -->
+   </div>
+
+   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+      {
+         STEPS.map((step, index) => (
+            <div class="process-card opacity-0 p-6 rounded-xl border border-black/5 dark:border-white/5 bg-white/50 dark:bg-white/5 flex flex-col items-start">
+               <span class="text-[10px] font-bold text-text-highlighted uppercase tracking-[0.2em] mb-3">
+                  Paso {index + 1}
+               </span>
+               <h3 class="text-lg font-bold text-title">{step.title}</h3>
+               <p class="text-sm text-text-muted mt-2 leading-relaxed">
+                  {step.description}
+               </p>
+            </div>
+         ))
+      }
+   </div>
+</div>
+
+<dialog
+   id="video-modal"
+   class="backdrop:backdrop-blur-md bg-transparent p-0 rounded-2xl border-none max-w-4xl w-[95%] outline-none overflow-visible"
+>
+   <div class="relative">
+      <button
+         id="close-modal"
+         class="absolute -top-12 right-0 text-white text-xs font-bold bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full transition-colors"
+      >
+         Cerrar (Esc)
+      </button>
+      <video
+         id="main-video"
+         controls
+         class="w-full rounded-2xl  border border-white/10"
+      >
+         <source src={VIDEO_FULL} type="video/mp4" />
+      </video>
+   </div>
+</dialog>
+
+<script>
+   import { animate, inView, stagger } from "motion";
+
+   const modal = document.getElementById("video-modal") as HTMLDialogElement;
+   const trigger = document.getElementById("video-trigger");
+   const closeBtn = document.getElementById("close-modal");
+   const mainVideo = document.getElementById("main-video") as HTMLVideoElement;
+
+   trigger?.addEventListener("click", () => {
+      modal.showModal();
+      mainVideo.play();
+      animate(modal, { opacity: [0, 1], scale: [0.95, 1] }, { duration: 0.3 });
+   });
+
+   const closeModal = () => {
+      mainVideo.pause();
+      modal.close();
+   };
+
+   closeBtn?.addEventListener("click", closeModal);
+   modal?.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+   });
+
+   inView("#process-section", () => {
+      animate(
+         ".process-card",
+         { opacity: [0, 1], y: [20, 0] },
+         { delay: stagger(0.1), duration: 0.5 },
+      );
+   });
+</script>
+
+<style>
+   dialog::backdrop {
+      background: rgba(0, 0, 0, 0.85);
+   }
+   dialog::-webkit-scrollbar {
+      display: none;
+   }
+</style>
