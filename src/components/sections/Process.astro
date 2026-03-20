@@ -2,6 +2,7 @@
 import Subtitle from "@shared/Subtitle.astro";
 import PlayIcon from "@icons/Play.astro";
 import ProcessIcon from "@icons/Process.astro";
+import XIcon from "@icons/X.astro";
 
 const STEPS = [
    {
@@ -21,10 +22,8 @@ const STEPS = [
    },
 ];
 
-const VIDEO_PREVIEW =
-   "https://res.cloudinary.com/dyd911y6h/video/upload/v1634571068/video-preview-coding_stf7ba.mp4";
-const VIDEO_FULL =
-   "https://res.cloudinary.com/dyd911y6h/video/upload/v1634571068/video-preview-coding_stf7ba.mp4";
+const VIDEO_PREVIEW = "/video/video-preview.mp4";
+const VIDEO_FULL = "/video/video.mp4";
 ---
 
 <Subtitle class="flex items-center gap-x-4">
@@ -48,6 +47,7 @@ const VIDEO_FULL =
             muted
             loop
             playsinline
+            preload="auto"
             class="w-full h-full object-cover group-hover:opacity-100 transition-opacity duration-500"
          >
          </video>
@@ -72,7 +72,7 @@ const VIDEO_FULL =
    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
       {
          STEPS.map((step, index) => (
-            <div class="process-card opacity-0 p-6 rounded-xl border border-black/5 dark:border-white/5 bg-white/50 dark:bg-white/5 flex flex-col items-start">
+            <div class="process-card opacity-0 p-6 rounded-2xl border border-black/5 dark:border-white/5 bg-white/50 dark:bg-white/5 flex flex-col items-start">
                <span class="text-[10px] font-bold text-text-highlighted uppercase tracking-[0.2em] mb-3">
                   Paso {index + 1}
                </span>
@@ -88,19 +88,19 @@ const VIDEO_FULL =
 
 <dialog
    id="video-modal"
-   class="backdrop:backdrop-blur-md bg-transparent p-0 rounded-2xl border-none max-w-4xl w-[95%] outline-none overflow-visible"
+   class="fixed inset-0 z-50 backdrop:backdrop-blur-md bg-transparent p-0 rounded-2xl border-none max-w-4xl w-[95%] outline-none overflow-visible open:flex items-center justify-center m-auto"
 >
-   <div class="relative">
+   <div class="relative w-full">
       <button
          id="close-modal"
-         class="absolute -top-12 right-0 text-white text-xs font-bold bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full transition-colors"
+         class="absolute -top-12 right-0 text-white text-xs font-bold bg-white/10 hover:bg-white/20 px-2 py-2 rounded-full transition-colors hover:cursor-pointer"
       >
-         Cerrar (Esc)
+         <XIcon class="size-6" />
       </button>
       <video
          id="main-video"
          controls
-         class="w-full rounded-2xl border border-white/10"
+         class="w-full rounded-2xl border border-white/10 shadow-2xl"
       >
          <source src={VIDEO_FULL} type="video/mp4" />
       </video>
@@ -135,16 +135,23 @@ const VIDEO_FULL =
       animate(
          ".process-card",
          { opacity: [0, 1], y: [20, 0] },
-         { delay: stagger(0.1), duration: 0.5 },
+         { delay: stagger(0.1), duration: 0.4 },
       );
    });
 </script>
 
 <style>
+   /* Oculta el modal de forma absoluta cuando no está abierto */
+   dialog:not([open]) {
+      display: none !important;
+   }
+
    dialog::backdrop {
       background: rgba(0, 0, 0, 0.85);
    }
-   dialog::-webkit-scrollbar {
-      display: none;
+
+   /* Opcional: Evita el scroll en el body cuando el modal está abierto */
+   :root:has(dialog[open]) {
+      overflow: hidden;
    }
 </style>
