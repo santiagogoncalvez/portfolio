@@ -1,12 +1,15 @@
 ---
 import ProfileCheckIcon from "@icons/ProfileCheck.astro";
 import Subtitle from "../shared/Subtitle.astro";
+import Paragraph from "../shared/Paragraph.astro";
+
 import profilePic from "../../assets/santiago-goncalvez-programador-web.webp";
 
 const personalImageAlt =
    "Retrato casual de Santiago Goncalvez - Desarrollador Web";
 
 import { Image } from "astro:assets";
+import Card from "../shared/Card/Card.astro";
 ---
 
 <Subtitle class="flex flex-row items-center gap-x-4">
@@ -17,46 +20,31 @@ import { Image } from "astro:assets";
 </Subtitle>
 
 <div id="about-container" class="flex flex-col md:flex-row gap-6 items-stretch">
-   <div
-      class="about-item opacity-0 md:w-2/3 p-8 rounded-2xl bg-white/80 dark:bg-transparent border border-border-card-outline dark:border-border-strong/80 flex flex-col justify-center transition-[border-color,background-color] duration-500"
-   >
-      <div class="space-y-5 text-border-strong dark:text-text leading-relaxed">
+   <Card variant="transparent" class="about-item opacity-0 md:w-2/3 min-h-full">
+      <Paragraph>
          <p>
-            Desarrollo sitios de alto rendimiento con React y Astro. Diseño
-            interfaces modernas y rápidas, pensadas para hacer crecer tu marca y
-            potenciar los resultados de tu negocio.
+            Soy Santiago, y creo que una web profesional debe ser el motor de tu
+            negocio.
          </p>
 
+         <p>
+            Me especializo en transformar ideas en interfaces de alto
+            rendimiento con React y Astro. Mi enfoque combina un diseño moderno
+            con la velocidad que tus clientes exigen hoy. Mi objetivo es simple:
+            que tu marca proyecte la autoridad que merece desde el primer
+            segundo.
+         </p>
+         
+
          <p>Me encargo de la tecnología, vos te encargás de escalar.</p>
+      </Paragraph>
 
-         <footer
-            class="pt-4 border-t border-black/5 dark:border-white/5 flex flex-wrap items-center justify-between gap-4"
-         >
-            <div class="flex items-center gap-x-2">
-               <!-- <div class="relative flex h-2 w-2">
-                  <span
-                     class="absolute inline-flex h-full w-full rounded-full bg-text-highlighted opacity-75"
-                  ></span>
-                  <div
-                     class="relative inline-flex rounded-full h-2 w-2 bg-text-highlighted/60"
-                  >
-                  </div>
-               </div> -->
-               <span
-                  class="text-xs font-medium uppercase tracking-widest opacity-80"
-               >
-                  Disponible para nuevos proyectos
-               </span>
-            </div>
-
-            <span
-               class="text-xs font-medium uppercase tracking-widest opacity-80"
-            >
-               Buenos Aires, AR
-            </span>
-         </footer>
+      {/* El Footer como Slot Nombrado (Seguro y flexible) */}
+      <div slot="footer" class="w-full flex justify-between">
+         <p>Disponible para nuevos proyectos</p>
+         <p>Buenos Aires, AR</p>
       </div>
-   </div>
+   </Card>
 
    <div class="about-item opacity-0 md:w-1/3 relative group">
       <div
@@ -69,29 +57,29 @@ import { Image } from "astro:assets";
          />
       </div>
    </div>
+
+   <script>
+      import { animate, stagger, inView } from "motion";
+
+      const threshold = window.innerWidth >= 640 ? 0.05 : 0.02;
+
+      inView(
+         "#about-container",
+         () => {
+            animate(
+               ".about-item",
+               {
+                  opacity: [0, 1],
+                  x: [-15, 0], // Entrada lateral sutil desde la izquierda
+               },
+               {
+                  delay: stagger(0.05),
+                  duration: 0.2,
+                  easing: [0.22, 1, 0.36, 1],
+               },
+            );
+         },
+         { amount: threshold },
+      );
+   </script>
 </div>
-
-<script>
-   import { animate, stagger, inView } from "motion";
-
-   const threshold = window.innerWidth >= 640 ? 0.05 : 0.02;
-
-   inView(
-      "#about-container",
-      () => {
-         animate(
-            ".about-item",
-            {
-               opacity: [0, 1],
-               x: [-15, 0], // Entrada lateral sutil desde la izquierda
-            },
-            {
-               delay: stagger(0.1),
-               duration: 0.4,
-               easing: [0.22, 1, 0.36, 1],
-            },
-         );
-      },
-      { amount: threshold },
-   );
-</script>

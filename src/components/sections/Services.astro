@@ -4,11 +4,13 @@ import GridIcon from "@icons/Grid.astro";
 import GaugeIcon from "@icons/Gauge.astro";
 import LayersIcon from "@icons/Layers.astro";
 import CpuIcon from "@icons/Cpu.astro";
+import Card from "../shared/Card/Card.astro";
+import Paragraph from "../shared/Paragraph.astro";
 
 const SERVICES = [
    {
       title: "Landing Pages de Alta Conversión",
-      subtitle: "ESTRATEGIA · VELOCIDAD",
+      subtitle: "VELOCIDAD",
       description:
          "Sitios diseñados para una sola misión: vender. Utilizo tecnología de última generación para que tu web cargue al instante, evitando que pierdas clientes por esperas innecesarias.",
       icon: GaugeIcon, // El icono de Gauge (velocímetro) sigue siendo perfecto aquí.
@@ -16,7 +18,7 @@ const SERVICES = [
    },
    {
       title: "Sitios Institucionales Premium",
-      subtitle: "AUTORIDAD · DISEÑO",
+      subtitle: "AUTORIDAD",
       description:
          "Tu marca merece una presencia digital que proyecte confianza. Desarrollo sitios multi-sección con navegación fluida para marcas que buscan destacar y consolidar su imagen profesional.",
       icon: LayersIcon, // Capas para representar la estructura del sitio.
@@ -24,7 +26,7 @@ const SERVICES = [
    },
    {
       title: "Plataformas Autogestionables",
-      subtitle: "CONTROL TOTAL · ESCALABILIDAD",
+      subtitle: "ESCALABILIDAD",
       description:
          "Olvidate de las plantillas limitadas. Creo sistemas a medida donde podés gestionar tu contenido (blog, proyectos, servicios) de forma fácil, segura y sin depender de un programador.",
       icon: CpuIcon, // El chip representa la "inteligencia" del sistema a medida.
@@ -43,62 +45,19 @@ const SERVICES = [
 <div id="services-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
    {
       SERVICES.map(({ icon: Icon, subtitle, title, description, label }) => (
-         <article
-            class={`
-                  service-item opacity-0
-                  group relative flex flex-col p-8 rounded-2xl 
-                  bg-white/80 dark:bg-bg-surface/40 border border-black/5 dark:border-border-subtle
-                  shadow-sm hover:shadow-md 
-                  
-                  /* Sincronización con Formation.astro */
-                  transition-[box-shadow,border-color,background-color] duration-500 ease-out
-                  hover:border-border-strong/20 dark:hover:border-text-highlighted/30
-               `}
-         >
-            {/* Luces de fondo sutiles */}
-            {/* <div class="absolute top-0 right-0 -mr-10 -mt-10 w-32 h-32 rounded-full bg-text-muted/5 dark:bg-white/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" /> */}
+         <article class="service-item opacity-0">
+            <Card variant="highlight" class="about-item md:w-full min-h-full">
+               {
+                  <Paragraph>
+                     <p>{description}</p>
+                  </Paragraph>
+               }
 
-            <div class="relative flex flex-col h-full">
-               <div class="relative size-12 mb-8 flex items-center justify-center rounded-full bg-bg-deep/[0.03] dark:bg-white/[0.03] border border-black/[0.08] dark:border-white/[0.08] group-hover:border-text-highlighted/30 transition-all duration-500">
-                  <div class="absolute inset-0 bg-text-highlighted/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div class="relative size-6 text-text-dimmed dark:text-text-muted group-hover:text-bg-deep dark:group-hover:text-title transition-colors duration-300">
-                     <Icon class="w-full h-full" />
-                  </div>
-               </div>
-
-               <div class="flex flex-col gap-y-2">
-                  <span class="text-xs font-bold uppercase tracking-[0.2em] text-text-muted/95 dark:text-text-highlighted">
-                     {subtitle}
-                  </span>
-                  <h3 class="text-xl font-bold text-bg-deep dark:text-title tracking-tight ">
-                     {title}
-                  </h3>
-               </div>
-
-               <p class="text-base leading-relaxed text-border-strong dark:text-text mt-4 flex-grow font-light">
-                  {description}
-               </p>
-
-               <div class="mt-8 pt-6 border-t border-black/[0.03] dark:border-white/[0.05] flex items-center justify-between">
-                  <span class="text-xs tracking-widest text-text-muted/90 dark:text-text-highlighted uppercase">
-                     {label}
-                  </span>
-                  {/* <svg
-                     xmlns="http://www.w3.org/2000/svg"
-                     class="size-4 text-text-muted/20 group-hover:text-text-highlighted/50 group-hover:translate-x-1 transition-all"
-                     fill="none"
-                     viewBox="0 0 24 24"
-                     stroke="currentColor"
-                  >
-                     <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="1.5"
-                        d="M13 7l5 5m0 0l-5 5m5-5H6"
-                     />
-                  </svg> */}
-               </div>
-            </div>
+               <Icon slot="icon" class="w-full h-full" />
+               <span slot="label">{subtitle}</span>
+               <span slot="title">{title}</span>
+               <div slot="footer">{label}</div>
+            </Card>
          </article>
       ))
    }
@@ -119,8 +78,8 @@ const SERVICES = [
                y: [15, 0], // Sincronizado exactamente con Formation.astro
             },
             {
-               delay: stagger(0.075),
-               duration: 0.25, // Un poco más rápido para mayor sensación de "snappy"
+               delay: stagger(0.1),
+               duration: 0.2, // Un poco más rápido para mayor sensación de "snappy"
                easing: [0.22, 1, 0.36, 1],
             },
          );

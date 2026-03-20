@@ -7,13 +7,15 @@ import { Image } from "astro:assets";
 import imageJorgelina from "@assets/project-jorgelinareales.webp";
 import imageAny from "@assets/project-anygiraldez.webp";
 import imageIsabel from "@assets/project-isabellopez.webp";
+import Card from "../shared/Card/Card.astro";
+import Paragraph from "../shared/Paragraph.astro";
 
 const TESTIMONIALS = [
    {
       name: "Jorgelina Reales",
       role: "Fundadora de La Flor Sagrada",
       content:
-         "¡Qué emoción ver mi página terminada! Santiago logró un resultado impecable; me encantó el diseño y cómo resaltan los colores. Lo que más me da paz mental es saber que ahora, cuando alguien me busque, mi web aparece entre las primeras y carga enseguida. Gracias por la paciencia para traducir mi identidad mística en una plataforma profesional. ¡Súper recomendado!",
+         '"¡Qué emoción ver mi página terminada! Santiago logró un resultado impecable; me encantó el diseño y cómo resaltan los colores. Lo que más me da paz mental es saber que ahora, cuando alguien me busque, mi web aparece entre las primeras y carga enseguida. Gracias por la paciencia para traducir mi identidad mística en una plataforma profesional. ¡Súper recomendado!"',
       image: imageJorgelina,
       highlight: "Velocidad y SEO",
    },
@@ -29,7 +31,7 @@ const TESTIMONIALS = [
       name: "Isabel López",
       role: "Coach Ontológica",
       content:
-         "Lo que más destaco de trabajar con Santiago es que supo comprenderme desde el primer momento y plantear de manera visual y narrativa exactamente lo que quería transmitir. Me encanta cómo se ven los colores y lo profesional que quedó todo. Y sobre todo, me dio la tranquilidad de saber que mi web funciona muy bien y carga enseguida.",
+         '"Lo que más destaco de trabajar con Santiago es que supo comprenderme desde el primer momento y plantear de manera visual y narrativa exactamente lo que quería transmitir. Me encanta cómo se ven los colores y lo profesional que quedó todo. Y sobre todo, me dio la tranquilidad de saber que mi web funciona muy bien y carga enseguida."',
       image: imageIsabel,
       highlight: "Conversión Real",
    },
@@ -46,36 +48,19 @@ const TESTIMONIALS = [
 <div id="testimonials-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
    {
       TESTIMONIALS.map(({ name, role, content, image, highlight }) => (
-         <article class="testimonial-item opacity-0 flex flex-col p-8 rounded-2xl bg-white/80 dark:bg-bg-surface/40 border border-black/5 dark:border-border-subtle shadow-sm transition-[border-color,background-color] duration-500 hover:border-border-strong/20 dark:hover:border-text-highlighted/30">
-            {/* <div class="flex items-center gap-x-1 mb-4 text-text-highlighted">
-               {[...Array(5)].map(() => (
-                  <StarIcon class="size-3 fill-current" />
-               ))}
-            </div> */}
+         <article class="testimonial-item opacity-0">
+            <Card variant="highlight">
+               <Paragraph>
+                  <p>{content}</p>
+               </Paragraph>
 
-            <p class="text-base leading-relaxed text-border-strong dark:text-text mb-8 flex-grow font-light">
-               "{content}"
-            </p>
-
-            <footer class="flex items-center gap-x-4 pt-6 border-t border-black/[0.03] dark:border-white/[0.05]">
-               {/* <div class="size-10 rounded-full overflow-hidden border border-black/10 dark:border-white/10">
-                  <Image
-                     src={image}
-                     alt={`Retrato de ${name}`}
-                     class="w-full h-full object-cover"
-                     width={80}
-                     height={80}
-                  />
-               </div> */}
-               <div class="flex flex-col">
-                  <span class="text-sm font-bold text-bg-deep dark:text-title tracking-tight">
-                     {name}
-                  </span>
-                  <span class="text-[10px] uppercase tracking-widest text-text-muted/90 dark:text-text-highlighted font-medium">
-                     {role}
-                  </span>
+               <div slot="footer">
+                  <div class="flex flex-col gap-2">
+                     <p class="normal-case text-base text-title">{name}</p>
+                     <p>{role}</p>
+                  </div>
                </div>
-            </footer>
+            </Card>
          </article>
       ))
    }

@@ -1,0 +1,79 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+import Label from "./Label.astro";
+import Title from "./Title.astro";
+import Footer from "./Footer.astro";
+import Icon from "./Icon.astro";
+
+interface Props extends HTMLAttributes<"div"> {
+   variant?: "transparent" | "highlight";
+   // Mantenemos las props opcionales por compatibilidad simple
+   label?: string;
+   title?: string;
+   footer?: string;
+   icon?: string;
+}
+
+const {
+   variant = "transparent",
+   label,
+   title,
+   footer,
+   icon,
+   class: className,
+   ...rest
+} = Astro.props;
+
+const variants = {
+   transparent:
+      "bg-white/80 dark:bg-transparent border-black/5 dark:border-border-subtle",
+   highlight:
+      "bg-white/80 dark:bg-white/[0.03] border-black/5 dark:border-border-subtle",
+};
+
+const baseContainerClasses =
+   "h-full relative p-8 flex flex-1 items-center justify-center rounded-2xl border transition-all duration-500 group-hover:border-text-highlighted/30 flex flex-col items-start";
+---
+
+<div class:list={["group flex flex-col flex-1", className]} {...rest}>
+   {/* Contenedor del Icono / Slot principal */}
+   <div class:list={[baseContainerClasses, variants[variant]]}>
+      {/* Lógica de Renderizado: Prioriza Slot > Prop */}
+      {
+         (Astro.slots.has("icon") || icon) && (
+            <Icon>
+               <slot name="icon">{icon}</slot>
+            </Icon>
+         )
+      }
+
+      <div class="flex flex-col gap-y-2">
+         {
+            (Astro.slots.has("label") || label) && (
+               <Label>
+                  <slot name="label">{label}</slot>
+               </Label>
+            )
+         }
+
+         {
+            (Astro.slots.has("title") || title) && (
+               <Title>
+                  <slot name="title">{title}</slot>
+               </Title>
+            )
+         }
+      </div>
+
+      <slot />
+
+      {
+         (Astro.slots.has("footer") || footer) && (
+            <Footer>
+               <slot name="footer">{footer}</slot>
+            </Footer>
+         )
+      }
+   </div>
+</div>

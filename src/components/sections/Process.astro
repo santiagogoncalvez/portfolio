@@ -3,22 +3,24 @@ import Subtitle from "@shared/Subtitle.astro";
 import PlayIcon from "@icons/Play.astro";
 import ProcessIcon from "@icons/Process.astro";
 import XIcon from "@icons/X.astro";
+import Card from "../shared/Card/Card.astro";
+import Paragraph from "../shared/Paragraph.astro";
 
 const STEPS = [
    {
-      title: "Diagnóstico",
+      title: "Estrategia",
       description:
-         "Analizamos tu marca para diseñar una estrategia que realmente convierta.",
+         "Analizo tu negocio para diseñar una estrategia real, no solo código. El objetivo es que tu web trabaje para vos.",
    },
    {
       title: "Desarrollo",
       description:
-         "Construyo tu sitio con React y Astro, priorizando velocidad y diseño premium.",
+         "Construyo tu sitio con tecnología moderna para que tu web vuele, priorizando una velocidad de carga instantánea.",
    },
    {
-      title: "Despegue",
+      title: "Control Total",
       description:
-         "Lanzamos tu web optimizada y te entrego el control total de tu contenido.",
+         "Te entrego el proyecto desplegado y el control de tu contenido para que puedas escalar sin depender de nadie.",
    },
 ];
 
@@ -35,7 +37,7 @@ const VIDEO_FULL = "/video/video.mp4";
 
 <div class="flex flex-col gap-y-12 items-center" id="process-section">
    <div
-      class="relative group cursor-pointer w-full max-w-lg"
+      class="relative group cursor-pointer w-full max-w-lg opacity-0 animate-item"
       id="video-trigger"
    >
       <div
@@ -49,8 +51,7 @@ const VIDEO_FULL = "/video/video.mp4";
             playsinline
             preload="auto"
             class="w-full h-full object-cover group-hover:opacity-100 transition-opacity duration-500"
-         >
-         </video>
+         ></video>
 
          <div class="absolute inset-0 flex items-center justify-center">
             <div
@@ -62,25 +63,21 @@ const VIDEO_FULL = "/video/video.mp4";
             </div>
          </div>
       </div>
-      <!-- <p
-         class="text-center mt-4 text-xs uppercase tracking-widest text-text-muted font-medium opacity-0 group-hover:opacity-100 transition-opacity"
-      >
-         Ver video del proceso (1 min)
-      </p> -->
    </div>
 
    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
       {
          STEPS.map((step, index) => (
-            <div class="process-card opacity-0 p-6 rounded-2xl border border-black/5 dark:border-white/5 bg-white/50 dark:bg-white/5 flex flex-col items-start">
-               <span class="text-[10px] font-bold text-text-highlighted uppercase tracking-[0.2em] mb-3">
-                  Paso {index + 1}
-               </span>
-               <h3 class="text-lg font-bold text-title">{step.title}</h3>
-               <p class="text-sm text-text-muted mt-2 leading-relaxed">
-                  {step.description}
-               </p>
-            </div>
+            <article class="flex opacity-0 animate-item">
+               <Card variant="transparent" class="flex-1">
+                  <Paragraph>
+                     <p>{step.description}</p>
+                  </Paragraph>
+
+                  <span slot="label">Etapa {index + 1}</span>
+                  <span slot="title">{step.title}</span>
+               </Card>
+            </article>
          ))
       }
    </div>
@@ -110,6 +107,7 @@ const VIDEO_FULL = "/video/video.mp4";
 <script>
    import { animate, inView, stagger } from "motion";
 
+   // Lógica de Modal (Sin cambios)
    const modal = document.getElementById("video-modal") as HTMLDialogElement;
    const trigger = document.getElementById("video-trigger");
    const closeBtn = document.getElementById("close-modal");
@@ -131,26 +129,33 @@ const VIDEO_FULL = "/video/video.mp4";
       if (e.target === modal) closeModal();
    });
 
-   inView("#process-section", () => {
-      animate(
-         ".process-card",
-         { opacity: [0, 1], y: [20, 0] },
-         { delay: stagger(0.1), duration: 0.4 },
-      );
-   });
+   // Lógica de Animación solicitada
+   const amount = window.innerWidth < 640 ? 0.05 : 0.2;
+
+   inView(
+      "#process-section",
+      () => {
+         animate(
+            ".animate-item",
+            { opacity: [0, 1], y: [15, 0] },
+            {
+               delay: stagger(0.06), // Ajustado para que 4 elementos entren en < 0.5s
+               duration: 0.3,
+               easing: [0.33, 1, 0.68, 1],
+            },
+         );
+      },
+      { amount },
+   );
 </script>
 
 <style>
-   /* Oculta el modal de forma absoluta cuando no está abierto */
    dialog:not([open]) {
       display: none !important;
    }
-
    dialog::backdrop {
       background: rgba(0, 0, 0, 0.85);
    }
-
-   /* Opcional: Evita el scroll en el body cuando el modal está abierto */
    :root:has(dialog[open]) {
       overflow: hidden;
    }
