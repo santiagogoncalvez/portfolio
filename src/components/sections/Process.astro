@@ -41,7 +41,7 @@ const VIDEO_FULL = "/video/video.mp4";
       id="video-trigger"
    >
       <div
-         class="overflow-hidden rounded-2xl border border-black/5 dark:border-white/10 aspect-video bg-bg-deep/50 relative"
+         class="overflow-hidden rounded-2xl  aspect-video bg-bg-deep/50 relative"
       >
          <video
             src={VIDEO_PREVIEW}
@@ -57,7 +57,7 @@ const VIDEO_FULL = "/video/video.mp4";
             <div
                class="bg-title p-5 rounded-full group-hover:scale-110 transition-transform duration-300"
             >
-               <div class="size-6 text-bg-deep">
+               <div class="size-6 text-bg-elevated">
                   <PlayIcon />
                </div>
             </div>
@@ -97,7 +97,7 @@ const VIDEO_FULL = "/video/video.mp4";
       <video
          id="main-video"
          controls
-         class="w-full rounded-2xl border border-white/10 shadow-2xl"
+         class="w-full rounded-2xl  shadow-2xl"
       >
          <source src={VIDEO_FULL} type="video/mp4" />
       </video>
