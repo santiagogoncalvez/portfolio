@@ -9,16 +9,7 @@ import Menu from "@icons/Menu.astro";
 import Close from "@icons/Close.astro";
 import CtaButton from "./CtaButton.astro";
 
-const navItems = [
-   { title: "Soluciones", label: "soluciones", url: "/#soluciones" },
-   { title: "Mi Proceso", label: "mi-proceso", url: "/#mi-proceso" },
-
-   { title: "Proyectos", label: "proyectos", url: "/#proyectos" },
-   { title: "Testimonios", label: "testimonios", url: "/#testimonios" },
-
-   { title: "Sobre mí", label: "sobre-mi", url: "/#sobre-mi" },
-   { title: "Contacto", label: "contacto", url: "/#contacto" },
-];
+import { navItems } from "@/constants/navItems.mjs";
 ---
 
 <header
@@ -37,22 +28,24 @@ const navItems = [
             <div class="flex gap-8">
                <LogoSG />
 
-               <div class="flex items-center">
+               <ul class="flex items-center">
                   {
                      navItems.map((link) => (
-                        <a
-                           class="nav-link relative
+                        <li>
+                           <a
+                              class="nav-link relative
                     sm:px-3.5 px-2 sm:py-1 py-0.5 rounded-full
                     text-sm sm:text-base font-[500]
                     transition-colors duration-300"
-                           aria-label={link.label}
-                           href={link.url}
-                        >
-                           {link.title}
-                        </a>
+                              aria-label={link.label}
+                              href={link.url}
+                           >
+                              {link.title}
+                           </a>
+                        </li>
                      ))
                   }
-               </div>
+               </ul>
             </div>
 
             <div class="flex gap-2 items-center">

@@ -10,6 +10,8 @@ import WhatsApp from "@/icons/WhatsApp.astro";
 import Instagram from "@/icons/Instagram.astro";
 
 const currentYear = new Date().getFullYear();
+
+import { navItems } from "@/constants/navItems.mjs";
 ---
 
 <footer
@@ -24,35 +26,6 @@ const currentYear = new Date().getFullYear();
       >
          <div class="flex flex-col gap-4 text-border-strong dark:text-text">
             <LogoSG />
-
-            <!-- <a
-               href="https://www.linkedin.com/in/santiagogoncalvez"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="inline-flex items-center gap-2 w-fit
-         rounded-md px-2 py-2
-          select-none
-         hover:bg-text-light/60
-         dark:hover:bg-bg-surface
-         transition-colors"
-            >
-               <span
-                  class="h-2 w-2 shrink-0 rounded-full
-           ring-2 ring-green-500
-           dark:ring-green-500"
-                  aria-hidden="true"></span>
-
-               <span>Disponible para nuevos proyectos</span>
-            </a> -->
-
-            <!-- <span
-               >&copy; {currentYear}
-               <a
-                  href="https://www.linkedin.com/in/santiagogoncalvez"
-                  target="_blank"
-                  class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out">Santiago Goncalvez</a
-               >.
-            </span> -->
          </div>
 
          <div class="flex gap-x-25 gap-y-15 flex-wrap">
@@ -63,54 +36,19 @@ const currentYear = new Date().getFullYear();
                <ul
                   class="flex flex-col gap-3 text-border-strong dark:text-text"
                >
-                  <!-- <li>
-                     <a href="/#top" class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6"
-                        >Inicio</a
-                     >
-                  </li> -->
-                  <li>
-                     <a
-                        href="/#soluciones"
-                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6"
-                        >Soluciones</a
-                     >
-                  </li>
-                  <li>
-                     <a
-                        href="/#mi-proceso"
-                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6"
-                        >Mi Proceso</a
-                     >
-                  </li>
-                  <li>
-                     <a
-                        href="/#proyectos"
-                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6"
-                        >Proyectos</a
-                     >
-                  </li>
-                  <li>
-                     <a
-                        href="/#testimonios"
-                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6"
-                        >Testimonios</a
-                     >
-                  </li>
-                  <li>
-                     <a
-                        href="/#sobre-mi"
-                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6"
-                        >Sobre mí</a
-                     >
-                  </li>
-
-                  <li>
-                     <a
-                        href="/#contacto"
-                        class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6"
-                        >Contacto</a
-                     >
-                  </li>
+                  {
+                     navItems.map((item) => (
+                        <li>
+                           <a
+                              class="hover:text-bg-deep dark:hover:text-title transition-colors ease-in-out me-4 md:me-6"
+                              aria-label={item.label}
+                              href={item.url}
+                           >
+                              {item.title}
+                           </a>
+                        </li>
+                     ))
+                  }
                </ul>
             </div>
 
