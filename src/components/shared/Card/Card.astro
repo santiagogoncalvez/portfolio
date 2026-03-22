@@ -27,13 +27,13 @@ const {
 
 const variants = {
    transparent:
-      "bg-white/40 dark:bg-transparent border-border-card-outline dark:border-border-strong/80 group-hover:bg-white/2",
+      "bg-white/40 dark:bg-transparent border-border-card-outline dark:border-border-strong/80 dark:group-hover:bg-white/2 dark:group-hover:border-text-highlighted/30 group-hover:border-border-strong/20",
    highlight:
-      "bg-white dark:bg-white/[0.03] border-border-card-outline dark:border-border-strong/80 group-hover:bg-transparent",
+      "bg-white dark:bg-white/[0.03] border-border-card-outline dark:border-border-strong/80 dark:group-hover:bg-transparent group-hover:bg-white/10",
 };
 
 const baseContainerClasses =
-   "h-full relative p-8 flex flex-1 items-center justify-center rounded-2xl border transition-all duration-500 group-hover:border-text-highlighted/30 flex flex-col items-start";
+   "h-full relative p-8 flex flex-1 items-center justify-center rounded-2xl border transition-all duration-300  flex flex-col items-start";
 ---
 
 <div class:list={["group flex flex-col flex-1", className]} {...rest}>
