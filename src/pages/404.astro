@@ -3,6 +3,8 @@ import Layout from "../layouts/Layout.astro";
 // import ProfilePhoto from "../components/sections/Hero/ProfilePhoto.astro";
 import Badge from "../components/sections/Hero/Badge.astro";
 import SectionContainer from "../components/shared/SectionContainer.astro";
+import Main from "@/components/shared/Main.astro";
+import CtaButtonInner from "@/components/shared/CtaButtonInner.astro";
 ---
 
 <Layout
@@ -11,55 +13,49 @@ import SectionContainer from "../components/shared/SectionContainer.astro";
 >
    <meta slot="head" name="robots" content="noindex" />
 
-   <div
-      class="w-full md:pt-26 sm:pt-24 pt-22 px-5 flex flex-col sm:gap-24 gap-16"
-   >
+   <Main>
       <SectionContainer>
          <div class="flex flex-row items-center gap-8">
-            <div class="w-full flex flex-col items-center gap-6">
+            <div class="w-full flex flex-col items-center sm:gap-8 gap-6">
                <!-- Header -->
                <header
                   class="flex items-center flex-row flex-wrap md:gap-4 gap-2"
                >
-                  <strong class="text-border-strong dark:text-text"
-                     >Error 404</strong
+                  <p class="text-border-strong dark:text-text"
+                     >Error 404</p
                   >
                </header>
 
                <div
-                  class="flex sm:flex-row flex-col sm:gap-6 gap-3 items-center"
+                  class="flex flex-col sm:gap-6 gap-4 items-center"
                >
                   <h1
                      class="text-3xl md:text-5xl font-bold text-bg-deep dark:text-[#fafafa] leading-tight"
                   >
                      Esta página no existe
                   </h1>
-               </div>
-               <h2
-                  class="text-center text-xl lg:text-2xl
+                  <p
+                     class="text-center text-xl lg:text-2xl
         text-border-strong dark:text-[#B0B0B0]
         max-w-2xl"
-               >
-                  <strong class="text-bg-base dark:text-[#d7d7d7] font-medium">
-                     El enlace puede estar mal escrito
-                  </strong>
-                  o la página fue movida.
-               </h2>
+                  >
+                     <strong
+                        class="text-bg-base dark:text-[#d7d7d7] font-medium"
+                     >
+                        El enlace puede estar mal escrito
+                     </strong>
+                     o la página fue movida.
+                  </p>
+               </div>
 
                <!-- Acción -->
-               <nav class="mt-4">
-                  <a
-                     href="/"
-                     class="inline-flex items-center text-sm font-medium
-                 text-bg-base dark:text-[#d7d7d7]
-                 underline underline-offset-4
-                 hover:opacity-80 transition"
-                  >
-                     Volver al inicio
-                  </a>
-               </nav>
+               <CtaButtonInner
+               href="/"
+               >
+                  Volver al inicio
+               </CtaButtonInner>
             </div>
          </div>
       </SectionContainer>
-   </div>
+   </Main>
 </Layout>
