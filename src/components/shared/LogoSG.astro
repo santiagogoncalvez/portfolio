@@ -1,4 +1,7 @@
 ---
+import Logo from "@/icons/Logo.astro";
+import LogoDark from "@/icons/LogoDark.astro";
+
 // Obtener la ruta actual
 const { pathname } = Astro.url;
 
@@ -7,9 +10,10 @@ const href = pathname === "/" || pathname === "/index.html" ? "#top" : "/";
 ---
 
 <a
-   class="text-2xl font-extrabold text-bg-base dark:text-title"
+   class="font-bold text-bg-base dark:text-title w-fit h-fit"
    aria-label="inicio"
    href={href}
 >
-   SG
+   <Logo class="size-8 flex dark:hidden" />
+   <LogoDark class="size-8 hidden dark:flex" />
 </a>
