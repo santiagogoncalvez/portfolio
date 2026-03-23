@@ -55,10 +55,10 @@ const VIDEO_FULL = "/video/video.mp4";
 
          <div class="absolute inset-0 flex items-center justify-center">
             <div
-               class="bg-title p-5 rounded-full group-hover:scale-110 transition-transform duration-300"
+               class="dark:bg-title bg-bg-deep sm:p-5 p-3 rounded-full group-hover:scale-110 transition-transform duration-300"
             >
-               <div class="size-6 text-bg-elevated">
-                  <PlayIcon />
+               <div class="dark:text-bg-deep text-title">
+                  <PlayIcon class="sm:size-6 size-4" />
                </div>
             </div>
          </div>
@@ -123,6 +123,8 @@ const VIDEO_FULL = "/video/video.mp4";
 </script>
 
 <script>
+   import { animate } from "motion";
+
    // Lógica de Modal (Sin cambios)
    const modal = document.getElementById("video-modal") as HTMLDialogElement;
    const trigger = document.getElementById("video-trigger");
@@ -151,7 +153,7 @@ const VIDEO_FULL = "/video/video.mp4";
       display: none !important;
    }
    dialog::backdrop {
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(0, 0, 0, 0.9);
    }
    :root:has(dialog[open]) {
       overflow: hidden;

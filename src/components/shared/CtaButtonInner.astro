@@ -3,17 +3,17 @@
    target={Astro.props.target}
    rel="noopener noreferrer"
    class={`flex items-center justify-center gap-2 
-          px-6 py-2.5 rounded-full 
+          px-5 py-2.5 rounded-full 
           md:text-lg text-base
           font-medium transition-all duration-300 text-center border
           
           /* Light Mode: Limpio y profesional */
-          bg-black/[0.03] text-bg-elevated border-black/10
-          hover:bg-black/[0.06] hover:border-black/20
+          bg-transparent text-bg-elevated border-border-card-outline/90
+          hover:bg-border-strong/4 
           
           /* Dark Mode: Efecto Glassmorphism */
-          dark:bg-white/[0.03] dark:text-text dark:border-white/10
-          dark:hover:bg-white/[0.08] dark:hover:text-title dark:hover:border-white/20
+          dark:bg-transparent dark:text-text dark:border-border-strong/70
+          dark:hover:bg-white/4 dark:hover:text-title 
           
           active:scale-95 ${Astro.props.class}`}
    {...Astro.props}

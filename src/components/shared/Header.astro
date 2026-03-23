@@ -82,12 +82,11 @@ import { navItems } from "@/constants/navItems.mjs";
             <button
                id="mobile-menu-btn"
                aria-label="Abrir menú"
-               class="h-9 w-9 hover:cursor-pointer flex items-center justify-center
+               class="hover:cursor-pointer flex items-center justify-center
                  rounded-md
-                 border border-text-light
-                 dark:border-border-strong text-bg-base dark:text-title"
+                 text-bg-base dark:text-title h-fit w-fit p-1"
             >
-               <Menu class="size-5" />
+               <Menu class="size-6" />
             </button>
          </div>
       </nav>
@@ -109,9 +108,9 @@ import { navItems } from "@/constants/navItems.mjs";
          <button
             id="mobile-menu-close"
             aria-label="Cerrar menú"
-            class="h-9 w-9 hover:cursor-pointer flex items-center justify-center rounded-md"
+            class="h-fit w-fit p-1 hover:cursor-pointer flex items-center justify-center rounded-md"
          >
-            <Close class="size-5 text-bg-base dark:text-title" />
+            <Close class="size-6 text-bg-base dark:text-title" />
          </button>
       </div>
 
@@ -139,7 +138,7 @@ import { navItems } from "@/constants/navItems.mjs";
 
          <div class="w-full">
             <div
-               class="min-w-full flex h-[1px] bg-border-card-outline dark:bg-border-strong/80"
+               class="min-w-full flex h-[1px] bg-border-card-outline/40 dark:bg-border-strong/20"
             >
             </div>
          </div>
@@ -150,28 +149,6 @@ import { navItems } from "@/constants/navItems.mjs";
             >
                <span>Tema</span>
                <ThemeToggle id="theme-mobile" />
-            </div>
-
-            <div class="w-full flex gap-2 items-center justify-center">
-               <SocialPill
-                  href="https://www.linkedin.com/in/santiagogoncalvez"
-                  aria-label="Perfil de LinkedIn de Santiago Goncalvez"
-                  class="p-1.5 transition-all rounded-2xl hover:bg-black/[0.05] dark:hover:bg-white/[0.05] group"
-               >
-                  <LinkedInIcon
-                     class="size-6 text-border-strong/90 dark:text-text group-hover:text-black dark:group-hover:text-white transition-colors"
-                  />
-               </SocialPill>
-
-               <!-- <SocialPill
-                  href="https://github.com/santiagogoncalvez"
-                  aria-label="Perfil de GitHub de Santiago Goncalvez"
-                  class="p-1.5 transition-all rounded-2xl hover:bg-black/[0.05] dark:hover:bg-white/[0.05] group"
-               >
-                  <GitHubIcon
-                     class="size-6 text-border-strong/90 dark:text-text group-hover:text-black dark:group-hover:text-white transition-colors"
-                  />
-               </SocialPill> -->
             </div>
          </div>
       </div>
