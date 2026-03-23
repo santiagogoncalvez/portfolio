@@ -7,7 +7,12 @@ import Footer from "./Footer.astro";
 import Icon from "./Icon.astro";
 
 interface Props extends HTMLAttributes<"div"> {
-   variant?: "transparent" | "highlight";
+   variant?:
+      | "transparent"
+      | "highlight"
+      | "transparentLeft"
+      | "transparentMiddle"
+      | "transparentRight";
    // Mantenemos las props opcionales por compatibilidad simple
    label?: string;
    title?: string;
@@ -27,13 +32,25 @@ const {
 
 const variants = {
    transparent:
-      "bg-white/40 dark:bg-transparent border-border-card-outline dark:border-border-strong/80 dark:group-hover:bg-white/2 dark:group-hover:border-text-highlighted/30 group-hover:border-border-strong/20",
+      "bg-white/40 dark:bg-transparent border-border-card-outline dark:border-border-strong/80 dark:group-hover:bg-white/2 dark:group-hover:border-text-highlighted/30 group-hover:border-border-strong/20 rounded-2xl",
    highlight:
-      "bg-white dark:bg-white/[0.03] border-border-card-outline dark:border-border-strong/80 dark:group-hover:bg-transparent group-hover:bg-white/10",
+      "bg-white dark:bg-white/[0.03] border-border-card-outline dark:border-border-strong/80 dark:group-hover:bg-transparent group-hover:bg-white/10 rounded-2xl",
+
+   transparentLeft:
+      "bg-white/40 dark:bg-transparent border-border-card-outline dark:border-border-strong/80 dark:group-hover:bg-white/2 dark:group-hover:border-border-strong/80 group-hover:border-border-strong/20 " +
+      "rounded-t-2xl md:rounded-tr-none md:rounded-l-2xl",
+
+   transparentMiddle:
+      "bg-white/40 dark:bg-transparent border-border-card-outline dark:border-border-strong/80 dark:group-hover:bg-white/2 dark:group-hover:border-border-strong/80 group-hover:border-border-strong/20 " +
+      "border-y-[0px] md:border-y-[1px] md:border-x-[0px] dark:border-y-[0px] dark:md:border-y-[1px] dark:md:border-x-[0px]",
+
+   transparentRight:
+      "bg-white/40 dark:bg-transparent border-border-card-outline dark:border-border-strong/80 dark:group-hover:bg-white/2 dark:group-hover:border-border-strong/80 group-hover:border-border-strong/20 " +
+      "rounded-b-2xl md:rounded-bl-none md:rounded-r-2xl",
 };
 
 const baseContainerClasses =
-   "h-full relative p-8 flex flex-1 items-center justify-center rounded-2xl border transition-all duration-300  flex flex-col items-start";
+   "h-full relative p-8 flex flex-1 items-center justify-center  border transition-all duration-300  flex flex-col items-start";
 ---
 
 <div class:list={["group flex flex-col flex-1", className]} {...rest}>

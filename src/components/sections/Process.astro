@@ -11,16 +11,19 @@ const STEPS = [
       title: "Estrategia",
       description:
          "Analizo tu negocio para diseñar una estrategia real, no solo código. El objetivo es que tu web trabaje para vos.",
+      variant: "transparentLeft",
    },
    {
       title: "Desarrollo",
       description:
          "Construyo tu sitio con tecnología moderna para que tu web vuele, priorizando una velocidad de carga instantánea.",
+      variant: "transparentMiddle",
    },
    {
       title: "Control Total",
       description:
          "Te entrego el proyecto desplegado y el control de tu contenido para que puedas escalar sin depender de nadie.",
+      variant: "transparentRight",
    },
 ];
 
@@ -67,11 +70,11 @@ const VIDEO_FULL =
       </div>
    </div>
 
-   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+   <div class="grid grid-cols-1 md:grid-cols-3 w-full">
       {
          STEPS.map((step, index) => (
             <article class="process-animate-item flex opacity-0">
-               <Card variant="transparent" class="flex-1">
+               <Card variant={step.variant} class="flex-1">
                   <Paragraph>
                      <p>{step.description}</p>
                   </Paragraph>
@@ -96,7 +99,12 @@ const VIDEO_FULL =
       >
          <XIcon class="size-6" />
       </button>
-      <video id="main-video" controls class="w-full rounded-2xl shadow-2xl" preload="auto">
+      <video
+         id="main-video"
+         controls
+         class="w-full rounded-2xl shadow-2xl"
+         preload="auto"
+      >
          <source src={VIDEO_FULL} type="video/mp4" />
       </video>
    </div>
