@@ -211,7 +211,7 @@ import { navItems } from "@/constants/navItems.mjs";
             const label = normalize(link.getAttribute("aria-label") || "");
 
             link.classList.remove(
-               "bg-text-light",
+               "bg-text-light/60",
                "bg-border-light",
                "text-white",
                "text-text",
@@ -224,7 +224,7 @@ import { navItems } from "@/constants/navItems.mjs";
             if (label === id && id !== "") {
                link.classList.remove("text-text", "text-border-strong/90");
                link.classList.add(
-                  isDark ? "bg-border-light" : "bg-text-light",
+                  isDark ? "bg-border-light" : "bg-text-light/60",
                   isDark ? "text-white" : "text-bg-base",
                );
             }
