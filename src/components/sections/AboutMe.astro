@@ -34,7 +34,6 @@ import Card from "../shared/Card/Card.astro";
             que tu marca proyecte la autoridad que merece desde el primer
             segundo.
          </p>
-         
 
          <p>Me encargo de la tecnología, vos te encargás de escalar.</p>
       </Paragraph>
@@ -48,7 +47,7 @@ import Card from "../shared/Card/Card.astro";
 
    <div class="about-item opacity-0 md:w-1/3 relative group">
       <div
-         class="h-full w-full overflow-hidden rounded-2xl  shadow-sm bg-bg-deep/5 transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+         class="h-full w-full overflow-hidden rounded-2xl shadow-sm bg-bg-deep/5 transition-transform duration-500 ease-out group-hover:scale-[1.02]"
       >
          <Image
             src={profilePic}
@@ -68,14 +67,11 @@ import Card from "../shared/Card/Card.astro";
          () => {
             animate(
                ".about-item",
+               { opacity: [0, 1], y: [15, 0] },
                {
-                  opacity: [0, 1],
-                  x: [-15, 0], // Entrada lateral sutil desde la izquierda
-               },
-               {
-                  delay: stagger(0.05),
-                  duration: 0.2,
-                  easing: [0.22, 1, 0.36, 1],
+                  delay: stagger(0.06),
+                  duration: 0.3,
+                  easing: [0.33, 1, 0.68, 1],
                },
             );
          },

@@ -73,8 +73,6 @@ import WhatsApp from "@/icons/WhatsApp.astro";
                <WhatsApp class="min-h-full min-w-auto" />
                Agendar una charla
             </CtaButton>
-
-            
          </div>
       </div>
    </div>
@@ -83,7 +81,7 @@ import WhatsApp from "@/icons/WhatsApp.astro";
 <script>
    import { animate, stagger, inView } from "motion";
 
-   const threshold = window.innerWidth >= 640 ? 0.1 : 0.05;
+   const threshold = window.innerWidth >= 640 ? 0.05 : 0.02;
 
    function initContactAnimations() {
       // 1. Animación del contenedor principal (Scale + Fade)

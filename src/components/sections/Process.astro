@@ -37,11 +37,11 @@ const VIDEO_FULL = "/video/video.mp4";
 
 <div class="flex flex-col gap-y-12 items-center" id="process-section">
    <div
-      class="relative group cursor-pointer w-full max-w-lg opacity-0 animate-item"
+      class="process-animate-item relative group cursor-pointer w-full max-w-lg opacity-0"
       id="video-trigger"
    >
       <div
-         class="overflow-hidden rounded-2xl  aspect-video bg-bg-deep/50 relative"
+         class="overflow-hidden rounded-2xl aspect-video bg-bg-deep/50 relative"
       >
          <video
             src={VIDEO_PREVIEW}
@@ -68,7 +68,7 @@ const VIDEO_FULL = "/video/video.mp4";
    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
       {
          STEPS.map((step, index) => (
-            <article class="flex opacity-0 animate-item">
+            <article class="process-animate-item flex opacity-0">
                <Card variant="transparent" class="flex-1">
                   <Paragraph>
                      <p>{step.description}</p>
@@ -94,19 +94,35 @@ const VIDEO_FULL = "/video/video.mp4";
       >
          <XIcon class="size-6" />
       </button>
-      <video
-         id="main-video"
-         controls
-         class="w-full rounded-2xl  shadow-2xl"
-      >
+      <video id="main-video" controls class="w-full rounded-2xl shadow-2xl">
          <source src={VIDEO_FULL} type="video/mp4" />
       </video>
    </div>
 </dialog>
 
 <script>
-   import { animate, inView, stagger } from "motion";
+   import { animate, stagger, inView } from "motion";
 
+   const threshold = window.innerWidth >= 640 ? 0.05 : 0.02;
+
+   inView(
+      "#process-section",
+      () => {
+         animate(
+            ".process-animate-item",
+            { opacity: [0, 1], y: [15, 0] },
+            {
+               delay: stagger(0.06),
+               duration: 0.3,
+               easing: [0.33, 1, 0.68, 1],
+            },
+         );
+      },
+      { amount: threshold },
+   );
+</script>
+
+<script>
    // Lógica de Modal (Sin cambios)
    const modal = document.getElementById("video-modal") as HTMLDialogElement;
    const trigger = document.getElementById("video-trigger");
@@ -128,25 +144,6 @@ const VIDEO_FULL = "/video/video.mp4";
    modal?.addEventListener("click", (e) => {
       if (e.target === modal) closeModal();
    });
-
-   // Lógica de Animación solicitada
-   const amount = window.innerWidth < 640 ? 0.05 : 0.2;
-
-   inView(
-      "#process-section",
-      () => {
-         animate(
-            ".animate-item",
-            { opacity: [0, 1], y: [15, 0] },
-            {
-               delay: stagger(0.06), // Ajustado para que 4 elementos entren en < 0.5s
-               duration: 0.3,
-               easing: [0.33, 1, 0.68, 1],
-            },
-         );
-      },
-      { amount },
-   );
 </script>
 
 <style>
