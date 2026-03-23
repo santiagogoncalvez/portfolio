@@ -44,7 +44,11 @@ import Card from "../shared/Card/Card.astro";
 
       {/* El Footer como Slot Nombrado (Seguro y flexible) */}
       <div slot="footer" class="w-full flex justify-between flex-wrap gap-2">
-         <p>· Disponible para nuevos proyectos</p>
+         <div class="flex flex-row gap-2 items-center">
+            <div class="bg-green-500 size-2 rounded-full"></div>
+
+            <p>Disponible</p>
+         </div>
          <p>Buenos Aires, Argentina</p>
       </div>
    </Card>
