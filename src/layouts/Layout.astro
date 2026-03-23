@@ -17,10 +17,9 @@ const { title, description } = Astro.props;
 
       <!-- <link
          rel="preload"
-         href="/fonts/onest-latin-wght-normal.woff2"
+         href="/Satoshi-Variable.woff2"
          as="font"
          type="font/woff2"
-         crossorigin="anonymous"
       /> -->
 
       <link
@@ -67,7 +66,7 @@ const { title, description } = Astro.props;
          sizes="180x180"
          href="/apple-touch-icon.png"
       />
-      <meta name="apple-mobile-web-app-title" content="Santiago G." />
+      <meta name="apple-mobile-web-app-title" content="Santiago Goncalvez" />
       <link rel="manifest" href="/site.webmanifest" />
 
       <style is:global>
@@ -138,73 +137,56 @@ const { title, description } = Astro.props;
          content="W3Lp3GsRg9PNa6c8hQ_83vaBqEHlKQrae7YLXjDRMZ0"
       />
 
-      <script>
-         (function () {
-            // IMPORTANTE: Aquí solo ponemos el nombre del dominio, sin https ni barras
-            var oldDomain = "santiagogoncalvez.web.app";
-            var oldDomain2 = "santiagogoncalvez.firebaseapp.com"; // Firebase siempre da dos
-            var newDomain = "https://santiagogoncalvez.com";
-
-            if (
-               window.location.hostname.includes(oldDomain) ||
-               window.location.hostname.includes(oldDomain2)
-            ) {
-               // Redirige manteniendo la ruta y los parámetros de búsqueda
-               window.location.replace(
-                  newDomain + window.location.pathname + window.location.search,
-               );
-            }
-         })();
-      </script>
-
       <script type="application/ld+json">
          {
             "@context": "https://schema.org",
-            "@type": "ProfessionalService",
-            "name": "Santiago Goncalvez - Desarrollo Web & Sistemas a Medida",
-            "image": "https://santiagogoncalvez.com/santiago-goncalvez-desarrollador-frontend.webp",
+            "@type": "LocalBusiness",
+            "name": "Santiago Goncalvez - Estrategia & Desarrollo Web",
+            "image": "https://santiagogoncalvez.com/santiago-goncalvez-estratega-digital-react-astro.webp",
             "@id": "https://santiagogoncalvez.com/",
             "url": "https://santiagogoncalvez.com/",
             "telephone": "+5491135821266",
             "priceRange": "$$",
-            "description": "Desarrollador Frontend especializado en React y Astro. Creación de sitios web de alto rendimiento, optimización SEO y aplicaciones dinámicas en Buenos Aires.",
+            "description": "Estratega digital y desarrollador web boutique en Buenos Aires. Creación de sitios de alta velocidad con React y Astro para potenciar la autoridad de marca y la conversión de clientes.",
             "address": {
                "@type": "PostalAddress",
                "addressLocality": "Buenos Aires",
                "addressCountry": "AR"
             },
             "knowsAbout": [
+               "Desarrollo Web de Alto Rendimiento",
                "Astro Framework",
                "React.js",
-               "TypeScript",
-               "Performance Web",
+               "Estrategia Digital",
                "SEO Técnico",
-               "Tailwind CSS"
+               "Diseño de Interfaces Modernas"
             ],
             "hasOfferCatalog": {
                "@type": "OfferCatalog",
-               "name": "Servicios de Desarrollo",
+               "name": "Soluciones Digitales",
                "itemListElement": [
                   {
                      "@type": "Offer",
                      "itemOffered": {
                         "@type": "Service",
-                        "name": "Desarrollo Web con Astro y Performance"
+                        "name": "Landing Pages de Alta Conversión",
+                        "description": "Sitios optimizados para transformar tráfico en clientes reales."
                      }
                   },
                   {
                      "@type": "Offer",
                      "itemOffered": {
                         "@type": "Service",
-                        "name": "Aplicaciones Modernas con React y TypeScript"
+                        "name": "Sitios Institucionales Premium",
+                        "description": "Presencia digital robusta para marcas que buscan proyectar autoridad."
                      }
                   }
                ]
             },
             "sameAs": [
-               "https://www.instagram.com/santiagogoncalvez.dev/",
                "https://www.linkedin.com/in/santiagogoncalvez",
                "https://github.com/santiagogoncalvez",
+               "https://www.instagram.com/santiagogoncalvez.dev/",
                "https://wa.me/5491135821266"
             ]
          }

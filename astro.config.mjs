@@ -23,4 +23,7 @@ export default defineConfig({
          },
       },
    },
+   build: {
+      inlineStylesheets: "always", // O 'always' para proyectos pequeños
+   },
 });

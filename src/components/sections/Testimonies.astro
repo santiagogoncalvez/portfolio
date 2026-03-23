@@ -1,12 +1,8 @@
 ---
 import Subtitle from "@shared/Subtitle.astro";
 import StarIcon from "@icons/Star.astro"; // Asegurate de tener un icono de estrella
-import { Image } from "astro:assets";
 
 // Reutilizamos las mismas imágenes para mantener coherencia visual de marca
-import imageJorgelina from "@assets/project-jorgelinareales.webp";
-import imageAny from "@assets/project-anygiraldez.webp";
-import imageIsabel from "@assets/project-isabellopez.webp";
 import Card from "../shared/Card/Card.astro";
 import Paragraph from "../shared/Paragraph.astro";
 
@@ -16,7 +12,7 @@ const TESTIMONIALS = [
       role: "Fundadora de La Flor Sagrada",
       content:
          '"¡Qué emoción ver mi página terminada! Santiago logró un resultado impecable; me encantó el diseño y cómo resaltan los colores. Lo que más me da paz mental es saber que ahora, cuando alguien me busque, mi web aparece entre las primeras y carga enseguida. Gracias por la paciencia para traducir mi identidad mística en una plataforma profesional. ¡Súper recomendado!"',
-      image: imageJorgelina,
+      image: "",
       highlight: "Velocidad y SEO",
    },
    //    {
@@ -32,7 +28,7 @@ const TESTIMONIALS = [
       role: "Coach Ontológica",
       content:
          '"Lo que más destaco de trabajar con Santiago es que supo comprenderme desde el primer momento y plantear de manera visual y narrativa exactamente lo que quería transmitir. Me encanta cómo se ven los colores y lo profesional que quedó todo. Y sobre todo, me dio la tranquilidad de saber que mi web funciona muy bien y carga enseguida."',
-      image: imageIsabel,
+      image: "",
       highlight: "Conversión Real",
    },
 ];

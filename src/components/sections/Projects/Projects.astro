@@ -7,10 +7,9 @@ import Code from "@icons/Code.astro";
 import Subtitle from "@shared/Subtitle.astro";
 import { Image } from "astro:assets";
 
-import imageHakcerStories from "@assets/project-hacker-stories.webp";
-import imageIsabelLopez from "@assets/project-isabellopez.webp";
-import imageAnyGiraldez from "@assets/project-anygiraldez.webp";
-import imageJorgelinaReales from "@assets/project-jorgelinareales.webp";
+import imageIsabelLopez from "@assets/projects/landing-page-conversion-coach-ontologica-isabel-lopez.webp";
+import imageAnyGiraldez from "@assets/projects/web-boutique-estilista-moda-any-giraldez.webp";
+import imageJorgelinaReales from "@assets/projects/identidad-digital-marca-personal-jorgelina-reales.webp";
 import CtaButtonInner from "@/components/shared/CtaButtonInner.astro";
 
 const PROJECTS = [
@@ -77,8 +76,8 @@ const PROJECTS = [
                            height={392}
                            format="webp"
                            quality={80}
-                           loading={index === 0 ? "eager" : "lazy"}
-                           decoding={index === 0 ? "sync" : "async"}
+                           loading="lazy"
+                           decoding="async"
                            fetchpriority={index === 0 ? "high" : "low"}
                            class="w-full h-full object-cover object-top"
                         />
@@ -114,9 +113,9 @@ const PROJECTS = [
                            class="md:text-base text-base"
                            href={link}
                            target="_blank"
-                           ariaLabel={`Ver sitio web del proyecto ${title}`}
+                           ariaLabel={`Visitar sitio web del proyecto ${title}`}
                         >
-                           <span>Ver sitio</span>
+                           <span>Visitar sitio</span>
                            <ExternalLink class="sm:size-5 size-4" />
                         </CtaButtonInner>
                      )}

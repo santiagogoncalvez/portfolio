@@ -24,8 +24,10 @@ const STEPS = [
    },
 ];
 
-const VIDEO_PREVIEW = "/video/video-preview.mp4";
-const VIDEO_FULL = "/video/video.mp4";
+const VIDEO_PREVIEW =
+   "/video/santiago-goncalvez-estratega-digital-hero-preview.mp4";
+const VIDEO_FULL =
+   "/video/estrategia-desarrollo-web-alto-rendimiento-santiago-goncalvez.mp4";
 ---
 
 <Subtitle class="flex items-center gap-x-4">
@@ -94,7 +96,7 @@ const VIDEO_FULL = "/video/video.mp4";
       >
          <XIcon class="size-6" />
       </button>
-      <video id="main-video" controls class="w-full rounded-2xl shadow-2xl">
+      <video id="main-video" controls class="w-full rounded-2xl shadow-2xl" preload="auto">
          <source src={VIDEO_FULL} type="video/mp4" />
       </video>
    </div>
