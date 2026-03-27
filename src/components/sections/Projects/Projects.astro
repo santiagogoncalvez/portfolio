@@ -5,9 +5,9 @@ import Code from "@icons/Code.astro";
 import Subtitle from "@shared/Subtitle.astro";
 import { Image } from "astro:assets";
 
-import imageIsabelLopez from "@assets/projects/landing-page-conversion-coach-ontologica-isabel-lopez.webp";
-import imageAnyGiraldez from "@assets/projects/web-boutique-estilista-moda-any-giraldez.webp";
-import imageJorgelinaReales from "@assets/projects/identidad-digital-marca-personal-jorgelina-reales.webp";
+import imageIsabelLopez from "@assets/projects/landing-page-conversion-coach-ontologica-isabel-lopez.avif";
+import imageAnyGiraldez from "@assets/projects/web-boutique-estilista-moda-any-giraldez.avif";
+import imageJorgelinaReales from "@assets/projects/identidad-digital-marca-personal-jorgelina-reales.avif";
 import CtaButtonInner from "@/components/shared/CtaButtonInner.astro";
 
 const PROJECTS = [
@@ -68,14 +68,12 @@ const PROJECTS = [
                         <Image
                            src={image}
                            alt={`Captura de pantalla del proyecto ${title}`}
-                           widths={[400, 564, 660]}
-                           sizes={`(max-width: 767px) 90vw, 564px, 660px`}
+                           widths={[400, 564, 846]}
+                           sizes={`(max-width: 767px) 95vw, 564px`}
                            width={564}
                            height={317}
-                           format="webp"
-                           quality={95}
-                           loading="lazy"
-                           decoding="async"
+                           format="avif"
+                           quality={100}
                            class="w-full h-auto object-cover object-top"
                         />
                      </div>
