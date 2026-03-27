@@ -55,11 +55,19 @@ import Card from "../shared/Card/Card.astro";
 
    <div class="about-item opacity-0 md:w-1/3 relative group">
       <div
-         class="h-full w-full overflow-hidden rounded-2xl  bg-bg-deep/5 transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+         class="h-full w-full overflow-hidden rounded-2xl bg-bg-deep/5 transition-transform duration-500 ease-out group-hover:scale-[1.02]"
       >
          <Image
             src={profilePic}
             alt={personalImageAlt}
+            widths={[341, 682]}
+            sizes="(max-width: 767px) 100vw, 341px"
+            width={341}
+            height={341}
+            quality={100}
+            format="webp"
+            loading="lazy"
+            decoding="async"
             class="w-full h-full object-cover"
          />
       </div>
