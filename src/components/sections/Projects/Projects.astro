@@ -70,16 +70,15 @@ const PROJECTS = [
                         <Image
                            src={image}
                            alt={`Captura de pantalla del proyecto ${title}`}
-                           widths={[400, 800, 1200]}
-                           sizes={`(max-width: 768px) 95vw, 500px`}
-                           width={700}
-                           height={392}
+                           widths={[400, 600, 800]}
+                           sizes={`(max-width: 768px) 95vw, 600px`}
+                           width={600}
+                           height={337}
                            format="webp"
                            quality={80}
                            loading="lazy"
                            decoding="async"
-                           fetchpriority={index === 0 ? "high" : "low"}
-                           class="w-full h-full object-cover object-top"
+                           class="w-full h-auto object-cover object-top"
                         />
                      </div>
                   </div>
