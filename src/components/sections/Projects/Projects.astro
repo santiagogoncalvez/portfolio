@@ -68,12 +68,14 @@ const PROJECTS = [
                         <Image
                            src={image}
                            alt={`Captura de pantalla del proyecto ${title}`}
-                           widths={[400, 564, 846]}
-                           sizes={`(max-width: 767px) 95vw, 564px`}
+                           widths={[380, 564, 846]}
+                           sizes={`(max-width: 767px) 95vw, (max-width: 1024px) 380px, 450px`}
                            width={564}
                            height={317}
                            format="avif"
-                           quality={100}
+                           quality={85}
+                           loading="lazy"
+                           decoding="async"
                            class="w-full h-auto object-cover object-top"
                         />
                      </div>
