@@ -8,11 +8,22 @@ import { Image } from "astro:assets";
 import imageIsabelLopez from "@assets/projects/landing-page-conversion-coach-ontologica-isabel-lopez.webp";
 import imageAnyGiraldez from "@assets/projects/web-boutique-estilista-moda-any-giraldez.webp";
 import imageJorgelinaReales from "@assets/projects/identidad-digital-marca-personal-jorgelina-reales.webp";
+import imageNidotrama from "@assets/projects/nidotrama-ecommerce-editorial.webp";
+
 import CtaButtonInner from "@/components/shared/CtaButtonInner.astro";
 
 const PROJECTS = [
    {
-      title: "Identidad Digital - Jorgelina Reales",
+      title: "E-commerce editorial - Nidotrama",
+      description:
+         "Desarrollo de una tienda online moderna para una marca textil con enfoque editorial. El proyecto combina una experiencia de compra fluida, alto rendimiento y un sistema de carrito compartible pensado para facilitar consultas y mejorar la conversión desde cualquier dispositivo.",
+      link: "https://nidotrama.com",
+      github: "",
+      image: imageNidotrama,
+      tags: ["Diseño Premium", "Alta Velocidad", "Posicionamiento Google"],
+   },
+   {
+      title: "Identidad digital - Jorgelina Reales",
       description:
          "Transformación de una marca personal mística en una plataforma digital de alto nivel. Logramos un posicionamiento orgánico en los primeros resultados de Google y una velocidad de carga instantánea que permite conectar con la audiencia sin esperas desde el primer segundo.",
       link: "https://jorgelinareales.com.ar",
@@ -21,7 +32,7 @@ const PROJECTS = [
       tags: ["Diseño Premium", "Alta Velocidad", "Posicionamiento Google"],
    },
    {
-      title: "Web Boutique - Estilista de TV",
+      title: "Web boutique - Estilista de TV",
       description:
          "Creación de una plataforma con estética editorial para el sector de moda. El proyecto equilibra un diseño visual impactante con una navegación fluida, garantizando que la identidad de la marca brille con profesionalismo y elegancia en cualquier dispositivo.",
       link: "https://anygiraldez.com",
@@ -34,7 +45,7 @@ const PROJECTS = [
       ],
    },
    {
-      title: "Landing de Alta Conversión - Coach Ontológica",
+      title: "Landing de alta conversión - Coach Ontológica",
       description:
          "Desarrollo de una página enfocada 100% en captación de clientes. Diseñé una interfaz que proyecta autoridad y confianza, integrando canales de contacto directos para transformar las visitas en consultas reales de forma simple y efectiva.",
       link: "https://isabellopez.com.ar",
