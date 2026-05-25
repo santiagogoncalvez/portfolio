@@ -9,12 +9,11 @@ import WhatsApp from "@/icons/WhatsApp.astro";
    <div
       id="contact-card"
       class="contact-element opacity-0 group relative overflow-hidden rounded-2xl
-             bg-white dark:bg-bg-deep
-             p-10 md:p-20 text-center
-             shadow-[0_20px_50px_rgba(0,0,0,0.04)]  dark:shadow-none"
+             bg-transparent
+             p-10  text-center"
    >
       {/* 1. EL EFECTO SPOTLIGHT REFINADO */}
-      <div
+      <!-- <div
          class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 z-0"
       >
          <div
@@ -27,7 +26,7 @@ import WhatsApp from "@/icons/WhatsApp.astro";
             style="background: radial-gradient(350px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.03), transparent 80%);"
          >
          </div>
-      </div>
+      </div> -->
 
       {/* 2. Desenfoques de fondo */}
       <!-- <div
@@ -105,6 +104,7 @@ import WhatsApp from "@/icons/WhatsApp.astro";
       );
 
       // 3. Lógica de Spotlight (Tu código original)
+      /* 
       const card = document.getElementById("contact-card");
       if (!card) return;
       card.addEventListener("mousemove", (e) => {
@@ -114,6 +114,7 @@ import WhatsApp from "@/icons/WhatsApp.astro";
          card.style.setProperty("--mouse-x", `${x}px`);
          card.style.setProperty("--mouse-y", `${y}px`);
       });
+      */
    }
 
    initContactAnimations();
