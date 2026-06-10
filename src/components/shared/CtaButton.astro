@@ -10,7 +10,7 @@ interface Props {
    isChatIntent?: boolean; // Cambiado de isCharla
 }
 
-const { class: className, isChatIntent = false } = Astro.props;
+const {isChatIntent = false } = Astro.props;
 
 const url = isChatIntent ? whatsappUrlchatMessage : whatsappUrlprojectMessage;
 ---

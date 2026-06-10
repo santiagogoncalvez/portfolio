@@ -43,7 +43,7 @@ const TESTIMONIALS = [
 
 <div id="testimonials-container" class="flex flex-col md:flex-row gap-6">
    {
-      TESTIMONIALS.map(({ name, role, content, image, highlight }) => (
+      TESTIMONIALS.map(({ name, role, content }) => (
          <article class="testimonial-item opacity-0 flex-1">
             <Card variant="highlight" class="min-h-full">
                <Paragraph>
@@ -78,7 +78,7 @@ const TESTIMONIALS = [
             {
                delay: stagger(0.1),
                duration: 0.3,
-               easing: [0.22, 1, 0.36, 1],
+               ease: [0.22, 1, 0.36, 1],
             },
          );
       },

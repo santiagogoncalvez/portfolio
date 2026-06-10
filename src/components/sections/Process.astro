@@ -6,7 +6,18 @@ import CloseIcon from "@icons/Close.astro";
 import Card from "../shared/Card/Card.astro";
 import Paragraph from "../shared/Paragraph.astro";
 
-const STEPS = [
+interface Step {
+   title: string;
+   description: string;
+   variant?:
+      | "transparent"
+      | "highlight"
+      | "transparentLeft"
+      | "transparentMiddle"
+      | "transparentRight";
+}
+
+const STEPS: Step[] = [
    {
       title: "Estrategia",
       description:
@@ -124,7 +135,7 @@ const VIDEO_FULL =
             {
                delay: stagger(0.06),
                duration: 0.3,
-               easing: [0.33, 1, 0.68, 1],
+               ease: [0.33, 1, 0.68, 1],
             },
          );
       },

@@ -78,16 +78,21 @@ import Card from "../shared/Card/Card.astro";
 
       const threshold = window.innerWidth >= 640 ? 0.05 : 0.02;
 
+      const items = document.querySelectorAll(".about-item");
+
       inView(
          "#about-container",
          () => {
             animate(
-               ".about-item",
-               { opacity: [0, 1], y: [15, 0] },
+               items,
+               {
+                  opacity: [0, 1],
+                  y: [15, 0],
+               },
                {
                   delay: stagger(0.06),
                   duration: 0.3,
-                  easing: [0.33, 1, 0.68, 1],
+                  ease: [0.33, 1, 0.68, 1],
                },
             );
          },

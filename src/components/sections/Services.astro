@@ -1,6 +1,4 @@
 ---
-import Subtitle from "@shared/Subtitle.astro";
-import GridIcon from "@icons/Grid.astro";
 import GaugeIcon from "@icons/Gauge.astro";
 import LayersIcon from "@icons/Layers.astro";
 import CpuIcon from "@icons/Cpu.astro";
@@ -38,16 +36,16 @@ const SERVICES = [
 ];
 ---
 
-<Subtitle class="flex items-center gap-x-4">
+<!-- <Subtitle class="flex items-center gap-x-4">
    <div class="sm:size-8 size-7 text-border-strong dark:text-text-highlighted">
       <GridIcon class="w-full h-full" />
    </div>
    <span>Soluciones</span>
-</Subtitle>
+</Subtitle> -->
 
 <div id="services-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
    {
-      SERVICES.map(({ icon: Icon, title, description, variant }) => (
+      SERVICES.map(({ icon: Icon, title, description }) => (
          <article class="service-item opacity-0">
             <Card variant="highlight" class="md:w-full min-h-full">
                {
@@ -80,7 +78,7 @@ const SERVICES = [
             {
                delay: stagger(0.06),
                duration: 0.3,
-               easing: [0.33, 1, 0.68, 1],
+               ease: [0.33, 1, 0.68, 1],
             },
          );
       },

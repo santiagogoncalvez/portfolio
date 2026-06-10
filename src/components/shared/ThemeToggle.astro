@@ -107,7 +107,8 @@ const positionClasses =
       document
          .querySelectorAll(".theme-toggle-container")
          .forEach((container) => {
-            const icons = container.querySelectorAll("[data-icon]");
+            const icons =
+               container.querySelectorAll<HTMLElement>("[data-icon]");
             icons.forEach((icon) => {
                icon.classList.toggle("active", icon.dataset.icon === theme);
             });
@@ -122,6 +123,8 @@ const positionClasses =
          const btn = container.querySelector("[data-theme-btn]");
          const menu = container.querySelector("[data-theme-menu]");
 
+         if (!btn || !menu) return;
+
          btn.addEventListener("click", (e) => {
             e.stopPropagation();
             // Cerramos otros menús antes de abrir este
@@ -132,10 +135,14 @@ const positionClasses =
          });
 
          menu.addEventListener("click", (e) => {
-            const option = e.target.closest("[data-theme]");
-            if (!option) return;
+            const target = e.target as HTMLElement | null;
+            const option = target?.closest<HTMLElement>("[data-theme]");
 
-            localStorage.setItem("theme", option.dataset.theme);
+            const theme = option?.dataset.theme;
+
+            if (!theme) return;
+
+            localStorage.setItem("theme", theme);
             updateAllToggles();
             menu.classList.remove("open");
          });

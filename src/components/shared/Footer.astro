@@ -2,12 +2,10 @@
 import SocialPill from "../sections/Hero/SocialPill.astro";
 import LogoSG from "./LogoSG.astro";
 import LinkedInIcon from "@icons/LinkedIn.astro";
-import GitHubIcon from "@icons/GitHub.astro";
 import MailIcon from "@icons/Mail.astro";
 import ThemeToggle from "./ThemeToggle.astro";
-import { instagram, whatsappWithoutMessage } from "@/constants/contact.mjs";
+import { whatsappWithoutMessage } from "@/constants/contact.mjs";
 import WhatsApp from "@/icons/WhatsApp.astro";
-import Instagram from "@/icons/Instagram.astro";
 
 const currentYear = new Date().getFullYear();
 
@@ -16,7 +14,7 @@ import { navItems } from "@/constants/navItems.mjs";
 
 <footer
    id="footer"
-   class="opacity-98 sm:my-12 my-8 min-w-full flex justify-center px-5"
+   class="opacity-98 sm:my-12 my-8 sm:mt-0 mt0 min-w-full flex justify-center px-5"
 >
    <div
       class="w-full mx-auto lg:max-w-5xl flex flex-col items-center justify-between gap-y-20 flex-wrap rounded-2xl"

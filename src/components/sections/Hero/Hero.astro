@@ -1,11 +1,12 @@
 ---
-import ProfilePhoto from "./ProfilePhoto.astro";
 import PrincipalTitle from "@shared/PrincipalTitle.astro";
 import HeroDescription from "./HeroDescription.astro";
 import HeroNav from "./HeroNav.astro";
 ---
 
-<div class="w-full flex flex-row items-center justify-center gap-6 sm:pt-20 pt-14">
+<div
+   class="w-full flex flex-row items-center justify-center gap-6 sm:pt-20 pt-14"
+>
    <div class="w-full flex items-center flex-col sm:gap-8 gap-6">
       <!-- <div class="animate-item relative opacity-0">
             <ProfilePhoto
@@ -38,16 +39,17 @@ import HeroNav from "./HeroNav.astro";
 
    // Motion One prefiere selectores directos o arrays de elementos del DOM
    // Usar el selector de clase es lo más eficiente
+   const items = document.querySelectorAll(".animate-item");
+
    animate(
-      ".animate-item",
+      items,
       {
          opacity: [0, 1],
          y: [12, 0],
       },
       {
-         delay: stagger(0.05), // Esto ahora aplicará el retraso a cada elemento con esa clase
+         delay: stagger(0.05),
          duration: 0.3,
-         easing: [0.22, 1, 0.36, 1],
       },
    );
 </script>
