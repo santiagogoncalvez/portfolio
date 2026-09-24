@@ -1,85 +1,86 @@
 ---
-import GaugeIcon from "@icons/Gauge.astro";
-import LayersIcon from "@icons/Layers.astro";
-import CpuIcon from "@icons/Cpu.astro";
-import Card from "../shared/Card/Card.astro";
-import Paragraph from "../shared/Paragraph.astro";
-
+import { Image } from "astro:assets";
+import Subtitle from "@shared/Subtitle.astro";
+import imageLanding from "@assets/services/web-boutique-estilista-moda-any-giraldez.webp";
+import imageInstitutional from "@assets/services/identidad-digital-marca-personal-jorgelina-reales.webp";
+import imageCMS from "@assets/services/nidotrama-ecommerce-editorial-catalogo.webp";
+import { variants } from "@/constants/cardVariants";
 const SERVICES = [
    {
       title: "Landing Pages de Alta Conversión",
-      subtitle: "VELOCIDAD",
       description:
          "Sitios diseñados para una sola misión: vender. Utilizo tecnología de última generación para que tu web cargue al instante, evitando que pierdas clientes por esperas innecesarias.",
-      icon: GaugeIcon, // El icono de Gauge (velocímetro) sigue siendo perfecto aquí.
-      label: "Carga instantánea y efectiva",
-      
+      image: imageLanding,
+      alt: "Landing page diseñada para conversión",
    },
    {
       title: "Sitios Institucionales Premium",
-      subtitle: "AUTORIDAD",
       description:
          "Tu marca merece una presencia digital que proyecte confianza. Desarrollo sitios multi-sección con navegación fluida para marcas que buscan destacar y consolidar su imagen profesional.",
-      icon: LayersIcon, // Capas para representar la estructura del sitio.
-      label: "Experiencia de usuario premium",
-      
+      image: imageInstitutional,
+      alt: "Sitio institucional con diseño editorial",
    },
    {
       title: "Plataformas Autogestionables",
-      subtitle: "ESCALABILIDAD",
       description:
-         "Olvidate de las plantillas limitadas. Creo sistemas a medida donde podés gestionar tu contenido (blog, proyectos, servicios) de forma fácil, segura y sin depender de un programador.",
-      icon: CpuIcon, // El chip representa la "inteligencia" del sistema a medida.
-      label: "Control total de tu contenido",
-      
+         "Olvidate de las plantillas limitadas. Creo sistemas a medida donde podés gestionar tu contenido de forma fácil, segura y sin depender de un programador.",
+      image: imageCMS,
+      alt: "Plataforma web con contenido autogestionable",
    },
 ];
 ---
 
-<!-- <Subtitle class="flex items-center gap-x-4">
-   <div class="sm:size-8 size-7 text-border-strong dark:text-text-highlighted">
-      <GridIcon class="w-full h-full" />
-   </div>
-   <span>Soluciones</span>
-</Subtitle> -->
-
-<div id="services-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div id="services-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
    {
-      SERVICES.map(({ icon: Icon, title, description }) => (
-         <article class="service-item opacity-0">
-            <Card variant="highlight" class="md:w-full min-h-full">
-               {
-                  <Paragraph>
-                     <p>{description}</p>
-                  </Paragraph>
-               }
-
-               <Icon slot="icon" class="w-full h-full" />
-               {/* <span slot="label">{subtitle}</span> */}
-               <span slot="title">{title}</span>
-               {/* <div slot="footer">{label}</div> */}
-            </Card>
+      SERVICES.map(({ title, description, image, alt }) => (
+         <article class="service-item opacity-0 group">
+            {" "}
+            <div
+               class={`overflow-hidden rounded-2xl transition-all duration-300 h-full ${variants.highlight}`}
+            >
+               {" "}
+               <div class="aspect-video overflow-hidden">
+                  {" "}
+                  <Image
+                     src={image}
+                     alt={alt}
+                     width={564}
+                     height={317}
+                     widths={[400, 564, 660]}
+                     sizes="(max-width: 767px) 90vw, 564px"
+                     format="webp"
+                     quality={85}
+                     loading="lazy"
+                     decoding="async"
+                     class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                  />{" "}
+               </div>{" "}
+               <div class="p-6 sm:p-8">
+                  {" "}
+                  <h3 class="text-xl font-medium tracking-tight text-bg-elevated dark:text-title">
+                     {" "}
+                     {title}{" "}
+                  </h3>{" "}
+                  <p class="mt-4 text-sm leading-relaxed text-border-strong dark:text-text">
+                     {" "}
+                     {description}{" "}
+                  </p>{" "}
+               </div>{" "}
+            </div>{" "}
          </article>
       ))
    }
 </div>
-
 <script>
    import { animate, stagger, inView } from "motion";
-
    const threshold = window.innerWidth >= 640 ? 0.05 : 0.02;
-
    inView(
       "#services-container",
       () => {
          animate(
             ".service-item",
             { opacity: [0, 1], y: [15, 0] },
-            {
-               delay: stagger(0.06),
-               duration: 0.3,
-               ease: [0.33, 1, 0.68, 1],
-            },
+            { delay: stagger(0.06), duration: 0.3, ease: [0.33, 1, 0.68, 1] },
          );
       },
       { amount: threshold },

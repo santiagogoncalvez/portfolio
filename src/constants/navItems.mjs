@@ -6,5 +6,5 @@ export const navItems = [
    { title: "Testimonios", label: "testimonios", url: "/#testimonios" },
 
    // { title: "Sobre mí", label: "sobre-mi", url: "/#sobre-mi" },
-   { title: "Contacto", label: "contacto", url: "/#contacto" },
+   // { title: "Contacto", label: "contacto", url: "/#contacto" },
 ];

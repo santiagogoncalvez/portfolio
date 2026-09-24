@@ -56,82 +56,84 @@ const PROJECTS = [
 ];
 ---
 
-<Subtitle class="flex items-center gap-x-4 group">
-   <Code
+<div class="flex flex-row justify-between items-end flex-wrap gap-4">
+   <Subtitle class="flex items-center gap-x-4 group">
+      <!-- <Code
       class="sm:size-8 size-7 text-border-strong dark:text-text-highlighted"
-   />
-   <span class="tracking-tight">Proyectos</span>
-</Subtitle>
+   /> -->
+      <span class="tracking-tight">Proyectos</span>
+   </Subtitle>
 
-<div class="flex flex-col gap-y-12">
+   <p class="text-border-strong dark:text-text">Trabajos que hablan solos</p>
+</div>
+
+<div class="flex flex-col gap-y-8">
    {
-      PROJECTS.map(
-         ({ image, title, description, link, github }) => (
-            <article class="overflow-hidden project-item opacity-0 flex flex-col md:flex-row bg-transparent dark:bg-transparent hover:bg-border-card-outline/15  dark:hover:bg-white/2 dark:hover:border-text-highlighted/30 hover:border-border-strong/20 transition-colors duration-300 rounded-2xl group">
-               {/* Columna Imagen */}
-               <div class="w-full md:w-5/12 flex items-center justify-center p-6 bg-gradient-to-br from-bg-deep/5 to-transparent dark:from-white/5">
-                  <div class="w-full rounded-2xl overflow-hidden  border-border-card-outline dark:border-border-strong/80 transform md:group-hover:-translate-y-1 transition-transform duration-500 ease-out">
-                     <div class="h-6 bg-white/80 dark:bg-[#252525]  border-border-card-outline dark:border-border-strong/80 flex items-center px-3 gap-1.5">
-                        <div class="size-2 rounded-full bg-border-card-outline dark:bg-border-strong/80" />
-                        <div class="size-2 rounded-full bg-border-card-outline dark:bg-border-strong/80" />
-                     </div>
-                     <div class="aspect-video overflow-hidden">
-                        <Image
-                           src={image}
-                           alt={`Captura de pantalla del proyecto ${title}`}
-                           widths={[400, 564, 660]}
-                           sizes={`(max-width: 767px) 90vw, 564px, 660px`}
-                           width={564}
-                           height={317}
-                           format="webp"
-                           quality={85}
-                           loading="lazy"
-                           decoding="async"
-                           class="w-full h-auto object-cover object-top bg-white dark:bg-white/[0.03]"
-                        />
-                     </div>
+      PROJECTS.map(({ image, title, description, link, github }) => (
+         <article class=" project-item opacity-0 flex flex-col md:flex-row gap-8 bg-transparent dark:bg-transparent  dark:hover:border-text-highlighted/30 hover:border-border-strong/20 transition-colors duration-300 rounded-2xl group">
+            {/* Columna Imagen */}
+            <div class="w-full md:w-1/2 flex items-center justify-center">
+               <div class="w-full rounded-2xl overflow-hidden  border-border-card-outline dark:border-border-strong/80 transform md:group-hover:-translate-y-1 transition-transform duration-500 ease-out">
+                  {/* <div class="h-6 bg-white/80 dark:bg-[#252525]  border-border-card-outline dark:border-border-strong/80 flex items-center px-3 gap-1.5">
+                     <div class="size-2 rounded-full bg-border-card-outline dark:bg-border-strong/80" />
+                     <div class="size-2 rounded-full bg-border-card-outline dark:bg-border-strong/80" />
+                  </div> */}
+                  <div class="aspect-video overflow-hidden">
+                     <Image
+                        src={image}
+                        alt={`Captura de pantalla del proyecto ${title}`}
+                        widths={[400, 564, 660]}
+                        sizes={`(max-width: 767px) 90vw, 564px, 660px`}
+                        width={564}
+                        height={317}
+                        format="webp"
+                        quality={85}
+                        loading="lazy"
+                        decoding="async"
+                        class="w-full h-auto object-cover object-top bg-white dark:bg-white/[0.03]"
+                     />
                   </div>
                </div>
+            </div>
 
-               {/* Columna Contenido */}
-               <div class="w-full md:w-7/12 p-6 md:p-8 flex flex-col justify-center">
-                  <h3 class="lg:text-2xl text-xl font-bold text-bg-elevated dark:text-gray-100 mb-4">
-                     {title}
-                  </h3>
-                  {/* <div class="mb-4">
+            {/* Columna Contenido */}
+            <div class="w-full md:w-1/2 flex flex-col justify-center">
+               <h3 class="lg:text-2xl text-xl font-semibold text-bg-elevated dark:text-gray-100 mb-4">
+                  {title}
+               </h3>
+               {/* <div class="mb-4">
                      <TechnologyPills techs={tags} />
                   </div> */}
-                  <p class="text-border-strong dark:text-text flex-grow leading-relaxed">
-                     {description}
-                  </p>
-                  <footer class="flex items-center gap-x-4 mt-8 dark:border-border-strong/20">
-                     {github && (
-                        <CtaButtonInner
-                           class="md:text-base text-base"
-                           href={github}
-                           target="_blank"
-                           ariaLabel={`Ver repositorio del proyecto ${title}`}
-                        >
-                           <GitHub class="sm:size-5 size-4" />
-                           <span>Código</span>
-                        </CtaButtonInner>
-                     )}
-                     {link && (
-                        <CtaButtonInner
-                           class="md:text-base text-base"
-                           href={link}
-                           target="_blank"
-                           ariaLabel={`Visitar sitio web del proyecto ${title}`}
-                        >
-                           <span>Visitar sitio</span>
-                           <ExternalLink class="sm:size-5 size-4" />
-                        </CtaButtonInner>
-                     )}
-                  </footer>
-               </div>
-            </article>
-         ),
-      )
+               <p class="text-border-strong dark:text-text leading-relaxed">
+                  {description}
+               </p>
+               <footer class="flex items-center gap-x-4 mt-8 dark:border-border-strong/20">
+                  {github && (
+                     <CtaButtonInner
+                        class="md:text-base text-base"
+                        href={github}
+                        target="_blank"
+                        ariaLabel={`Ver repositorio del proyecto ${title}`}
+                     >
+                        <GitHub class="sm:size-5 size-4" />
+                        <span>Código</span>
+                     </CtaButtonInner>
+                  )}
+                  {link && (
+                     <CtaButtonInner
+                        class="md:text-base text-base"
+                        href={link}
+                        target="_blank"
+                        ariaLabel={`Visitar sitio web del proyecto ${title}`}
+                     >
+                        <span>Visitar sitio</span>
+                        <ExternalLink class="sm:size-5 size-4" />
+                     </CtaButtonInner>
+                  )}
+               </footer>
+            </div>
+         </article>
+      ))
    }
 </div>
 

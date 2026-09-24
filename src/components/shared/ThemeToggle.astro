@@ -20,7 +20,10 @@ const positionClasses =
 <div class="relative theme-toggle-container" data-theme-root={id}>
    <button
       aria-haspopup="menu"
-      class="flex items-center justify-center h-9 min-w-9 px-2 hover:cursor-pointer rounded-md border bg-white/40 dark:bg-transparent border-border-card-outline dark:border-border-strong/80 dark:hover:bg-white/2 dark:hover:border-text-highlighted/30 hover:border-border-strong/20 transition-colors duration-300"
+      class="flex items-center justify-center h-9 min-w-9 px-2 hover:cursor-pointer rounded-md transition-colors duration-300 bg-border-strong/2
+hover:bg-border-strong/4
+dark:bg-white/[0.03]
+dark:hover:bg-white/4"
       data-theme-btn
    >
       <span class="sr-only">Elegir tema</span>
@@ -41,7 +44,7 @@ const positionClasses =
 
    <div
       class:list={[
-         "absolute hidden right-0 min-w-[9rem] p-1 rounded-md border bg-[var(--color-bg-white)] border-text-light shadow-lg dark:bg-[var(--color-bg-elevated)] dark:border-[var(--color-border-subtle)] z-30",
+         "absolute hidden right-0 min-w-[9rem] p-1 rounded-md  bg-[var(--color-bg-white)] border-text-light shadow-lg dark:bg-[var(--color-bg-elevated)] dark:border-[var(--color-border-subtle)] z-30",
          positionClasses,
       ]}
       data-theme-menu
