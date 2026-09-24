@@ -10,6 +10,11 @@ import imageAnyGiraldez from "@assets/projects/web-boutique-estilista-moda-any-g
 import imageJorgelinaReales from "@assets/projects/identidad-digital-marca-personal-jorgelina-reales.webp";
 import imageNidotrama from "@assets/projects/nidotrama-ecommerce-editorial.webp";
 
+import videoIsabelLopez from "@assets/projects/videos/landing-page-conversion-coach-ontologica-isabel-lopez.mp4";
+import videoAnyGiraldez from "@assets/projects/videos/web-boutique-estilista-moda-any-giraldez.mp4";
+import videoJorgelinaReales from "@assets/projects/videos/identidad-digital-marca-personal-jorgelina-reales.mp4";
+import videoNidotrama from "@assets/projects/videos/nidotrama-ecommerce-editorial.mp4";
+
 import CtaButtonInner from "@/components/shared/CtaButtonInner.astro";
 
 const PROJECTS = [
@@ -20,6 +25,7 @@ const PROJECTS = [
       link: "https://nidotrama.com",
       github: "",
       image: imageNidotrama,
+      video: videoNidotrama,
       tags: ["Diseño Premium", "Alta Velocidad", "Posicionamiento Google"],
    },
    {
@@ -29,6 +35,7 @@ const PROJECTS = [
       link: "https://jorgelinareales.com.ar",
       github: "",
       image: imageJorgelinaReales,
+      video: videoJorgelinaReales,
       tags: ["Diseño Premium", "Alta Velocidad", "Posicionamiento Google"],
    },
    {
@@ -38,6 +45,7 @@ const PROJECTS = [
       link: "https://anygiraldez.com",
       github: "",
       image: imageAnyGiraldez,
+      video: videoAnyGiraldez,
       tags: [
          "Diseño Editorial",
          "Experiencia de Usuario",
@@ -51,6 +59,7 @@ const PROJECTS = [
       link: "https://isabellopez.com.ar",
       github: "",
       image: imageIsabelLopez,
+      video: videoIsabelLopez,
       tags: ["Ventas Online", "Marca Personal", "Fácil Contacto"],
    },
 ];
@@ -59,26 +68,25 @@ const PROJECTS = [
 <div class="flex flex-row justify-between items-end flex-wrap gap-4">
    <Subtitle class="flex items-center gap-x-4 group">
       <!-- <Code
-      class="sm:size-8 size-7 text-border-strong dark:text-text-highlighted"
-   /> -->
+         class="sm:size-8 size-7 text-border-strong dark:text-text-highlighted"
+      /> -->
       <span class="tracking-tight">Proyectos</span>
    </Subtitle>
-
    <p class="text-border-strong dark:text-text">Trabajos que hablan solos</p>
 </div>
 
 <div class="flex flex-col gap-y-8">
    {
-      PROJECTS.map(({ image, title, description, link, github }) => (
+      PROJECTS.map(({ image, video, title, description, link, github }) => (
          <article class=" project-item opacity-0 flex flex-col md:flex-row gap-8 bg-transparent dark:bg-transparent  dark:hover:border-text-highlighted/30 hover:border-border-strong/20 transition-colors duration-300 rounded-2xl group">
             {/* Columna Imagen */}
             <div class="w-full md:w-1/2 flex items-center justify-center">
-               <div class="w-full rounded-2xl overflow-hidden  border-border-card-outline dark:border-border-strong/80 transform md:group-hover:-translate-y-1 transition-transform duration-500 ease-out">
+               <div class="w-full rounded-2xl overflow-hidden  border-border-card-outline dark:border-border-strong/80 transform transition-transform duration-500 ease-out">
                   {/* <div class="h-6 bg-white/80 dark:bg-[#252525]  border-border-card-outline dark:border-border-strong/80 flex items-center px-3 gap-1.5">
                      <div class="size-2 rounded-full bg-border-card-outline dark:bg-border-strong/80" />
                      <div class="size-2 rounded-full bg-border-card-outline dark:bg-border-strong/80" />
                   </div> */}
-                  <div class="aspect-video overflow-hidden">
+                  <div class="aspect-video overflow-hidden relative">
                      <Image
                         src={image}
                         alt={`Captura de pantalla del proyecto ${title}`}
@@ -92,6 +100,15 @@ const PROJECTS = [
                         decoding="async"
                         class="w-full h-auto object-cover object-top bg-white dark:bg-white/[0.03]"
                      />
+
+                     <video
+                        src={video}
+                        muted
+                        loop
+                        playsinline
+                        preload="none"
+                        class="project-video absolute inset-0 w-full h-full object-cover object-top opacity-0 transition-opacity duration-300"
+                     />
                   </div>
                </div>
             </div>
@@ -101,12 +118,15 @@ const PROJECTS = [
                <h3 class="lg:text-2xl text-xl font-semibold text-bg-elevated dark:text-gray-100 mb-4">
                   {title}
                </h3>
+
                {/* <div class="mb-4">
                      <TechnologyPills techs={tags} />
-                  </div> */}
+               </div> */}
+
                <p class="text-border-strong dark:text-text leading-relaxed">
                   {description}
                </p>
+
                <footer class="flex items-center gap-x-4 mt-8 dark:border-border-strong/20">
                   {github && (
                      <CtaButtonInner
@@ -119,6 +139,7 @@ const PROJECTS = [
                         <span>Código</span>
                      </CtaButtonInner>
                   )}
+
                   {link && (
                      <CtaButtonInner
                         class="md:text-base text-base"
@@ -142,14 +163,13 @@ const PROJECTS = [
 
    const threshold = window.innerWidth >= 640 ? 0.05 : 0.03;
 
-   // Seleccionamos todos los elementos individualmente
    const items = document.querySelectorAll(".project-item");
 
+   // Animación de entrada de cada proyecto
    items.forEach((item) => {
       inView(
          item,
          () => {
-            // La animación se dispara solo para 'item' cuando entra en pantalla
             animate(
                item,
                {
@@ -161,11 +181,82 @@ const PROJECTS = [
                   ease: [0.22, 1, 0.36, 1],
                },
             );
-
-            // Opcional: Si solo quieres que se anime la primera vez que se ve
-            // return () => { /* limpieza o dejar vacío para que no se repita */ };
          },
          { amount: threshold },
-      ); // Ajusta el threshold según necesites
+      );
    });
+
+   let activeItem: Element | null = null;
+
+   // Videos
+   const updateActiveVideo = () => {
+      const viewportCenter = window.innerHeight / 2;
+
+      let closestItem: Element | null = null;
+      let closestDistance = Infinity;
+
+      items.forEach((item) => {
+         const rect = item.getBoundingClientRect();
+
+         // Solo consideramos proyectos que estén dentro del viewport
+         if (rect.bottom > 0 && rect.top < window.innerHeight) {
+            const itemCenter = rect.top + rect.height / 2;
+            const distance = Math.abs(itemCenter - viewportCenter);
+
+            if (distance < closestDistance) {
+               closestDistance = distance;
+               closestItem = item;
+            }
+         }
+      });
+
+      // Si el elemento activo no cambió, no hacemos nada
+      if (closestItem === activeItem) {
+         return;
+      }
+
+      // Pausamos todos los videos y volvemos a mostrar la imagen
+      items.forEach((item) => {
+         const video = item.querySelector(".project-video");
+
+         if (video instanceof HTMLVideoElement && item !== closestItem) {
+            video.pause();
+            video.currentTime = 0;
+            video.classList.remove("opacity-100");
+         }
+      });
+
+      // Reproducimos solamente el nuevo elemento activo
+      if (closestItem) {
+         const video = closestItem.querySelector(".project-video");
+
+         if (video instanceof HTMLVideoElement) {
+            video.currentTime = 0;
+            video.classList.add("opacity-100");
+            video.play();
+         }
+      }
+
+      // Guardamos el nuevo elemento activo
+      activeItem = closestItem;
+   };
+
+   let ticking = false;
+
+   const handleScroll = () => {
+      if (!ticking) {
+         window.requestAnimationFrame(() => {
+            updateActiveVideo();
+            ticking = false;
+         });
+
+         ticking = true;
+      }
+   };
+
+   window.addEventListener("scroll", handleScroll, { passive: true });
+   window.addEventListener("resize", updateActiveVideo);
+
+   // Comprobar cuál corresponde al cargar
+   updateActiveVideo();
 </script>
