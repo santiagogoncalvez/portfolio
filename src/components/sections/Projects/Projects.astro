@@ -228,7 +228,7 @@ const PROJECTS = [
 
       // Reproducimos solamente el nuevo elemento activo
       if (closestItem) {
-         const video = closestItem.querySelector(".project-video");
+         const video = (closestItem as Element).querySelector(".project-video");
 
          if (video instanceof HTMLVideoElement) {
             video.currentTime = 0;
