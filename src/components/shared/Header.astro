@@ -16,10 +16,8 @@ import { navItems } from "@/constants/navItems.mjs";
           flex justify-center"
 >
    <div class="w-full max-w-screen-2xl lg:px-16 md:px-8 px-4">
-      <nav
-         class="flex items-center justify-between py-4
-             w-full"
-      >
+      <nav class="flex items-center justify-between py-4
+             w-full">
          <!-- ================= DESKTOP ================= -->
          <div class="hidden lg:flex w-full items-center justify-between">
             <div class="flex gap-8 items-center">
@@ -95,11 +93,7 @@ import { navItems } from "@/constants/navItems.mjs";
       class="lg:hidden fixed inset-0 z-20 hidden
            dark:bg-bg-base bg-title"
    >
-      <div
-         class="flex items-center justify-between px-5 py-4
-             border-b border-text-light
-             dark:border-border-strong"
-      >
+      <div class="flex items-center justify-between px-4 py-4">
          <LogoSG />
 
          <button
@@ -133,18 +127,18 @@ import { navItems } from "@/constants/navItems.mjs";
             }
          </div>
 
-         <div class="w-full">
+         <!-- <div class="w-full">
             <div
                class="min-w-full flex h-[1px] bg-border-card-outline/40 dark:bg-border-strong/20"
             >
             </div>
-         </div>
+         </div> -->
 
          <div class="flex flex-col gap-4">
             <div
-               class="w-full flex justify-between text-border-strong dark:text-text"
+               class="w-full flex justify-between items-center text-border-strong dark:text-text"
             >
-               <span>Tema</span>
+               <span class="h-fit">Tema</span>
                <ThemeToggle id="theme-mobile" position="up" />
             </div>
          </div>
